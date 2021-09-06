@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-black text-gray-200 h-screen overflow-hidden
+}
+
+*,
+::before,
+::after {
+  background: none;
+}
+
+:focus {
+  outline: 0 !important;
+}
+
+label,
+small,
+input,
+textarea,
+select,
+button {
+  display: block;
+}
+
+/* target area utility to increase mouse event area beyond visual area */
+.t-2:after {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: 0;
+  @apply -m-2
+}
+.t-max:after {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: 0;
+  margin: -99999px;
+}
