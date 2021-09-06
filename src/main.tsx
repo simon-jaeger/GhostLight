@@ -1,6 +1,9 @@
+import * as mobx from "mobx"
 import React from "react"
 import ReactDOM from "react-dom"
 import {App} from "/src/components/_App"
+
+mobx.configure({enforceActions: "never"})
 
 ReactDOM.render(
   <React.StrictMode><App/></React.StrictMode>,

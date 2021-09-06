@@ -1,7 +1,11 @@
 import React from "react"
+import {observer} from "mobx-react-lite"
+import {SceneView} from "/src/components/SceneView"
 
-export const App = () => {
+export const App = observer(() => {
   return (<>
-    <h1>hello world</h1>
+    <SceneView/>
   </>)
-}
+})
+
+App.displayName = nameof(App)
