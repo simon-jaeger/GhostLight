@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 body {
-  @apply bg-black text-gray-200 h-screen overflow-hidden
+  font-size: 14px;
+  overflow: hidden;
+  height: 100vh;
+  background: #000000;
+  @apply text-gray-200;
 }
 
 *,
