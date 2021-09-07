@@ -1,7 +1,7 @@
 import * as mobx from "mobx"
 import React from "react"
 import ReactDOM from "react-dom"
-import {App} from "/src/components/_App"
+import {App} from "/src/components/App"
 import {Debugger} from "/src/services/Debugger"
 
 mobx.configure({enforceActions: "never"})

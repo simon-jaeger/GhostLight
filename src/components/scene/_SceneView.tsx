@@ -1,7 +1,7 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
 import {Actor} from "/src/models/Actor"
-import {ActorView} from "/src/components/ActorView"
+import {ActorView} from "/src/components/scene/ActorView"
 
 export const SceneView = observer(() => {
   return (
