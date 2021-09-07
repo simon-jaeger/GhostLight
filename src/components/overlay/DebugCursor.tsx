@@ -1,6 +1,6 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
-import {Cursor} from "/src/services/Cursor"
+import {Cursor} from "/src/services/Cursor/Cursor"
 
 export const DebugCursor = observer(() => {
   return (

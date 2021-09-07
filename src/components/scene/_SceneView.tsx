@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from "react"
 import {observer} from "mobx-react-lite"
 import {Actor} from "/src/models/Actor"
 import {ActorView} from "/src/components/scene/ActorView"
-import {Cursor} from "/src/services/Cursor"
+import {Cursor} from "/src/services/Cursor/Cursor"
 
 export const SceneView = observer(() => {
   const ref = useRef<HTMLDivElement>(null)
