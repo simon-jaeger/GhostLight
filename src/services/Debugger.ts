@@ -1,5 +1,4 @@
 import Vue from "vue"
-import {Config} from "/src/models/Config"
 import {Actor} from "/src/models/Actor"
 
 export const Debugger = new class {
@@ -7,7 +6,6 @@ export const Debugger = new class {
     Vue.config.silent = true
     Vue.config.productionTip = false
     const debug = {
-      Config: Config,
       Actor: Actor.all,
     }
     new Vue({el: "#debug", name: "Debug", data: debug})
