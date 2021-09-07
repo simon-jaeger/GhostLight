@@ -1,5 +1,6 @@
 import Vue from "vue"
 import {Actor} from "/src/models/Actor"
+import {Cursor} from "/src/services/Cursor"
 
 export const Debugger = new class {
   run() {
@@ -7,6 +8,7 @@ export const Debugger = new class {
     Vue.config.productionTip = false
     const debug = {
       Actor: Actor.all,
+      Cursor: Cursor,
     }
     new Vue({el: "#debug", name: "Debug", data: debug})
   }
