@@ -29,6 +29,10 @@ button {
   display: block;
 }
 
+svg {
+  @apply w-5 h-5; /* default icon size */
+}
+
 /* target area utility to increase mouse event area beyond visual area */
 .t-2:after {
   content: '';
@@ -43,4 +47,8 @@ button {
   position: absolute;
   inset: 0;
   margin: -99999px;
+}
+
+.-z-1 {
+  z-index: -1;
 }
