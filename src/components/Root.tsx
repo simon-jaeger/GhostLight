@@ -4,7 +4,7 @@ import {SceneView} from "/src/components/scene/_SceneView"
 import {Overlay} from "/src/components/overlay/_Overlay"
 import {Controls} from "/src/components/controls/_Controls"
 
-export const AppView = observer(() => {
+export const Root = observer(() => {
   return (<>
     <SceneView/>
     <Overlay/>
@@ -12,4 +12,4 @@ export const AppView = observer(() => {
   </>)
 })
 
-AppView.displayName = nameof(AppView)
+Root.displayName = nameof(Root)

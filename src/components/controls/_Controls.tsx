@@ -11,4 +11,5 @@ export const Controls = observer(() => {
     </div>
   )
 })
+
 Controls.displayName = nameof(Controls)

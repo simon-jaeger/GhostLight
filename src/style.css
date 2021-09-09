@@ -48,7 +48,3 @@ svg {
   inset: 0;
   margin: -99999px;
 }
-
-.-z-1 {
-  z-index: -1;
-}

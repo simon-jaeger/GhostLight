@@ -9,4 +9,5 @@ export const Overlay = observer(() => {
     </div>
   )
 })
+
 Overlay.displayName = nameof(Overlay)

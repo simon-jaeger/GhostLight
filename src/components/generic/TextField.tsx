@@ -1,5 +1,4 @@
 import React, {useEffect, useRef} from "react"
-import {observer} from "mobx-react-lite"
 
 interface Props {
   label: string
@@ -8,7 +7,7 @@ interface Props {
   onChange?: (newValue) => void
 }
 
-export const TextField = observer((p: Props) => {
+export const TextField = (p: Props) => {
   const ref = useRef<HTMLInputElement>(null)
   useEffect(() => ref.current!.value = p.value)
   useEffect(() => ref.current!.addEventListener("change", () => {
@@ -27,6 +26,4 @@ export const TextField = observer((p: Props) => {
       />
     </div>
   )
-})
-
-TextField.displayName = nameof(TextField)
+}

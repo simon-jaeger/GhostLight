@@ -22,4 +22,5 @@ export const SceneView = observer(() => {
     </div>
   )
 })
+
 SceneView.displayName = nameof(SceneView)
