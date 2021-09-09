@@ -17,6 +17,7 @@ export const ActorView = observer(({actor}: Props) => {
         height: actor.shape.height,
         background: actor.texture,
       }}
+      className={`${actor.isSelected() && 'ring-1 ring-yellow-500'}`}
     ></div>
   )
 })

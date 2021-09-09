@@ -22,6 +22,10 @@ export const Cursor = new class {
     }, {fireImmediately: true})
   }
 
+  get shape(): Shape {
+    return {x: this.x, y: this.y, width: 1, height: 1}
+  }
+
   addEventListeners(sceneView: HTMLDivElement) {
     sceneView.addEventListener("mousemove", (e) => {
       this.x = e.offsetX
