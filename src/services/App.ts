@@ -1,6 +1,6 @@
 import {makeAutoObservable} from "mobx"
 
-export type AppMode = "select" | "create" | "move"
+export type AppMode = "select" | "create" | "move" | "resize"
 
 export const App = new class {
   private _mode: AppMode = "select"

@@ -5,6 +5,7 @@ import {Keyboard} from "/src/services/Keyboard"
 import {CursorModeCreate} from "/src/services/Cursor/CursorModeCreate"
 import {CursorModeSelect} from "/src/services/Cursor/CursorModeSelect"
 import {CursorModeMove} from "/src/services/Cursor/CursorModeMove"
+import {CursorModeResize} from "/src/services/Cursor/CursorModeResize"
 
 export const Cursor = new class {
   pos: Point = {x: 0, y: 0}
@@ -14,6 +15,7 @@ export const Cursor = new class {
     create: new CursorModeCreate(),
     select: new CursorModeSelect(),
     move: new CursorModeMove(),
+    resize: new CursorModeResize(),
   }
   private currentMode!: CursorMode
 

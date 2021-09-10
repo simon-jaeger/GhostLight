@@ -5,6 +5,7 @@ import {Actor} from "/src/models/Actor"
 import {Button} from "/src/components/generic/Button"
 import {Keyboard} from "/src/services/Keyboard"
 import {App} from "/src/services/App"
+import {Cursor} from "/src/services/Cursor/Cursor"
 
 export const DebugView = observer(() => {
   const actor = Actor.all[0]
@@ -23,6 +24,18 @@ export const DebugView = observer(() => {
         type="number"
         value={actor.shape.y}
         onChange={(v) => actor.shape.y = v}
+      />
+      <TextField
+        label="width"
+        type="number"
+        value={actor.shape.width}
+        onChange={(v) => actor.shape.width = v}
+      />
+      <TextField
+        label="height"
+        type="number"
+        value={actor.shape.height}
+        onChange={(v) => actor.shape.height = v}
       />
       <Button onClick={() => console.log("click")}>Button</Button>
       <pre>mode: { App.mode }</pre>
