@@ -14,8 +14,7 @@ export const Selection = new class {
   }
 
   set(actors: Actor | Actor[]) {
-    actors = wrap(actors)
-    this._all.splice(0, this.all.length, ...actors)
+    this._all.splice(0, this.all.length, ...wrap(actors))
   }
 
   toggle(actor: Actor) {

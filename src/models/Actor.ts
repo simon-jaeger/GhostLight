@@ -1,7 +1,7 @@
 import {makeAutoObservable, observable} from "mobx"
 import uuid4 from "uuid4"
 import {Selection} from "/src/services/Selection"
-import {collision, findLast} from "/src/helpers/utils"
+import {collision, findLast, wrap, pull} from "/src/helpers/utils"
 
 export class Actor {
   id = ""
@@ -24,6 +24,10 @@ export class Actor {
 
   static findByCollision(shape: Shape) {
     return findLast(this.all, x => collision(x.shape, shape))
+  }
+
+  static destroy(actors: Actor | Actor[]) {
+    pull(this._all, ...wrap(actors))
   }
 
   isSelected() {

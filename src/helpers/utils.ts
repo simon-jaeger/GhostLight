@@ -1,3 +1,7 @@
+import l from "lodash"
+
+export const pull = l.pull
+
 // simple 2d box collision check
 export function collision(a: Shape, b: Shape) {
   if (a === b) return false
