@@ -3,8 +3,10 @@ import l from "lodash"
 export const pull = l.pull
 
 // simple 2d box collision check
-export function collision(a: Shape, b: Shape) {
-  if (a === b) return false
+export function collision(pA: Point | Shape, pB: Point | Shape) {
+  if (pA === pB) return false
+  const a = Object.assign(({x: 0, y: 0, width: 1, height: 1} as Shape), pA)
+  const b = Object.assign(({x: 0, y: 0, width: 1, height: 1} as Shape), pB)
   return a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y
 }
 

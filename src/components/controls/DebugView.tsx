@@ -4,6 +4,7 @@ import {TextField} from "/src/components/generic/TextField"
 import {Actor} from "/src/models/Actor"
 import {Button} from "/src/components/generic/Button"
 import {Keyboard} from "/src/services/Keyboard"
+import {App} from "/src/services/App"
 
 export const DebugView = observer(() => {
   const actor = Actor.all[0]
@@ -24,6 +25,7 @@ export const DebugView = observer(() => {
         onChange={(v) => actor.shape.y = v}
       />
       <Button onClick={() => console.log("click")}>Button</Button>
+      <pre>mode: { App.mode }</pre>
       <pre>{ JSON.stringify(Keyboard, null, 2) }</pre>
     </div>
   )

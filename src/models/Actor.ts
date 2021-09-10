@@ -22,8 +22,8 @@ export class Actor {
     return actor
   }
 
-  static findByCollision(shape: Shape) {
-    return findLast(this.all, x => collision(x.shape, shape))
+  static findByCollision(shape: Point | Shape) {
+    return findLast(this.all, x => collision(x.shape, shape)) ?? null
   }
 
   static destroy(actors: Actor | Actor[]) {

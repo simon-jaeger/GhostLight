@@ -3,19 +3,25 @@ import {Actor} from "/src/models/Actor"
 import {Cursor} from "/src/services/Cursor/Cursor"
 import {Selection} from "/src/services/Selection"
 import {Keyboard} from "/src/services/Keyboard"
+import {App} from "/src/services/App"
 
 export class CursorModeSelect implements CursorMode {
   onMouseDown() {
-    const target = Actor.findByCollision(Cursor.shape)
+    if (Keyboard.Shift) return
+    const target = Actor.findByCollision(Cursor.pos)
+    if (target && (!target.isSelected())) Selection.set(target)
+    else if (!target) return Selection.clear()
+  }
 
-    if (Keyboard.Shift) {
-      if (target) Selection.toggle(target)
-    }
+  onMouseMove() {
+    if (!Cursor.down || Cursor.inertia()) return
+    if (Selection.all.length) App.mode = "move"
+  }
 
-    else {
-      if (target) Selection.set(target)
-      else Selection.clear()
-    }
+  onMouseUp() {
+    const target = Actor.findByCollision(Cursor.pos)
+    if (Keyboard.Shift && target) Selection.toggle(target)
+    else if (target) return Selection.set(target)
   }
 
 }
