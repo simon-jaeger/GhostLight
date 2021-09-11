@@ -68,6 +68,9 @@ export class CursorModeResize implements CursorMode {
   }
 
   onMouseUp() {
+    // prevent "invisible" shape of zero width/height
+    this.target.shape.width = this.target.shape.width <= 0 ? 1 : this.target.shape.width
+    this.target.shape.height = this.target.shape.height <= 0 ? 1 : this.target.shape.height
     App.setMode("select")
   }
 
