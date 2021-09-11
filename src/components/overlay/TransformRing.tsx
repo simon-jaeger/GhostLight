@@ -8,11 +8,11 @@ export const TransformRing = observer(() => {
   if (Selection.all.length !== 1) return null
   const target = Selection.all[0]
 
-  const anchors: { cursor: string, top: string, left: string }[] = [
-    {cursor: "nw-resize", top: "0%", left: "0%"},
-    {cursor: "ne-resize", top: "0%", left: "100%"},
-    {cursor: "se-resize", top: "100%", left: "100%"},
-    {cursor: "sw-resize", top: "100%", left: "0%"},
+  const anchors: { position: string, top: string, left: string }[] = [
+    {position: "nw", top: "0%", left: "0%"},
+    {position: "ne", top: "0%", left: "100%"},
+    {position: "se", top: "100%", left: "100%"},
+    {position: "sw", top: "100%", left: "0%"},
   ]
 
   return (
@@ -24,17 +24,17 @@ export const TransformRing = observer(() => {
         width: target.shape.width,
         height: target.shape.height,
       }}
-    >{anchors.map((x) => (
+    >{anchors.map((x, i) => (
       <div
-        key={x.cursor}
+        key={i}
         className="absolute w-2 h-2 bg-white rounded-full ring-1 ring-yellow-500 -translate-x-1/2 -translate-y-1/2 t-2"
         style={{
           top: x.top,
           left: x.left,
-          cursor: x.cursor,
+          cursor: x.position + "-resize",
           pointerEvents: Cursor.down ? "none" : "auto",
         }}
-        onMouseDown={() => App.mode = "resize"}
+        onMouseDown={() => App.setMode("resize", x.position)}
       />
     ))}
     </div>

@@ -14,7 +14,7 @@ export const ModeSelect = observer(() => {
       {modes.map((m) => (
         <button
           key={m.mode}
-          onClick={() => App.mode = m.mode}
+          onClick={() => App.setMode(m.mode)}
           className="flex relative justify-center items-center w-12 h-12 hover:bg-gray-900"
         >
           {App.mode === m.mode &&

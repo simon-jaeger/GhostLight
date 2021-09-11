@@ -25,6 +25,17 @@ export const Cursor = new class {
       this.currentMode = this.modes[mode]
       this.currentMode.onEnter?.()
     }, {fireImmediately: true})
+    reaction(() => App.subMode, () => {
+      this.currentMode.onEnter?.()
+    }, {fireImmediately: true})
+  }
+
+  get movedX() {
+    return this.pos.x - this.posStart.x
+  }
+
+  get movedY() {
+    return this.pos.y - this.posStart.y
   }
 
   addEventListeners(sceneView: HTMLDivElement) {

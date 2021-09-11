@@ -24,13 +24,13 @@ export const Debugger = new class {
       shape: {x: 100, y: 100, width: 50, height: 50},
       texture: "#6B7280",
     })
-    Actor.create({
-      shape: {x: 200, y: 100, width: 50, height: 50},
-      texture: "#6B7280",
-    })
-    Actor.create({
-      shape: {x: 300, y: 100, width: 50, height: 50},
-      texture: "#6B7280",
-    })
+    // Actor.create({
+    //   shape: {x: 200, y: 100, width: 50, height: 50},
+    //   texture: "#6B7280",
+    // })
+    // Actor.create({
+    //   shape: {x: 300, y: 100, width: 50, height: 50},
+    //   texture: "#6B7280",
+    // })
   }
 }

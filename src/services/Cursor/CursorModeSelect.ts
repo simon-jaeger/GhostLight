@@ -15,7 +15,7 @@ export class CursorModeSelect implements CursorMode {
 
   onMouseMove() {
     if (!Cursor.down || Cursor.inertia()) return
-    if (Selection.all.length) App.mode = "move"
+    if (Selection.all.length) App.setMode("move")
   }
 
   onMouseUp() {

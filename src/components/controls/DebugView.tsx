@@ -38,7 +38,7 @@ export const DebugView = observer(() => {
         onChange={(v) => actor.shape.height = v}
       />
       <Button onClick={() => console.log("click")}>Button</Button>
-      <pre>mode: { App.mode }</pre>
+      <pre>mode: { App.mode } { App.subMode }</pre>
       <pre>{ JSON.stringify(Keyboard, null, 2) }</pre>
     </div>
   )
