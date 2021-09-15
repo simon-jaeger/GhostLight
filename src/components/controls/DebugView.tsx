@@ -13,31 +13,6 @@ export const DebugView = observer(() => {
   return (
     <div className="fixed top-0 right-0 p-4 space-y-4 w-64 h-full bg-gray-800 border border-gray-500">
       <h2>debug view</h2>
-      <TextField
-        label="x"
-        type="number"
-        value={actor.shape.x}
-        onChange={(v) => actor.shape.x = v}
-      />
-      <TextField
-        label="y"
-        type="number"
-        value={actor.shape.y}
-        onChange={(v) => actor.shape.y = v}
-      />
-      <TextField
-        label="width"
-        type="number"
-        value={actor.shape.width}
-        onChange={(v) => actor.shape.width = v}
-      />
-      <TextField
-        label="height"
-        type="number"
-        value={actor.shape.height}
-        onChange={(v) => actor.shape.height = v}
-      />
-      <Button onClick={() => console.log("click")}>Button</Button>
       <pre>mode: { App.mode } { App.subMode }</pre>
       <pre>{ JSON.stringify(Keyboard, null, 2) }</pre>
     </div>

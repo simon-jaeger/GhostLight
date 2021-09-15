@@ -10,7 +10,7 @@ export const ModeSelect = observer(() => {
   ]
 
   return (
-    <div className="flex absolute top-0 left-0 w-full h-12 bg-gray-800">
+    <div className="flex absolute top-0 left-1/2 -translate-x-1/2 h-12 bg-gray-800">
       {modes.map((m) => (
         <button
           key={m.mode}

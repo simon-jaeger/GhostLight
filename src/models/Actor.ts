@@ -6,7 +6,10 @@ import {collision, findLast, wrap, pull} from "/src/helpers/utils"
 export class Actor {
   id = ""
   shape: Shape = {x: 0, y: 0, width: 0, height: 0}
-  texture = ""
+  texture = {
+    value: '',
+    opacity: 100,
+  }
 
   private static _all: Actor[] = observable([])
 

@@ -6,7 +6,7 @@ export class CursorModeCreate implements CursorMode {
   onMouseDown() {
     Actor.create({
       shape: {...Cursor.pos, width: 50, height: 50},
-      texture: "#6B7280",
+      texture: {value: "#6B7280", opacity: 100},
     })
   }
 

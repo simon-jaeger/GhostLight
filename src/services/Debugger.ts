@@ -20,17 +20,14 @@ export const Debugger = new class {
   executeTestCode() {
     // @ts-ignore
     window.Actor = Actor
-    Actor.create({
-      shape: {x: 100, y: 100, width: 50, height: 50},
-      texture: "#6B7280",
+    const a1 = Actor.create({
+      shape: {x: 300, y: 100, width: 50, height: 50},
+      texture: {value: "#6B7280", opacity: 100},
     })
-    // Actor.create({
-    //   shape: {x: 200, y: 100, width: 50, height: 50},
-    //   texture: "#6B7280",
-    // })
-    // Actor.create({
-    //   shape: {x: 300, y: 100, width: 50, height: 50},
-    //   texture: "#6B7280",
-    // })
+    Selection.set(a1)
+    Actor.create({
+      shape: {x: 400, y: 100, width: 50, height: 50},
+      texture: {value: "#6B7280", opacity: 100},
+    })
   }
 }
