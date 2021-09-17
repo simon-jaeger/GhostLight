@@ -4,6 +4,7 @@ import {Cursor} from "/src/services/Cursor/Cursor"
 import {App} from "/src/services/App"
 import {Selection} from "/src/services/Selection"
 import {clone} from "/src/helpers/utils"
+import {Grid} from "/src/services/Grid"
 
 // TODO: maybe side anchors too?
 
@@ -24,18 +25,18 @@ export class CursorModeResize implements CursorMode {
     }
     ////////////////////////////////////////////////////////////////////////////
     else if (App.subMode === "ne") {
-      Cursor.posStart.x = this.target.xw - 1
+      Cursor.posStart.x = this.target.xw - Grid.sizeW
       Cursor.posStart.y = this.target.y
     }
     ////////////////////////////////////////////////////////////////////////////
     else if (App.subMode === "se") {
-      Cursor.posStart.x = this.target.xw - 1
-      Cursor.posStart.y = this.target.yh - 1
+      Cursor.posStart.x = this.target.xw - Grid.sizeW
+      Cursor.posStart.y = this.target.yh - Grid.sizeH
     }
     ////////////////////////////////////////////////////////////////////////////
     else if (App.subMode === "sw") {
       Cursor.posStart.x = this.target.x
-      Cursor.posStart.y = this.target.yh - 1
+      Cursor.posStart.y = this.target.yh - Grid.sizeH
     }
     ////////////////////////////////////////////////////////////////////////////
   }

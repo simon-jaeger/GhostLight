@@ -11,6 +11,11 @@ export function collision(pA: Point | Shape, pB: Point | Shape) {
   return a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y
 }
 
+// snap number down to nearest multiple of step
+export function snap(number: number, step: number) {
+  return Math.floor(number / step) * step
+}
+
 // like Array.find, but starts from the end
 export function findLast<T>(array: Array<T>, cb: (element: T, index: number, array: T[]) => unknown): T | undefined {
   for (let i = array.length - 1; i >= 0; i--)

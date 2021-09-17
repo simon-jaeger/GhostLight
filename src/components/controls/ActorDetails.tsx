@@ -2,6 +2,7 @@ import React from "react"
 import {observer} from "mobx-react-lite"
 import {TextField} from "/src/components/generic/TextField"
 import {Selection} from "/src/services/Selection"
+import {Grid} from "/src/services/Grid"
 
 // TODO: copy id to clipboard on click?
 
@@ -21,26 +22,30 @@ export const ActorDetails = observer(() => {
           <TextField
             label="X"
             type="number"
+            step={Grid.sizeW}
             value={actor.shape.x}
             onChange={(v) => actor.shape.x = v}
           />
           <TextField
             label="Y"
             type="number"
+            step={Grid.sizeH}
             value={actor.shape.y}
             onChange={(v) => actor.shape.y = v}
           />
           <TextField
             label="Width"
             type="number"
-            min={1}
+            min={Grid.sizeW}
+            step={Grid.sizeW}
             value={actor.shape.width}
             onChange={(v) => actor.shape.width = v}
           />
           <TextField
             label="Height"
             type="number"
-            min={1}
+            min={Grid.sizeH}
+            step={Grid.sizeH}
             value={actor.shape.height}
             onChange={(v) => actor.shape.height = v}
           />

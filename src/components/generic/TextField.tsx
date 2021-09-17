@@ -6,6 +6,7 @@ interface Props {
   type?: "text" | "number"
   max?: number
   min?: number
+  step?: number
   onChange?: (newValue) => void
   suffix?: string
   style?: React.CSSProperties
@@ -33,6 +34,7 @@ export const TextField = (p: Props) => {
         id={p.label}
         ref={ref}
         type={p.type ?? "text"}
+        step={p.step ?? 1}
         defaultValue={p.value}
         className="px-2 w-full h-8 bg-gray-900 border border-gray-500 focus:border-gray-400"
         style={p.style}

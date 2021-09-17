@@ -40,7 +40,8 @@ button {
 }
 
 svg {
-  @apply w-5 h-5; /* default icon size */
+  @apply w-5 h-5;
+  /* default icon size */
 }
 
 /* target area utility to increase mouse event area beyond visual area */

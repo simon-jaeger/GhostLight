@@ -6,6 +6,8 @@ import {CursorModeCreate} from "/src/services/Cursor/CursorModeCreate"
 import {CursorModeSelect} from "/src/services/Cursor/CursorModeSelect"
 import {CursorModeMove} from "/src/services/Cursor/CursorModeMove"
 import {CursorModeResize} from "/src/services/Cursor/CursorModeResize"
+import {snap} from "/src/helpers/utils"
+import {Grid} from "/src/services/Grid"
 
 export const Cursor = new class {
   pos: Point = {x: 0, y: 0}
@@ -51,8 +53,8 @@ export const Cursor = new class {
       this.currentMode.onMouseDown?.()
     })
     sceneView.addEventListener("mousemove", (e) => {
-      this.pos.x = e.offsetX
-      this.pos.y = e.offsetY
+      this.pos.x = snap(e.offsetX, Grid.sizeW)
+      this.pos.y = snap(e.offsetY, Grid.sizeH)
       this.currentMode.onMouseMove?.()
     })
     sceneView.addEventListener("mouseup", (e) => {

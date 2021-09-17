@@ -14,7 +14,7 @@ export const SceneView = observer(() => {
       className="absolute inset-0"
     >
       <div
-        style={{width: 99999, height: 99999}}
+        style={{width: 9999, height: 9999}}
         className="absolute inset-0 ring-1 ring-white ring-opacity-50 pointer-events-none"
       >
         {Actor.all.map(a => <ActorView actor={a} key={a.id}/>)}

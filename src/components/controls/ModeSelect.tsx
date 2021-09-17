@@ -10,17 +10,13 @@ export const ModeSelect = observer(() => {
   ]
 
   return (
-    <div className="flex absolute top-0 left-1/2 -translate-x-1/2 h-12 bg-gray-800">
+    <div className="flex absolute top-0 left-1/2 h-12 bg-gray-800 -translate-x-1/2">
       {modes.map((m) => (
         <button
           key={m.mode}
           onClick={() => App.setMode(m.mode)}
-          className="flex relative justify-center items-center w-12 h-12 hover:bg-gray-900"
-        >
-          {App.mode === m.mode &&
-          <div className="absolute inset-0 bg-gray-700"></div>}
-          <div className="absolute">{m.icon}</div>
-        </button>
+          className={`relative w-12 h-12 flex items-center justify-center ${m.mode === App.mode ? "bg-gray-700" : "hover:bg-gray-900"}`}
+        >{m.icon}</button>
       ))}
     </div>
   )
