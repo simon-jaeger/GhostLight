@@ -1,6 +1,7 @@
 import l from "lodash"
 
 export const pull = l.pull
+export const clone = l.cloneDeep
 
 // simple 2d box collision check
 export function collision(pA: Point | Shape, pB: Point | Shape) {

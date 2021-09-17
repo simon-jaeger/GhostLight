@@ -21,7 +21,7 @@ export const Debugger = new class {
     // @ts-ignore
     window.Actor = Actor
     const a1 = Actor.create({
-      shape: {x: 300, y: 100, width: 50, height: 50},
+      shape: {x: 200, y: 100, width: 50, height: 50},
       texture: {value: "#6B7280", opacity: 100},
     })
     Selection.set(a1)

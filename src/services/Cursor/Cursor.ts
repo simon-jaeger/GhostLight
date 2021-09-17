@@ -45,8 +45,8 @@ export const Cursor = new class {
       Keyboard.Control = e.ctrlKey
 
       this.down = true
-      this.posStart.x = e.offsetX
-      this.posStart.y = e.offsetY
+      this.posStart.x = this.pos.x
+      this.posStart.y = this.pos.y
 
       this.currentMode.onMouseDown?.()
     })
@@ -61,9 +61,4 @@ export const Cursor = new class {
     })
   }
 
-  // check if Cursor moved beyond inertia threshold
-  inertia() {
-    const threshold = 8
-    return (Math.abs(Cursor.pos.x - Cursor.posStart.x) + Math.abs(Cursor.pos.y - Cursor.posStart.y)) < threshold
-  }
 }

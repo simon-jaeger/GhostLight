@@ -3,75 +3,112 @@ import {Actor} from "/src/models/Actor"
 import {Cursor} from "/src/services/Cursor/Cursor"
 import {App} from "/src/services/App"
 import {Selection} from "/src/services/Selection"
+import {clone} from "/src/helpers/utils"
+
+// TODO: maybe side anchors too?
 
 export class CursorModeResize implements CursorMode {
   target!: Actor
-  initialShape!: Shape
+  initial!: Actor
 
   onEnter() {
     this.target = Selection.all[0]
-    this.initialShape = {...this.target.shape}
+    this.initial = clone(this.target)
 
     // click cursor and set start positon at center of anchor
+    ////////////////////////////////////////////////////////////////////////////
     Cursor.down = true
     if (App.subMode === "nw") {
-      Cursor.posStart.x = this.target.shape.x
-      Cursor.posStart.y = this.target.shape.y
+      Cursor.posStart.x = this.target.x
+      Cursor.posStart.y = this.target.y
     }
-    if (App.subMode === "ne") {
-      Cursor.posStart.x = this.target.shape.x + this.target.shape.width
-      Cursor.posStart.y = this.target.shape.y
+    ////////////////////////////////////////////////////////////////////////////
+    else if (App.subMode === "ne") {
+      Cursor.posStart.x = this.target.xw - 1
+      Cursor.posStart.y = this.target.y
     }
-    if (App.subMode === "se") {
-      Cursor.posStart.x = this.target.shape.x + this.target.shape.width
-      Cursor.posStart.y = this.target.shape.y + this.target.shape.height
+    ////////////////////////////////////////////////////////////////////////////
+    else if (App.subMode === "se") {
+      Cursor.posStart.x = this.target.xw - 1
+      Cursor.posStart.y = this.target.yh - 1
     }
-    if (App.subMode === "sw") {
-      Cursor.posStart.x = this.target.shape.x
-      Cursor.posStart.y = this.target.shape.y + this.target.shape.height
+    ////////////////////////////////////////////////////////////////////////////
+    else if (App.subMode === "sw") {
+      Cursor.posStart.x = this.target.x
+      Cursor.posStart.y = this.target.yh - 1
     }
+    ////////////////////////////////////////////////////////////////////////////
   }
 
   onMouseMove() {
+    ////////////////////////////////////////////////////////////////////////////
     if (App.subMode === "nw") {
-      this.target.shape.x = Cursor.pos.x
-      this.target.shape.y = Cursor.pos.y
-      this.target.shape.width = this.initialShape.width - Cursor.movedX
-      this.target.shape.height = this.initialShape.height - Cursor.movedY
+      this.target.x = Cursor.pos.x
+      this.target.y = Cursor.pos.y
+      this.target.w = this.initial.w - Cursor.movedX
+      this.target.h = this.initial.h - Cursor.movedY
 
-      if (Cursor.pos.x > this.target.shape.x + this.target.shape.width) App.setMode("resize", "ne")
-      if (Cursor.pos.y > this.target.shape.y + this.target.shape.height) App.setMode("resize", "sw")
+      if (Cursor.pos.x >= this.target.xw) {
+        this.target.x = this.initial.xw
+        return App.setMode("resize", "ne")
+      }
+      if (Cursor.pos.y >= this.target.yh) {
+        this.target.y = this.initial.yh
+        return App.setMode("resize", "sw")
+      }
     }
-    if (App.subMode === "ne") {
-      this.target.shape.y = Cursor.pos.y
-      this.target.shape.width = this.initialShape.width + Cursor.movedX
-      this.target.shape.height = this.initialShape.height - Cursor.movedY
+    ////////////////////////////////////////////////////////////////////////////
+    else if (App.subMode === "ne") {
+      this.target.y = Cursor.pos.y
+      this.target.w = this.initial.w + Cursor.movedX
+      this.target.h = this.initial.h - Cursor.movedY
 
-      if (Cursor.pos.x < this.target.shape.x) App.setMode("resize", "nw")
-      if (Cursor.pos.y > this.target.shape.y + this.target.shape.height) App.setMode("resize", "se")
+      if (Cursor.pos.x < this.target.x) {
+        this.target.w = 0
+        return App.setMode("resize", "nw")
+      }
+      if (Cursor.pos.y >= this.target.yh) {
+        this.target.y = this.initial.yh
+        return App.setMode("resize", "se")
+      }
     }
-    if (App.subMode === "se") {
-      this.target.shape.width = this.initialShape.width + Cursor.movedX
-      this.target.shape.height = this.initialShape.height + Cursor.movedY
+    ////////////////////////////////////////////////////////////////////////////
+    else if (App.subMode === "se") {
+      this.target.w = this.initial.w + Cursor.movedX
+      this.target.h = this.initial.h + Cursor.movedY
 
-      if (Cursor.pos.x < this.target.shape.x) App.setMode("resize", "sw")
-      if (Cursor.pos.y < this.target.shape.y) App.setMode("resize", "ne")
+      if (Cursor.pos.x < this.target.x) {
+        this.target.w = 0
+        return App.setMode("resize", "sw")
+      }
+      if (Cursor.pos.y < this.target.y) {
+        this.target.h = 0
+        return App.setMode("resize", "ne")
+      }
     }
-    if (App.subMode === "sw") {
-      this.target.shape.x = Cursor.pos.x
-      this.target.shape.width = this.initialShape.width - Cursor.movedX
-      this.target.shape.height = this.initialShape.height + Cursor.movedY
+    ////////////////////////////////////////////////////////////////////////////
+    else if (App.subMode === "sw") {
+      this.target.x = Cursor.pos.x
+      this.target.w = this.initial.w - Cursor.movedX
+      this.target.h = this.initial.h + Cursor.movedY
 
-      if (Cursor.pos.x > this.target.shape.x + this.target.shape.width) App.setMode("resize", "se")
-      if (Cursor.pos.y < this.target.shape.y) App.setMode("resize", "nw")
+      if (Cursor.pos.x >= this.target.xw) {
+        this.target.x = this.initial.xw
+        return App.setMode("resize", "se")
+      }
+
+      if (Cursor.pos.y < this.target.y) {
+        this.target.h = 0
+        return App.setMode("resize", "nw")
+      }
     }
+    ////////////////////////////////////////////////////////////////////////////
   }
 
   onMouseUp() {
-    // prevent "invisible" shape of zero width/height
-    this.target.shape.width = this.target.shape.width <= 0 ? 1 : this.target.shape.width
-    this.target.shape.height = this.target.shape.height <= 0 ? 1 : this.target.shape.height
+    // prevent "invisible" actor of zero w/h
+    this.target.w = this.target.w <= 0 ? 1 : this.target.w
+    this.target.h = this.target.h <= 0 ? 1 : this.target.h
     App.setMode("select")
   }
-
 }

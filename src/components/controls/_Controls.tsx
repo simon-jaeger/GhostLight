@@ -9,7 +9,7 @@ export const Controls = observer(() => {
     <div>
       <ActorDetails/>
       <ModeSelect/>
-      {/*<DebugView/>*/}
+      <DebugView/>
     </div>
   )
 })

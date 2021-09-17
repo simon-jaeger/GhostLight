@@ -11,10 +11,15 @@ export const DebugView = observer(() => {
   const actor = Actor.all[0]
   if (!actor) return null
   return (
-    <div className="fixed top-0 right-0 p-4 space-y-4 w-64 h-full bg-gray-800 border border-gray-500">
+    <div className="fixed right-0 top-1/2 p-4 space-y-4 w-64 h-full bg-gray-800 border border-gray-500">
       <h2>debug view</h2>
-      <pre>mode: { App.mode } { App.subMode }</pre>
-      <pre>{ JSON.stringify(Keyboard, null, 2) }</pre>
+      <pre>mode: {App.mode} {App.subMode}</pre>
+      <pre>cursor: {JSON.stringify({
+        ...Cursor.pos,
+        movedX: Cursor.movedX,
+        movedY: Cursor.movedY,
+      }, null, 2)}</pre>
+      <pre>{JSON.stringify(Keyboard, null, 2)}</pre>
     </div>
   )
 })

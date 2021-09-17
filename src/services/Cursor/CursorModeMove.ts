@@ -7,16 +7,13 @@ export class CursorModeMove implements CursorMode {
   initialPositions!: Point[]
 
   onEnter() {
-    this.initialPositions = Selection.all.map((a) => ({
-      x: a.shape.x,
-      y: a.shape.y,
-    }))
+    this.initialPositions = Selection.all.map((a) => ({x: a.x, y: a.y}))
   }
 
   onMouseMove() {
     Selection.all.forEach((a, i) => {
-      a.shape.x = this.initialPositions[i].x + (Cursor.pos.x - Cursor.posStart.x)
-      a.shape.y = this.initialPositions[i].y + (Cursor.pos.y - Cursor.posStart.y)
+      a.x = this.initialPositions[i].x + Cursor.movedX
+      a.y = this.initialPositions[i].y + Cursor.movedY
     })
   }
 
