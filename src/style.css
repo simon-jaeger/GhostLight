@@ -39,9 +39,15 @@ button {
   display: block;
 }
 
+input:disabled,
+textarea:disabled,
+button:disabled {
+  cursor: not-allowed;
+}
+
 svg {
-  @apply w-5 h-5;
   /* default icon size */
+  @apply w-5 h-5;
 }
 
 /* target area utility to increase mouse event area beyond visual area */

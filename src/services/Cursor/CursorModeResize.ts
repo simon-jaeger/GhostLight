@@ -3,7 +3,7 @@ import {Actor} from "/src/models/Actor"
 import {Cursor} from "/src/services/Cursor/Cursor"
 import {App} from "/src/services/App"
 import {Selection} from "/src/services/Selection"
-import {clone} from "/src/helpers/utils"
+import {uClone} from "/src/helpers/utils"
 import {Grid} from "/src/services/Grid"
 
 // TODO: maybe side anchors too?
@@ -14,7 +14,7 @@ export class CursorModeResize implements CursorMode {
 
   onEnter() {
     this.target = Selection.all[0]
-    this.initial = clone(this.target)
+    this.initial = uClone(this.target)
 
     // click cursor and set start positon at center of anchor
     ////////////////////////////////////////////////////////////////////////////
@@ -108,8 +108,8 @@ export class CursorModeResize implements CursorMode {
 
   onMouseUp() {
     // prevent "invisible" actor of zero w/h
-    this.target.w = this.target.w <= 0 ? 1 : this.target.w
-    this.target.h = this.target.h <= 0 ? 1 : this.target.h
-    App.setMode("select")
+    this.target.w = this.target.w <= 0 ? Grid.sizeW : this.target.w
+    this.target.h = this.target.h <= 0 ? Grid.sizeH : this.target.h
+    App.revertMode()
   }
 }

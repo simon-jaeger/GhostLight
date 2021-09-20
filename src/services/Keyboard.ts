@@ -27,4 +27,8 @@ export const Keyboard = new class {
     Actor.destroy(Selection.all)
     Selection.clear()
   }
+
+  onEscape() {
+    Selection.clear()
+  }
 }

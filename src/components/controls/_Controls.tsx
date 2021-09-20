@@ -1,16 +1,16 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
 import {DebugView} from "/src/components/controls/DebugView"
-import {ModeSelect} from "/src/components/controls/ModeSelect"
-import {ActorDetails} from "/src/components/controls/ActorDetails"
+import {ModeControl} from "/src/components/controls/ModeControl"
+import {ActorControl} from "/src/components/controls/ActorControl"
 import {GridControl} from "/src/components/controls/GridControl"
 
 export const Controls = observer(() => {
   return (
     <div>
-      <ModeSelect/>
+      <ModeControl/>
       <GridControl/>
-      <ActorDetails/>
+      <ActorControl/>
       <DebugView/>
     </div>
   )

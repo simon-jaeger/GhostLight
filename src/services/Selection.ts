@@ -1,6 +1,6 @@
 import {Actor} from "/src/models/Actor"
 import {makeAutoObservable} from "mobx"
-import {toggle, wrap} from "/src/helpers/utils"
+import {uToggle, uWrap} from "/src/helpers/utils"
 
 export const Selection = new class {
   private _all: Actor[] = []
@@ -14,11 +14,11 @@ export const Selection = new class {
   }
 
   set(actors: Actor | Actor[]) {
-    this._all.splice(0, this.all.length, ...wrap(actors))
+    this._all.splice(0, this.all.length, ...uWrap(actors))
   }
 
   toggle(actor: Actor) {
-    toggle(this.all, actor)
+    uToggle(this.all, actor)
   }
 
   clear() {

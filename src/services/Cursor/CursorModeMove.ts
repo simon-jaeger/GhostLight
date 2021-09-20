@@ -18,7 +18,7 @@ export class CursorModeMove implements CursorMode {
   }
 
   onMouseUp() {
-    App.setMode("select")
+    App.revertMode()
   }
 
 }

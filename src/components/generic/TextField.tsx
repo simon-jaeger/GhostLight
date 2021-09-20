@@ -4,8 +4,9 @@ interface Props {
   label?: string
   value: any,
   type?: "text" | "number"
-  max?: number
+  disabled?: boolean
   min?: number
+  max?: number
   step?: number
   onChange?: (newValue) => void
   suffix?: string
@@ -19,8 +20,8 @@ export const TextField = (p: Props) => {
     let value: string | number = ref.current!.value
     if (p.type === "number") {
       value = +value
-      if ((p.max !== undefined) && (value > p.max)) value = p.max
       if ((p.min !== undefined) && (value < p.min)) value = p.min
+      if ((p.max !== undefined) && (value > p.max)) value = p.max
     }
     ref.current!.value = "" + value
     p.onChange?.(value)
@@ -34,6 +35,7 @@ export const TextField = (p: Props) => {
         id={p.label}
         ref={ref}
         type={p.type ?? "text"}
+        disabled={p.disabled ?? false}
         step={p.step ?? 1}
         defaultValue={p.value}
         className="px-2 w-full h-8 bg-gray-900 border border-gray-500 focus:border-gray-400"

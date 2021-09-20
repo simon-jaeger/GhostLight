@@ -6,7 +6,7 @@ import {Grid} from "/src/services/Grid"
 
 // TODO: copy id to clipboard on click?
 
-export const ActorDetails = observer(() => {
+export const ActorControl = observer(() => {
   const actor = Selection.all.length === 1 ? Selection.all[0] : null
   return (
     <div className="fixed top-0 right-0 p-4 w-64 h-full bg-gray-800">
@@ -76,4 +76,4 @@ export const ActorDetails = observer(() => {
   )
 })
 
-ActorDetails.displayName = nameof(ActorDetails)
+ActorControl.displayName = nameof(ActorControl)

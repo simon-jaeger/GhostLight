@@ -3,7 +3,7 @@ import {observer} from "mobx-react-lite"
 import {CursorClickIcon, PlusCircleIcon} from "@heroicons/react/solid"
 import {App, AppMode} from "/src/services/App"
 
-export const ModeSelect = observer(() => {
+export const ModeControl = observer(() => {
   const modes: { mode: AppMode, icon: JSX.Element }[] = [
     {mode: "select", icon: <CursorClickIcon/>},
     {mode: "create", icon: <PlusCircleIcon/>},
@@ -22,4 +22,4 @@ export const ModeSelect = observer(() => {
   )
 })
 
-ModeSelect.displayName = nameof(ModeSelect)
+ModeControl.displayName = nameof(ModeControl)
