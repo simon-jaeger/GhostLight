@@ -14,6 +14,7 @@ export const GridView = observer(() => {
         backgroundPositionX: sizeW / 2,
         backgroundPositionY: sizeH / 2,
         opacity: Grid.show ? 0.25 : 0,
+        margin: `${-sizeW * 999}px ${-sizeH * 999}px`,
       }}
     ></div>
   )

@@ -1,6 +1,7 @@
 export interface CursorMode {
   onEnter?()
-  onMouseDown?()
-  onMouseMove?()
-  onMouseUp?()
+  onLeave?()
+  onMouseDown?(e?: MouseEvent)
+  onMouseMove?(e?: MouseEvent)
+  onMouseUp?(e?: MouseEvent)
 }

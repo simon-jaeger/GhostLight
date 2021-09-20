@@ -1,11 +1,9 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
-import {TextField} from "/src/components/generic/TextField"
 import {Actor} from "/src/models/Actor"
-import {Button} from "/src/components/generic/Button"
-import {Keyboard} from "/src/services/Keyboard"
 import {App} from "/src/services/App"
 import {Cursor} from "/src/services/Cursor/Cursor"
+import {Camera} from "/src/services/Camera"
 
 export const DebugView = observer(() => {
   const actor = Actor.all[0]
@@ -20,7 +18,8 @@ export const DebugView = observer(() => {
         movedY: Cursor.movedY,
         inertia: Cursor.inertia,
       }, null, 2)}</pre>
-      <pre>{JSON.stringify(Keyboard, null, 2)}</pre>
+      <pre>cam: { JSON.stringify(Camera, null, 2) }</pre>
+      {/*<pre>{JSON.stringify(Keyboard, null, 2)}</pre>*/}
     </div>
   )
 })

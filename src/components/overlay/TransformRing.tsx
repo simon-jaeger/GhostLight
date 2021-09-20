@@ -5,7 +5,9 @@ import {App} from "/src/services/App"
 import {Cursor} from "/src/services/Cursor/Cursor"
 
 export const TransformRing = observer(() => {
+  if (!App.isMode(["select", "resize"])) return null
   if (Selection.all.length !== 1) return null
+
   const target = Selection.all[0]
 
   const anchors: { position: string, top: string, left: string }[] = [

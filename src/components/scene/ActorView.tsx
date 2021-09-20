@@ -10,6 +10,7 @@ export const ActorView = observer(({actor}: Props) => {
   return (
     <div
       style={{
+        pointerEvents: "none",
         position: "absolute",
         left: actor.shape.x,
         top: actor.shape.y,

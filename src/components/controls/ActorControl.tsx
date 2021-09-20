@@ -9,7 +9,7 @@ import {Grid} from "/src/services/Grid"
 export const ActorControl = observer(() => {
   const actor = Selection.all.length === 1 ? Selection.all[0] : null
   return (
-    <div className="fixed top-0 right-0 p-4 w-64 h-full bg-gray-800">
+    <div className="fixed top-0 right-0 p-4 w-64 h-full bg-gray-800 border-l border-gray-500">
       {actor && <form>
         <header>
           <h2>[Anonymous actor]</h2>
