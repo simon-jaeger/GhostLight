@@ -4,6 +4,9 @@ import {DebugCursor} from "/src/components/overlay/DebugCursor"
 import {TransformRing} from "/src/components/overlay/TransformRing"
 import {GridView} from "/src/components/overlay/GridView"
 import {Camera} from "/src/services/Camera"
+import {ZeroLines} from "/src/components/overlay/ZeroLines"
+import {Selection} from "/src/services/Selection"
+import {SelectionHighlight} from "/src/components/overlay/SelectionHighlight"
 
 export const Overlay = observer(() => {
   return (
@@ -12,6 +15,8 @@ export const Overlay = observer(() => {
       style={{left: Camera.x, top: Camera.y}}
     >
       <GridView/>
+      <ZeroLines/>
+      {Selection.all.map(a => <SelectionHighlight actor={a} key={a.id}/>)}
       <DebugCursor/>
       <TransformRing/>
     </div>

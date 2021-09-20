@@ -3,6 +3,7 @@ import {Selection} from "/src/services/Selection"
 import {Actor} from "/src/models/Actor"
 import {App} from "/src/services/App"
 import {Cursor} from "/src/services/Cursor/Cursor"
+import {Camera} from "/src/services/Camera"
 
 export const Keyboard = new class {
   Shift = false
@@ -11,6 +12,8 @@ export const Keyboard = new class {
 
   private nameMap = {
     " ": "Space",
+    "+": "Plus",
+    "-": "Minus",
   }
 
   constructor() {
@@ -46,5 +49,12 @@ export const Keyboard = new class {
   }
   onSpaceUp() {
     if (App.isMode("pan")) App.revertMode()
+  }
+
+  onPlus() {
+    Camera.zoom *= 2
+  }
+  onMinus() {
+    Camera.zoom /= 2
   }
 }

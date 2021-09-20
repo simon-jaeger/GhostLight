@@ -3,6 +3,7 @@ import {observer} from "mobx-react-lite"
 import {Selection} from "/src/services/Selection"
 import {App} from "/src/services/App"
 import {Cursor} from "/src/services/Cursor/Cursor"
+import {Camera} from "/src/services/Camera"
 
 export const TransformRing = observer(() => {
   if (!App.isMode(["select", "resize"])) return null
@@ -21,10 +22,10 @@ export const TransformRing = observer(() => {
     <div
       className="absolute ring-1 ring-yellow-500"
       style={{
-        left: target.shape.x,
-        top: target.shape.y,
-        width: target.shape.width,
-        height: target.shape.height,
+        left: target.x * Camera.zoom,
+        top: target.y * Camera.zoom,
+        width: target.w * Camera.zoom,
+        height: target.h * Camera.zoom,
       }}
     >{anchors.map((x, i) => (
       <div

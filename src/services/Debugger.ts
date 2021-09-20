@@ -3,6 +3,7 @@ import {Actor} from "/src/models/Actor"
 import {Cursor} from "/src/services/Cursor/Cursor"
 import {App} from "/src/services/App"
 import {Selection} from "/src/services/Selection"
+import {Grid} from "/src/services/Grid"
 
 export const Debugger = new class {
   run() {
@@ -21,12 +22,22 @@ export const Debugger = new class {
     // @ts-ignore
     window.Actor = Actor
     const a1 = Actor.create({
-      shape: {x: 200, y: 100, width: 50, height: 50},
+      shape: {
+        x: Grid.sizeW * 2,
+        y: Grid.sizeH * 2,
+        width: Grid.sizeW,
+        height: Grid.sizeH,
+      },
       texture: {value: "#6B7280", opacity: 100},
     })
     Selection.set(a1)
     Actor.create({
-      shape: {x: 400, y: 100, width: 50, height: 50},
+      shape: {
+        x: Grid.sizeW * 4,
+        y: Grid.sizeH * 2,
+        width: Grid.sizeW,
+        height: Grid.sizeH,
+      },
       texture: {value: "#6B7280", opacity: 100},
     })
   }

@@ -45,7 +45,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
-svg {
+svg:not([width]) {
   /* default icon size */
   @apply w-5 h-5;
 }

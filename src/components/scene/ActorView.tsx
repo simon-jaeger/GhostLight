@@ -12,14 +12,13 @@ export const ActorView = observer(({actor}: Props) => {
       style={{
         pointerEvents: "none",
         position: "absolute",
-        left: actor.shape.x,
-        top: actor.shape.y,
-        width: actor.shape.width,
-        height: actor.shape.height,
+        left: actor.x,
+        top: actor.y,
+        width: actor.w,
+        height: actor.h,
         background: actor.texture.value,
         opacity: actor.texture.opacity / 100,
       }}
-      className={`${actor.isSelected() && "ring-1 ring-yellow-500"}`}
     ></div>
   )
 })

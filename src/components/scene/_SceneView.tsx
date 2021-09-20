@@ -12,8 +12,13 @@ export const SceneView = observer(() => {
   return (
     <div
       ref={ref}
-      className="absolute inset-0 ring-1 ring-white ring-opacity-50 t-max"
-      style={{left: Camera.x, top: Camera.y}}
+      className="absolute inset-0 t-max"
+      style={{
+        left: Camera.x,
+        top: Camera.y,
+        transform: `scale(${Camera.zoom})`,
+        transformOrigin: "0px 0px",
+      }}
     >
       {Actor.all.map(a => <ActorView actor={a} key={a.id}/>)}
     </div>
