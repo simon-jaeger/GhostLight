@@ -10,8 +10,7 @@ export const ActorControl = observer(() => {
   const actor = Selection.all.length === 1 ? Selection.all[0] : null
   return (
     <div className="fixed top-0 right-0 p-4 w-64 h-full bg-gray-800">
-      {actor && <form key={actor.id}>
-
+      {actor && <form>
         <header>
           <h2>[Anonymous actor]</h2>
           <p className="text-gray-400 truncate">ID: {actor.id}</p>

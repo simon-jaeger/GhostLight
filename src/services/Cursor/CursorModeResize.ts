@@ -42,6 +42,7 @@ export class CursorModeResize implements CursorMode {
   }
 
   onMouseMove() {
+    if (Cursor.inertia) return
     ////////////////////////////////////////////////////////////////////////////
     if (App.subMode === "nw") {
       this.target.x = Cursor.pos.x

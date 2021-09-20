@@ -8,6 +8,7 @@ import {CursorModeMove} from "/src/services/Cursor/CursorModeMove"
 import {CursorModeResize} from "/src/services/Cursor/CursorModeResize"
 import {uSnap} from "/src/helpers/utils"
 import {Grid} from "/src/services/Grid"
+import {CursorInertia} from "/src/services/Cursor/CursorInertia"
 
 export const Cursor = new class {
   pos: Point = {x: 0, y: 0}
@@ -20,6 +21,7 @@ export const Cursor = new class {
     resize: new CursorModeResize(),
   }
   private currentMode!: CursorMode
+  private cursorInertia = new CursorInertia()
 
   constructor() {
     makeAutoObservable(this)
@@ -32,15 +34,13 @@ export const Cursor = new class {
     }, {fireImmediately: true})
   }
 
-  get movedX() {
-    return this.pos.x - this.posStart.x
-  }
+  get movedX() { return this.pos.x - this.posStart.x }
+  get movedY() { return this.pos.y - this.posStart.y }
 
-  get movedY() {
-    return this.pos.y - this.posStart.y
-  }
+  get inertia() { return this.cursorInertia.active }
 
   addEventListeners(sceneView: HTMLDivElement) {
+    this.cursorInertia.addEventListeners()
     sceneView.addEventListener("mousedown", (e) => {
       Keyboard.Shift = e.shiftKey
       Keyboard.Alt = e.altKey

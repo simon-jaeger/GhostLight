@@ -18,6 +18,7 @@ export const DebugView = observer(() => {
         ...Cursor.pos,
         movedX: Cursor.movedX,
         movedY: Cursor.movedY,
+        inertia: Cursor.inertia,
       }, null, 2)}</pre>
       <pre>{JSON.stringify(Keyboard, null, 2)}</pre>
     </div>

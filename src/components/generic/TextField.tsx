@@ -15,8 +15,8 @@ interface Props {
 
 export const TextField = (p: Props) => {
   const ref = useRef<HTMLInputElement>(null)
-  useEffect(() => ref.current!.value = p.value)
-  useEffect(() => ref.current!.addEventListener("change", () => {
+
+  function handleChange() {
     let value: string | number = ref.current!.value
     if (p.type === "number") {
       value = +value
@@ -25,7 +25,13 @@ export const TextField = (p: Props) => {
     }
     ref.current!.value = "" + value
     p.onChange?.(value)
-  }), [])
+  }
+
+  useEffect(() => ref.current!.value = p.value)
+  useEffect(() => {
+    ref.current!.addEventListener("change", handleChange)
+    return () => ref.current?.removeEventListener("change", handleChange)
+  })
 
   return (
     <div className="relative">

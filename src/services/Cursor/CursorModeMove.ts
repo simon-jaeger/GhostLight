@@ -11,6 +11,7 @@ export class CursorModeMove implements CursorMode {
   }
 
   onMouseMove() {
+    if (Cursor.inertia) return
     Selection.all.forEach((a, i) => {
       a.x = this.initialPositions[i].x + Cursor.movedX
       a.y = this.initialPositions[i].y + Cursor.movedY
