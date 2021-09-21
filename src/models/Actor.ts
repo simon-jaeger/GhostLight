@@ -1,7 +1,6 @@
 import {makeAutoObservable, observable} from "mobx"
 import uuid4 from "uuid4"
-import {Selection} from "/src/services/Selection"
-import {uCollision, uFindLast, uWrap, uRemove} from "/src/helpers/utils"
+import {uCollision, uFindLast, uRemove} from "/src/helpers/utils"
 
 export class Actor {
   id = ""
@@ -27,26 +26,26 @@ export class Actor {
   get xw() { return this.shape.x + this.shape.width }
   get yh() { return this.shape.y + this.shape.height }
 
-  isSelected() {
-    return Selection.all.includes(this)
-  }
-
   private static _all: Actor[] = observable([])
   static get all() { return this._all }
 
-  static create(attributes: Partial<Actor>) {
+  static create(partial: Partial<Actor>) {
     const actor = makeAutoObservable(new Actor())
-    Object.assign(actor, attributes)
-    actor.id = uuid4()
+    Object.assign(actor, partial)
+    actor.id = actor.id || uuid4()
     Actor.all.push(actor)
     return actor
+  }
+
+  static createMany(partials: Partial<Actor>[]) {
+    partials.forEach(x => this.create(x))
   }
 
   static findByCollision(shape: Point | Shape) {
     return uFindLast(this.all, x => uCollision(x.shape, shape)) ?? null
   }
 
-  static destroy(actors: Actor | Actor[]) {
-    uRemove(this._all, ...uWrap(actors))
+  static destroy(...actors: Actor[]) {
+    uRemove(this._all, ...actors)
   }
 }

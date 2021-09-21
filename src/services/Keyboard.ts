@@ -36,7 +36,7 @@ export const Keyboard = new class {
   }
 
   onDelete() {
-    Actor.destroy(Selection.all)
+    Actor.destroy(...Selection.all)
     Selection.clear()
   }
 

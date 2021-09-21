@@ -1,6 +1,5 @@
 import l from "lodash"
 
-export const uRemove = l.pull
 export const uClone = l.cloneDeep
 
 // simple 2d box collision check
@@ -16,6 +15,12 @@ export function uSnap(number: number, step: number) {
   return Math.floor(number / step) * step
 }
 
+// remove items from array
+export function uRemove<T>(array:Array<T>, ...items:Array<T>) {
+  const filtered = array.filter(x => !items.includes(x))
+  array.splice(0, array.length, ...filtered)
+}
+
 // like Array.find, but starts from the end
 export function uFindLast<T>(array: Array<T>, cb: (element: T, index: number, array: T[]) => unknown): T | undefined {
   for (let i = array.length - 1; i >= 0; i--)
@@ -27,11 +32,4 @@ export function uToggle<T>(array: Array<T>, item: T) {
   const index = array.indexOf(item)
   if (index === -1) array.push(item)
   else array.splice(index, 1)
-}
-
-// wrap given value in an array. return unmodified if already an array. return an empty array if null.
-export function uWrap(x) {
-  if (x == null) return []
-  if (Array.isArray(x)) return x
-  return [x]
 }

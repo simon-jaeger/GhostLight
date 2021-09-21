@@ -1,5 +1,4 @@
 import {makeAutoObservable} from "mobx"
-import {uWrap} from "/src/helpers/utils"
 
 export type AppMode = "select" | "create" | "move" | "resize" | "pan"
 
@@ -21,8 +20,8 @@ export const App = new class {
     this._subMode = subMode
   }
 
-  isMode(modes: AppMode | AppMode[]) {
-    return uWrap(modes).includes(this._mode)
+  isMode(...modes: AppMode[]) {
+    return modes.includes(this._mode)
   }
 
   revertMode() {

@@ -9,7 +9,7 @@ export class CursorModeSelect implements CursorMode {
   onMouseDown(e: MouseEvent) {
     if (Keyboard.Shift) return
     const target = Actor.findByCollision({x: e.offsetX, y: e.offsetY})
-    if (target && (!target.isSelected())) Selection.set(target)
+    if (target && (!Selection.all.includes(target))) Selection.set(target)
     else if (!target) return Selection.clear()
   }
 
