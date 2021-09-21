@@ -1,0 +1,56 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "Actor": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "shape": {
+                    "$ref": "#/definitions/Shape"
+                },
+                "texture": {
+                    "properties": {
+                        "opacity": {
+                            "default": 100,
+                            "type": "number"
+                        },
+                        "value": {
+                            "default": "",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "Shape": {
+            "properties": {
+                "height": {
+                    "type": "number"
+                },
+                "width": {
+                    "type": "number"
+                },
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "properties": {
+        "actors": {
+            "items": {
+                "$ref": "#/definitions/Actor"
+            },
+            "type": "array"
+        }
+    },
+    "type": "object"
+}
+

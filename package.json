@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "schema": "typescript-json-schema tsconfig.json glScene --out src/schema/generated-schema.json"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.4",
@@ -25,6 +26,7 @@
     "tailwindcss": "^2.2.2",
     "ts-nameof": "^5.0.0",
     "typescript": "^4.1.2",
+    "typescript-json-schema": "0.51.0",
     "vite": "^2.0.0",
     "vite-plugin-ts-nameof": "^1.0.0",
     "vue": "2.6.14"
