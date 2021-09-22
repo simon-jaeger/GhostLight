@@ -1,14 +1,27 @@
 import __definitions__ from "wicg-file-system-access"
 import {Actor} from "/src/models/Actor"
 import {Selection} from "/src/services/Selection"
+import {Textures} from "/src/services/Textures"
 
 export const FileSystem = new class {
+  readonly rootMark = ".ghostlight"
+  readonly sceneFile = "scene.json"
+  readonly textureDir = "textures"
+
   dirHandle!: FileSystemDirectoryHandle
   fileHandle!: FileSystemFileHandle
 
   async open() {
     this.dirHandle = await showDirectoryPicker()
-    this.fileHandle = await this.dirHandle.getFileHandle("scene.json", {create: true})
+    try {
+      await this.dirHandle.getDirectoryHandle(this.rootMark)
+    } catch {
+      alert(`Not a GhostLight directory, missing [${this.rootMark}]`)
+      return
+    }
+
+    await Textures.register(await FileSystem.dirHandle.getDirectoryHandle(this.textureDir))
+    this.fileHandle = await this.dirHandle.getFileHandle(this.sceneFile, {create: true})
     const scene = JSON.parse(await this.fileHandle.getFile().then(x => x.text()))
     this.parse(scene)
     console.log("opened")
@@ -33,4 +46,5 @@ export const FileSystem = new class {
     Actor.destroy(...Actor.all)
     Actor.createMany(scene.actors)
   }
+
 }

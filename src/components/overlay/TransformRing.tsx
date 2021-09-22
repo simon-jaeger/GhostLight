@@ -30,7 +30,7 @@ export const TransformRing = observer(() => {
     >{anchors.map((x, i) => (
       <div
         key={i}
-        className="absolute w-2 h-2 bg-white rounded-full ring-1 ring-yellow-500 -translate-x-1/2 -translate-y-1/2 t-2"
+        className="absolute w-2 h-2 bg-white rounded-full ring-1 ring-yellow-500 -translate-x-1/2 -translate-y-1/2 t-1"
         style={{
           top: x.top,
           left: x.left,
