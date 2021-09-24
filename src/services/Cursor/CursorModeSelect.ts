@@ -8,7 +8,7 @@ import {App} from "/src/services/App"
 export class CursorModeSelect implements CursorMode {
   onMouseDown(e: MouseEvent) {
     if (Keyboard.Shift) return
-    const target = Actor.findByCollision({x: e.offsetX, y: e.offsetY})
+    const target = Actor.findByCollision(Cursor.posReal)
     if (target && (!Selection.all.includes(target))) Selection.set(target)
     else if (!target) return Selection.clear()
   }
@@ -19,7 +19,7 @@ export class CursorModeSelect implements CursorMode {
   }
 
   onMouseUp(e: MouseEvent) {
-    const target = Actor.findByCollision({x: e.offsetX, y: e.offsetY})
+    const target = Actor.findByCollision(Cursor.posReal)
     if (Keyboard.Shift && target) Selection.toggle(target)
     else if (target) return Selection.set(target)
   }

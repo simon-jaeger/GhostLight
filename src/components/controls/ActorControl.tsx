@@ -11,19 +11,15 @@ export const ActorControl = observer(() => {
   const actor = Selection.all.length === 1 ? Selection.all[0] : null
   if (!actor) return null
 
-  const texture = actor.texture.value.startsWith("#")
-    ? `linear-gradient(${actor.texture.value}, ${actor.texture.value})`
-    : `url(${Textures.get(actor.texture.value)})`
-
   return (
     <div className="fixed top-0 right-0 p-4 w-64 h-full bg-gray-800">
       {actor && <form>
         <header className="flex gap-4 mb-4">
           <div
-            style={{backgroundImage: texture}}
+            style={{backgroundImage: `url(${Textures.get(actor.texture.value).src})`}}
             className="w-16 h-16 bg-center bg-no-repeat bg-contain"
           ></div>
-          <div className="flex-1 overflow-hidden">
+          <div className="overflow-hidden flex-1">
             <h2 className="truncate">[Anonymous actor]</h2>
             <p className="mb-2 text-gray-400 truncate">ID: {actor.id}</p>
           </div>

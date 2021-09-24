@@ -17,8 +17,6 @@ export const SceneView = observer(() => {
       style={{
         left: Camera.x,
         top: Camera.y,
-        transform: `scale(${Camera.zoom})`,
-        transformOrigin: "0px 0px",
       }}
     >
       {Actor.all.map(a => <ActorView actor={a} key={a.id}/>)}

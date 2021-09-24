@@ -5,8 +5,18 @@ export const uClone = l.cloneDeep
 // simple 2d box collision check
 export function uCollision(pA: Point | Shape, pB: Point | Shape) {
   if (pA === pB) return false
-  const a = Object.assign(({x: 0, y: 0, width: 1, height: 1} as Shape), pA)
-  const b = Object.assign(({x: 0, y: 0, width: 1, height: 1} as Shape), pB)
+  const a = Object.assign(({
+    x: 0,
+    y: 0,
+    width: 0.01,
+    height: 0.01,
+  } as Shape), pA)
+  const b = Object.assign(({
+    x: 0,
+    y: 0,
+    width: 0.01,
+    height: 0.01,
+  } as Shape), pB)
   return a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y
 }
 
@@ -38,3 +48,14 @@ export function uToggle<T>(array: Array<T>, item: T) {
   if (index === -1) array.push(item)
   else array.splice(index, 1)
 }
+
+// image element from src, waits for onload
+export function uImage(src: string) {
+  return new Promise<HTMLImageElement>((resolve, reject) => {
+    const img = new Image()
+    img.src = src
+    img.onload = () => resolve(img)
+    img.onerror = () => reject()
+  })
+}
+

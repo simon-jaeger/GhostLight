@@ -10,10 +10,12 @@ import {uSnap} from "/src/helpers/utils"
 import {Grid} from "/src/services/Grid"
 import {CursorInertia} from "/src/services/Cursor/CursorInertia"
 import {CursorModePan} from "/src/services/Cursor/CursorModePan"
+import {Camera} from "/src/services/Camera"
 
 export const Cursor = new class {
   pos: Point = {x: 0, y: 0}
   posStart: Point = {x: 0, y: 0}
+  posReal: Point = {x: 0, y: 0}
   down = false
   private modes: { [key in AppMode]: CursorMode } = {
     select: new CursorModeSelect(),
@@ -22,7 +24,7 @@ export const Cursor = new class {
     resize: new CursorModeResize(),
     pan: new CursorModePan(),
   }
-  private currentMode=this.modes.select
+  private currentMode = this.modes.select
   private cursorInertia = new CursorInertia()
 
   constructor() {
@@ -38,10 +40,15 @@ export const Cursor = new class {
     }, {fireImmediately: true})
   }
 
-  get movedX() { return this.pos.x - this.posStart.x }
-  get movedY() { return this.pos.y - this.posStart.y }
-
-  get inertia() { return this.cursorInertia.active }
+  get movedX() {
+    return this.pos.x - this.posStart.x
+  }
+  get movedY() {
+    return this.pos.y - this.posStart.y
+  }
+  get inertia() {
+    return this.cursorInertia.active
+  }
 
   addEventListeners(sceneView: HTMLDivElement) {
     this.cursorInertia.addEventListeners()
@@ -57,8 +64,10 @@ export const Cursor = new class {
       this.currentMode.onMouseDown?.(e)
     })
     sceneView.addEventListener("mousemove", (e) => {
-      this.pos.x = uSnap(e.offsetX, Grid.sizeX)
-      this.pos.y = uSnap(e.offsetY, Grid.sizeY)
+      this.posReal.x = e.offsetX / Camera.zoom
+      this.posReal.y = e.offsetY / Camera.zoom
+      this.pos.x = uSnap(this.posReal.x, Grid.sizeX)
+      this.pos.y = uSnap(this.posReal.y, Grid.sizeY)
       this.currentMode.onMouseMove?.(e)
     })
     sceneView.addEventListener("mouseup", (e) => {
