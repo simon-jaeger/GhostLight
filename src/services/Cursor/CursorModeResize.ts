@@ -21,13 +21,13 @@ export class CursorModeResize implements CursorMode {
     ////////////////////////////////////////////////////////////////////////////
     if (App.subMode === "") {
       let subMode = "se"
-      when(() => !!Cursor.movedX, () => {
+      when(() => Cursor.pos.x < this.initial.x || Cursor.pos.x >= this.initial.xw, () => {
           if (!App.isMode("resize")) return
           if (Cursor.movedX < 0) subMode = subMode.replace("e", "w")
           App.setMode("resize", subMode)
         },
       )
-      when(() => !!Cursor.movedY, () => {
+      when(() => Cursor.pos.y < this.initial.y || Cursor.pos.y >= this.initial.yh, () => {
           if (!App.isMode("resize")) return
           if (Cursor.movedY < 0) subMode = subMode.replace("s", "n")
           App.setMode("resize", subMode)
