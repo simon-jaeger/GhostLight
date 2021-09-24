@@ -12,7 +12,7 @@ export class CursorModeCreate implements CursorMode {
       texture: {value: "#6B7280", opacity: 100},
     })
     Selection.set(actor)
-    App.setMode('resize', 'se')
+    App.setMode("resize")
   }
 
 }

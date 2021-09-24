@@ -17,7 +17,25 @@ export class CursorModeResize implements CursorMode {
     this.target = Selection.all[0]
     this.initial = uClone(this.target)
     Cursor.down = true
-    if (App.subMode === "nw") {
+
+    ////////////////////////////////////////////////////////////////////////////
+    if (App.subMode === "") {
+      let subMode = "se"
+      when(() => !!Cursor.movedX, () => {
+          if (!App.isMode("resize")) return
+          if (Cursor.movedX < 0) subMode = subMode.replace("e", "w")
+          App.setMode("resize", subMode)
+        },
+      )
+      when(() => !!Cursor.movedY, () => {
+          if (!App.isMode("resize")) return
+          if (Cursor.movedY < 0) subMode = subMode.replace("s", "n")
+          App.setMode("resize", subMode)
+        },
+      )
+    }
+    ////////////////////////////////////////////////////////////////////////////
+    else if (App.subMode === "nw") {
       Cursor.posStart.x = this.target.x
       Cursor.posStart.y = this.target.y
     }
