@@ -10,13 +10,18 @@ export function uCollision(pA: Point | Shape, pB: Point | Shape) {
   return a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y
 }
 
+// real device pixel
+export function uDp(n = 1) {
+  return n / window.devicePixelRatio
+}
+
 // snap number down to nearest multiple of step
 export function uSnap(number: number, step: number) {
   return Math.floor(number / step) * step
 }
 
 // remove items from array
-export function uRemove<T>(array:Array<T>, ...items:Array<T>) {
+export function uRemove<T>(array: Array<T>, ...items: Array<T>) {
   const filtered = array.filter(x => !items.includes(x))
   array.splice(0, array.length, ...filtered)
 }
