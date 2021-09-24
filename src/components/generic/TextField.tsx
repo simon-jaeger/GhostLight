@@ -44,7 +44,7 @@ export const TextField = (p: Props) => {
         disabled={p.disabled ?? false}
         step={p.step ?? 1}
         defaultValue={p.value}
-        className="px-2 w-full h-8 bg-gray-900 border border-gray-600 focus:border-gray-400"
+        className="px-2 w-full h-8 bg-gray-900 border border-gray-600 focus:border-gray-500"
         style={p.style}
       />
       {p.suffix &&

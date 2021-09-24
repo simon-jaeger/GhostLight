@@ -21,30 +21,30 @@ export const ActorControl = observer(() => {
           <TextField
             label="X"
             type="number"
-            step={Grid.sizeW}
+            step={Grid.sizeX}
             value={actor.shape.x}
             onChange={(v) => actor.shape.x = v}
           />
           <TextField
             label="Y"
             type="number"
-            step={Grid.sizeH}
+            step={Grid.sizeY}
             value={actor.shape.y}
             onChange={(v) => actor.shape.y = v}
           />
           <TextField
             label="Width"
             type="number"
-            min={Grid.sizeW}
-            step={Grid.sizeW}
+            min={Grid.sizeX}
+            step={Grid.sizeX}
             value={actor.shape.width}
             onChange={(v) => actor.shape.width = v}
           />
           <TextField
             label="Height"
             type="number"
-            min={Grid.sizeH}
-            step={Grid.sizeH}
+            min={Grid.sizeY}
+            step={Grid.sizeY}
             value={actor.shape.height}
             onChange={(v) => actor.shape.height = v}
           />

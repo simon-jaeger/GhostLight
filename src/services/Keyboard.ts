@@ -8,12 +8,14 @@ import {Camera} from "/src/services/Camera"
 export const Keyboard = new class {
   Shift = false
   Alt = false
-  Control = false
+  Ctrl = false
 
   private nameMap = {
     " ": "Space",
     "+": "Plus",
     "-": "Minus",
+    "a": "A",
+    "Control": "Ctrl",
   }
 
   constructor() {
@@ -23,9 +25,10 @@ export const Keyboard = new class {
   addEventListeners() {
     window.addEventListener("keydown", (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
+      e.preventDefault()
       let key = this.nameMap[e.key] ?? e.key
       if (key in this) this[key] = true
-      this["on" + key]?.()
+      this["on" + (this.Ctrl ? "Ctrl" : "") + key]?.()
     })
     window.addEventListener("keyup", (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
@@ -56,5 +59,9 @@ export const Keyboard = new class {
   }
   onMinus() {
     Camera.zoom /= 2
+  }
+
+  onCtrlA() {
+    Selection.set(...Actor.all)
   }
 }

@@ -20,7 +20,7 @@ export const TransformRing = observer(() => {
 
   return (
     <div
-      className="absolute ring-1 ring-yellow-500"
+      className="absolute"
       style={{
         left: target.x * Camera.zoom,
         top: target.y * Camera.zoom,

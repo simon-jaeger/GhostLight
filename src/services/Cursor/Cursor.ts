@@ -48,7 +48,7 @@ export const Cursor = new class {
     sceneView.addEventListener("mousedown", (e) => {
       Keyboard.Shift = e.shiftKey
       Keyboard.Alt = e.altKey
-      Keyboard.Control = e.ctrlKey
+      Keyboard.Ctrl = e.ctrlKey
 
       this.down = true
       this.posStart.x = this.pos.x
@@ -57,8 +57,8 @@ export const Cursor = new class {
       this.currentMode.onMouseDown?.(e)
     })
     sceneView.addEventListener("mousemove", (e) => {
-      this.pos.x = uSnap(e.offsetX, Grid.sizeW)
-      this.pos.y = uSnap(e.offsetY, Grid.sizeH)
+      this.pos.x = uSnap(e.offsetX, Grid.sizeX)
+      this.pos.y = uSnap(e.offsetY, Grid.sizeY)
       this.currentMode.onMouseMove?.(e)
     })
     sceneView.addEventListener("mouseup", (e) => {

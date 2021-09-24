@@ -24,29 +24,29 @@ export const Debugger = new class {
     window.Actor = Actor
     const a1 = Actor.create({
       shape: {
-        x: Grid.sizeW * 2,
-        y: Grid.sizeH * 2,
-        width: Grid.sizeW,
-        height: Grid.sizeH,
+        x: Grid.sizeX * 2,
+        y: Grid.sizeY * 2,
+        width: Grid.sizeX,
+        height: Grid.sizeY,
       },
       texture: {value: "#6B7280", opacity: 100},
     })
     Selection.set(a1)
     Actor.create({
       shape: {
-        x: Grid.sizeW * 4,
-        y: Grid.sizeH * 2,
-        width: Grid.sizeW,
-        height: Grid.sizeH,
+        x: Grid.sizeX * 4,
+        y: Grid.sizeY * 2,
+        width: Grid.sizeX,
+        height: Grid.sizeY,
       },
       texture: {value: "Player.png", opacity: 100},
     })
     Actor.create({
       shape: {
-        x: Grid.sizeW * 6,
-        y: Grid.sizeH * 2,
-        width: Grid.sizeW,
-        height: Grid.sizeH,
+        x: Grid.sizeX * 6,
+        y: Grid.sizeY * 2,
+        width: Grid.sizeX,
+        height: Grid.sizeY,
       },
       texture: {value: "Wall.png", opacity: 100},
     })

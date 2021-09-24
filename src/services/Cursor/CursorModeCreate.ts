@@ -8,7 +8,7 @@ import {App} from "/src/services/App"
 export class CursorModeCreate implements CursorMode {
   onMouseDown() {
     const actor = Actor.create({
-      shape: {...Cursor.pos, width: Grid.sizeW, height: Grid.sizeH},
+      shape: {...Cursor.pos, width: Grid.sizeX, height: Grid.sizeY},
       texture: {value: "#6B7280", opacity: 100},
     })
     Selection.set(actor)

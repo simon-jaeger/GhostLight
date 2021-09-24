@@ -10,7 +10,7 @@ interface Props {
 export const SelectionHighlight = observer(({actor}: Props) => {
   return (
     <div
-      className="absolute ring-1 ring-yellow-500"
+      className="absolute border border-yellow-500"
       style={{
         left: actor.x * Camera.zoom,
         top: actor.y * Camera.zoom,

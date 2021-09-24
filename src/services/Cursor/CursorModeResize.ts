@@ -5,6 +5,7 @@ import {App} from "/src/services/App"
 import {Selection} from "/src/services/Selection"
 import {uClone} from "/src/helpers/utils"
 import {Grid} from "/src/services/Grid"
+import {when} from "mobx"
 
 // TODO: maybe side anchors too?
 
@@ -15,9 +16,6 @@ export class CursorModeResize implements CursorMode {
   onEnter() {
     this.target = Selection.all[0]
     this.initial = uClone(this.target)
-
-    // click cursor and set start positon at center of anchor
-    ////////////////////////////////////////////////////////////////////////////
     Cursor.down = true
     if (App.subMode === "nw") {
       Cursor.posStart.x = this.target.x
@@ -25,18 +23,18 @@ export class CursorModeResize implements CursorMode {
     }
     ////////////////////////////////////////////////////////////////////////////
     else if (App.subMode === "ne") {
-      Cursor.posStart.x = this.target.xw - Grid.sizeW
+      Cursor.posStart.x = this.target.xw - Grid.sizeX
       Cursor.posStart.y = this.target.y
     }
     ////////////////////////////////////////////////////////////////////////////
     else if (App.subMode === "se") {
-      Cursor.posStart.x = this.target.xw - Grid.sizeW
-      Cursor.posStart.y = this.target.yh - Grid.sizeH
+      Cursor.posStart.x = this.target.xw - Grid.sizeX
+      Cursor.posStart.y = this.target.yh - Grid.sizeY
     }
     ////////////////////////////////////////////////////////////////////////////
     else if (App.subMode === "sw") {
       Cursor.posStart.x = this.target.x
-      Cursor.posStart.y = this.target.yh - Grid.sizeH
+      Cursor.posStart.y = this.target.yh - Grid.sizeY
     }
     ////////////////////////////////////////////////////////////////////////////
   }
@@ -109,8 +107,8 @@ export class CursorModeResize implements CursorMode {
 
   onMouseUp() {
     // prevent "invisible" actor of zero w/h
-    this.target.w = this.target.w <= 0 ? Grid.sizeW : this.target.w
-    this.target.h = this.target.h <= 0 ? Grid.sizeH : this.target.h
+    this.target.w = this.target.w <= 0 ? Grid.sizeX : this.target.w
+    this.target.h = this.target.h <= 0 ? Grid.sizeY : this.target.h
     App.revertMode()
   }
 }

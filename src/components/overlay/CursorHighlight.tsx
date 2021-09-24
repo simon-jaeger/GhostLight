@@ -6,26 +6,25 @@ import {Camera} from "/src/services/Camera"
 
 export const CursorHighlight = observer(() => {
   if (!Grid.show) return null
+  const devicePixel = window.devicePixelRatio === 1.5 ? 0.666 : 1
 
   return (<>
       <div
-        className="absolute bg-white bg-opacity-25 border"
+        className="absolute bg-white bg-opacity-25"
         style={{
-          left: Cursor.pos.x * Camera.zoom,
-          top: Cursor.pos.y * Camera.zoom,
-          width: Grid.sizeW * Camera.zoom,
-          height: Grid.sizeH * Camera.zoom,
+          left: Cursor.pos.x * Camera.zoom + devicePixel,
+          top: Cursor.pos.y * Camera.zoom + devicePixel,
+          width: Grid.sizeX * Camera.zoom - devicePixel,
+          height: Grid.sizeY * Camera.zoom - devicePixel,
         }}
       ></div>
       {/*<div*/}
+      {/*  className="absolute bg-blue-500 bg-opacity-50"*/}
       {/*  style={{*/}
-      {/*    position: "absolute",*/}
       {/*    left: Cursor.posStart.x * Camera.zoom,*/}
       {/*    top: Cursor.posStart.y * Camera.zoom,*/}
-      {/*    width: Grid.sizeW * Camera.zoom,*/}
-      {/*    height: Grid.sizeH * Camera.zoom,*/}
-      {/*    background: "cyan",*/}
-      {/*    opacity: 0.5,*/}
+      {/*    width: Grid.sizeX * Camera.zoom+devicePixel,*/}
+      {/*    height: Grid.sizeY * Camera.zoom+devicePixel,*/}
       {/*  }}*/}
       {/*></div>*/}
     </>
