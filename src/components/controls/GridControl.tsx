@@ -6,7 +6,7 @@ import {TextField} from "/src/components/generic/TextField"
 
 export const GridControl = observer(() => {
   return (
-    <div className="flex fixed bottom-0 right-64 items-center pr-2 h-12 text-gray-300 bg-gray-800">
+    <div className="flex fixed bottom-0 left-0 items-center pr-2 h-12 text-gray-300 bg-gray-800">
       <button
         className="flex justify-center items-center w-12 h-12"
         onClick={() => Grid.show = !Grid.show}

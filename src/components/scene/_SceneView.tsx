@@ -4,6 +4,7 @@ import {Actor} from "/src/models/Actor"
 import {ActorView} from "/src/components/scene/ActorView"
 import {Cursor} from "/src/services/Cursor/Cursor"
 import {Camera} from "/src/services/Camera"
+import {ActorPreview} from "/src/components/scene/ActorPreview"
 
 export const SceneView = observer(() => {
   const ref = useRef<HTMLDivElement>(null)
@@ -21,6 +22,7 @@ export const SceneView = observer(() => {
       }}
     >
       {Actor.all.map(a => <ActorView actor={a} key={a.id}/>)}
+      <ActorPreview/>
     </div>
   )
 })

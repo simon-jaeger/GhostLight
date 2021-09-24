@@ -3,20 +3,35 @@ import {observer} from "mobx-react-lite"
 import {TextField} from "/src/components/generic/TextField"
 import {Selection} from "/src/services/Selection"
 import {Grid} from "/src/services/Grid"
+import {Textures} from "/src/services/Textures"
 
 // TODO: copy id to clipboard on click?
 
 export const ActorControl = observer(() => {
   const actor = Selection.all.length === 1 ? Selection.all[0] : null
-  return (
-    <div className="fixed top-0 right-0 p-4 w-64 h-full bg-gray-800 border-l border-gray-600">
-      {actor && <form>
-        <header>
-          <h2>[Anonymous actor]</h2>
-          <p className="text-gray-400 truncate">ID: {actor.id}</p>
-        </header>
-        <hr className="-mx-4 my-4 border-gray-600"/>
+  if (!actor) return null
 
+  const texture = actor.texture.value.startsWith("#")
+    ? `linear-gradient(${actor.texture.value}, ${actor.texture.value})`
+    : `url(${Textures.get(actor.texture.value)})`
+
+  return (
+    <div className="fixed top-0 right-0 p-4 w-64 h-full bg-gray-800">
+      {actor && <form>
+        <header className="flex gap-4 mb-4">
+          <div
+            style={{backgroundImage: texture}}
+            className="w-16 h-16 bg-center bg-no-repeat bg-contain"
+          ></div>
+          <div className="flex-1 overflow-hidden">
+            <h2 className="truncate">[Anonymous actor]</h2>
+            <p className="mb-2 text-gray-400 truncate">ID: {actor.id}</p>
+          </div>
+        </header>
+
+        {/*<Button>edit type</Button>*/}
+
+        <hr className="-mx-4 my-4 border-gray-600"/>
         <fieldset className="grid grid-cols-2 gap-4">
           <TextField
             label="X"
@@ -49,26 +64,26 @@ export const ActorControl = observer(() => {
             onChange={(v) => actor.shape.height = v}
           />
         </fieldset>
-        <hr className="-mx-4 my-4 border-gray-600"/>
 
-        <div
-          className="grid items-end"
-          style={{gridTemplateColumns: "3fr 1fr"}}
-        >
-          <TextField
-            label="Texture"
-            value={actor.texture.value}
-            onChange={(v) => actor.texture.value = v}
-          />
-          <TextField
-            type="number"
-            min={0}
-            max={100}
-            value={actor.texture.opacity}
-            onChange={(v) => actor.texture.opacity = v}
-            suffix="%"
-          />
-        </div>
+        {/*<hr className="-mx-4 my-4 border-gray-600"/>*/}
+        {/*<div*/}
+        {/*  className="grid items-end"*/}
+        {/*  style={{gridTemplateColumns: "3fr 1fr"}}*/}
+        {/*>*/}
+        {/*  <TextField*/}
+        {/*    label="Texture"*/}
+        {/*    value={actor.texture.value}*/}
+        {/*    onChange={(v) => actor.texture.value = v}*/}
+        {/*  />*/}
+        {/*  <TextField*/}
+        {/*    type="number"*/}
+        {/*    min={0}*/}
+        {/*    max={100}*/}
+        {/*    value={actor.texture.opacity}*/}
+        {/*    onChange={(v) => actor.texture.opacity = v}*/}
+        {/*    suffix="%"*/}
+        {/*  />*/}
+        {/*</div>*/}
 
       </form>}
     </div>

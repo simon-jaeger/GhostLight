@@ -7,6 +7,7 @@ import {Camera} from "/src/services/Camera"
 
 export const TransformRing = observer(() => {
   if (!App.isMode("select", "resize")) return null
+  if (App.isMode("resize") && App.subMode === "") return null
   if (Selection.all.length !== 1) return null
 
   const target = Selection.all[0]

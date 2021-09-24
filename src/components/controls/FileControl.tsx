@@ -5,7 +5,7 @@ import {FileSystem} from "/src/services/FileSystem"
 
 export const FileControl = observer(() => {
   return (
-    <div className="flex absolute top-0 left-0 h-12 bg-gray-800">
+    <div className="flex fixed top-0 left-0 h-12 bg-gray-800">
         <button
           onClick={() => FileSystem.open()}
           className="w-12 h-12 flex items-center justify-center hover:bg-gray-700"

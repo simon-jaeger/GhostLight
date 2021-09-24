@@ -25,16 +25,15 @@ export const Keyboard = new class {
   addEventListeners() {
     window.addEventListener("keydown", (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
-      e.preventDefault()
       let key = this.nameMap[e.key] ?? e.key
       if (key in this) this[key] = true
-      this["on" + (this.Ctrl ? "Ctrl" : "") + key]?.()
+      this["on" + (this.Ctrl ? "Ctrl" : "") + key]?.(e)
     })
     window.addEventListener("keyup", (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
       let key = this.nameMap[e.key] ?? e.key
       if (key in this) this[key] = false
-      this["on" + key + "Up"]?.()
+      this["on" + key + "Up"]?.(e)
     })
   }
 
@@ -61,7 +60,8 @@ export const Keyboard = new class {
     Camera.zoom /= 2
   }
 
-  onCtrlA() {
+  onCtrlA(e: KeyboardEvent) {
+    e.preventDefault()
     Selection.set(...Actor.all)
   }
 }

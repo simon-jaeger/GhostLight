@@ -4,12 +4,13 @@ import {Actor} from "/src/models/Actor"
 import {Grid} from "/src/services/Grid"
 import {Selection} from "/src/services/Selection"
 import {App} from "/src/services/App"
+import {Textures} from "/src/services/Textures"
 
 export class CursorModeCreate implements CursorMode {
   onMouseDown() {
     const actor = Actor.create({
       shape: {...Cursor.pos, width: Grid.sizeX, height: Grid.sizeY},
-      texture: {value: "#6B7280", opacity: 100},
+      texture: {value: Textures.active, opacity: 100},
     })
     Selection.set(actor)
     App.setMode("resize")
