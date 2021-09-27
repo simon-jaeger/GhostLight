@@ -1,3 +1,4 @@
+import '/src/style.css'
 import * as mobx from "mobx"
 import React from "react"
 import ReactDOM from "react-dom"

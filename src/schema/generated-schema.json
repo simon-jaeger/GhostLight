@@ -9,13 +9,13 @@
                 "shape": {
                     "$ref": "#/definitions/Shape"
                 },
-                "texture": {
+                "sprite": {
                     "properties": {
                         "opacity": {
                             "default": 100,
                             "type": "number"
                         },
-                        "value": {
+                        "texture": {
                             "default": "",
                             "type": "string"
                         }

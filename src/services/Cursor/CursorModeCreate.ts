@@ -7,9 +7,10 @@ import {Textures} from "/src/services/Textures"
 
 export class CursorModeCreate implements CursorMode {
   onMouseDown() {
+    const tx = Textures.active
     const actor = Actor.create({
-      shape: {...Cursor.pos, width: Textures.active.width, height: Textures.active.height},
-      texture: {value: Textures.active.key, opacity: 100},
+      shape: {...Cursor.pos, width: tx.width, height: tx.height},
+      sprite: {texture: tx.key, opacity: 100},
     })
     Selection.set(actor)
     App.setMode("resize")

@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const ActorView = observer(({actor}: Props) => {
-  const tx = Textures.get(actor.texture.value)
+  const tx = Textures.get(actor.sprite.texture)
   return (
     <div
       style={{
@@ -19,9 +19,9 @@ export const ActorView = observer(({actor}: Props) => {
         top: actor.y * Camera.zoom,
         width: actor.w * Camera.zoom,
         height: actor.h * Camera.zoom,
-        backgroundImage: `url(${tx.src}`,
+        backgroundImage: `url(${tx.url}`,
         backgroundSize: `${ tx.width * Camera.zoom }px ${ tx.height * Camera.zoom }px`,
-        opacity: actor.texture.opacity / 100,
+        opacity: actor.sprite.opacity / 100,
       }}
     ></div>
   )

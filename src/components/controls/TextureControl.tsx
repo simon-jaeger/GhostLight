@@ -5,7 +5,7 @@ import {App} from "/src/services/App"
 
 export const TextureControl = observer(() => {
   return (
-    <div className="fixed left-0 top-12 w-48 bg-gray-800">
+    <div className="fixed right-0 top-12 w-48 bg-gray-800">
       <div className="grid grid-cols-3">
         {Textures.all.map(tx => (
           <button
@@ -19,7 +19,7 @@ export const TextureControl = observer(() => {
           >
             <div
               className="absolute inset-4 bg-center bg-no-repeat bg-contain"
-              style={{backgroundImage: `url(${tx.src})`}}
+              style={{backgroundImage: `url(${tx.url})`}}
             ></div>
           </button>
         ))}

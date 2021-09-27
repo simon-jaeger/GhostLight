@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "schema": "typescript-json-schema tsconfig.json glScene --out src/schema/generated-schema.json"
+    "schema": "typescript-json-schema tsconfig.json GhostLightScene --out src/schema/generated-schema.json"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.4",

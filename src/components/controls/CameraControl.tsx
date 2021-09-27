@@ -5,7 +5,7 @@ import {MinusSmIcon, PlusSmIcon} from "@heroicons/react/solid"
 
 export const CameraControl = observer(() => {
   return (
-    <div className="flex fixed top-0 right-64 items-center px-4 h-12 text-gray-300 bg-gray-800">
+    <div className="flex fixed top-0 right-0 items-center px-4 h-12 text-gray-300 bg-gray-800">
       <button
         className="flex justify-center items-center w-8 h-12 text-gray-400 hover:text-gray-200"
         onClick={() => Camera.zoom /= 2}

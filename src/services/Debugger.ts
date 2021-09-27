@@ -22,101 +22,84 @@ export const Debugger = new class {
   executeTestCode() {
     // @ts-ignore
     window.Actor = Actor
-    // Actor.create({
-    //   shape: {
-    //     x: 16,
-    //     y: 16,
-    //     width: 16,
-    //     height: 16,
-    //   },
-    //   texture: {value: "#6B7280", opacity: 100},
-    // })
-    // Actor.create({
-    //   shape: {
-    //     x: Grid.sizeX * 2,
-    //     y: Grid.sizeY * 2,
-    //     width: Grid.sizeX,
-    //     height: Grid.sizeY,
-    //   },
-    //   texture: {value: "#6B7280", opacity: 100},
-    // })
+    //
     Actor.create({
       shape: {
-        x: Grid.sizeX * 4,
-        y: Grid.sizeY * 4,
-        width: Grid.sizeX,
-        height: Grid.sizeY,
-      },
-      texture: {value: "Player.png", opacity: 100},
-    })
-    Actor.create({
-      shape: {
-        x: Grid.sizeX * 6,
+        x: Grid.sizeX * 2,
         y: Grid.sizeY * 2,
         width: Grid.sizeX,
         height: Grid.sizeY,
       },
-      texture: {value: "Wall.png", opacity: 100},
+      sprite: {texture: "Player.png", opacity: 100},
     })
-    Selection.set(Actor.all[0])
+    Actor.create({
+      shape: {
+        x: Grid.sizeX * 4,
+        y: Grid.sizeY * 2,
+        width: Grid.sizeX,
+        height: Grid.sizeY,
+      },
+      sprite: {texture: "Wall.png", opacity: 100},
+    })
+    // Selection.set(Actor.all[0])
     //
     Textures.map.set("Player.png", {
       key: "Player.png",
-      src: "/Player.png",
+      url: "/Player.png",
       width: 16,
       height: 16,
     })
     Textures.map.set("Wall.png", {
       key: "Wall.png",
-      src: "/Wall.png",
+      url: "/Wall.png",
       width: 16,
       height: 16,
     })
     Textures.map.set("Key.png", {
       key: "Key.png",
-      src: "/Key.png",
+      url: "/Key.png",
       width: 16,
       height: 16,
     })
     Textures.map.set("Lock.png", {
       key: "Lock.png",
-      src: "/Lock.png",
+      url: "/Lock.png",
       width: 16,
       height: 16,
     })
     Textures.map.set("Potion.png", {
       key: "Potion.png",
-      src: "/Potion.png",
+      url: "/Potion.png",
       width: 16,
       height: 16,
     })
     Textures.map.set("Skeleton.png", {
-      key: "/Skeleton.png",
-      src: "/Skeleton.png",
+      key: "Skeleton.png",
+      url: "/Skeleton.png",
       width: 16,
       height: 16,
     })
     Textures.map.set("Sign.png", {
       key: "Sign.png",
-      src: "/Sign.png",
+      url: "/Sign.png",
       width: 16,
       height: 16,
     })
     Textures.map.set("Block.png", {
       key: "Block.png",
-      src: "/Block.png",
+      url: "/Block.png",
       width: 16,
       height: 16,
     })
     Textures.map.set("Pillar.png", {
       key: "Pillar.png",
-      src: "/Pillar.png",
+      url: "/Pillar.png",
       width: 16,
       height: 48,
     })
     Textures.map.set("Cobblestone.png", {
       key: "Cobblestone.png",
-      src: "/Cobblestone.png",
+      url: "/Cobblestone.png",
       width: 48,
       height: 48,
     })

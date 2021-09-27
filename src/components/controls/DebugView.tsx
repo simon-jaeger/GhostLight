@@ -4,7 +4,7 @@ import {Textures} from "/src/services/Textures"
 
 export const DebugView = observer(() => {
   return (
-    <div className="fixed right-0 top-1/2 p-4 space-y-4 w-64 h-full bg-gray-800 border-t border-gray-600">
+    <div className="fixed left-0 top-1/2 p-4 space-y-4 w-64 h-full bg-gray-800 border-t border-gray-600">
       <h2 className="mb-4">debug view</h2>
       {/*<pre>mode: {App.mode} {App.subMode}</pre>*/}
       {/*<pre>cursor: {JSON.stringify({*/}

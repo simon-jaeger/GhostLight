@@ -3,18 +3,14 @@ import {makeAutoObservable} from "mobx"
 import {uToggle} from "/src/helpers/utils"
 
 export const Selection = new class {
-  private _all: Actor[] = []
+  readonly all: Actor[] = []
 
   constructor() {
     makeAutoObservable(this)
   }
 
-  get all() {
-    return this._all
-  }
-
   set(...actors: Actor[]) {
-    this._all.splice(0, this.all.length, ...actors)
+    this.all.splice(0, this.all.length, ...actors)
   }
 
   toggle(actor: Actor) {
@@ -22,6 +18,6 @@ export const Selection = new class {
   }
 
   clear() {
-    this._all.length = 0
+    this.all.length = 0
   }
 }

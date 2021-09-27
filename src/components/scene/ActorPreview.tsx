@@ -21,7 +21,7 @@ export const ActorPreview = observer(() => {
         top: Cursor.pos.y * Camera.zoom,
         width: tx.width * Camera.zoom,
         height: tx.height * Camera.zoom,
-        backgroundImage: `url(${tx.src})`,
+        backgroundImage: `url(${tx.url})`,
         backgroundSize: `${ tx.width * Camera.zoom }px ${ tx.height * Camera.zoom }px`,
         opacity: 0.5,
       }}

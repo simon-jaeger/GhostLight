@@ -2,51 +2,45 @@
 // TODO: periodic polling for changes?
 
 import {makeAutoObservable} from "mobx"
-import {uImage} from "/src/helpers/utils"
+import {uColorToUrl, uImage} from "/src/helpers/utils"
 
-type Texture = {
-  key: string,
-  src: string,
-  width: number,
-  height: number,
-}
+type Texture = { key: string, url: string, width: number, height: number }
 
 export const Textures = new class {
-  map = new Map<string, Texture>()
-  active: Texture = {key: "", src: "", width: 0, height: 0}
+  map: Map<string, Texture> = new Map()
+  active: Texture = {key: "", url: "", width: 0, height: 0}
 
   constructor() {
     makeAutoObservable(this)
   }
 
+  get all() {
+    return Array.from(this.map.values())
+  }
+
   private clear() {
-    this.map.forEach(x => URL.revokeObjectURL(x.src))
+    this.map.forEach(x => URL.revokeObjectURL(x.url))
     this.map.clear()
   }
 
-  async register(dirHandle: FileSystemDirectoryHandle) {
+  async load(directory: FileSystemDirectoryHandle) {
     this.clear()
-    for await (const fileHandle of dirHandle.values()) {
-      if (fileHandle instanceof FileSystemDirectoryHandle) continue
-      const tx = await uImage(URL.createObjectURL(await fileHandle.getFile()))
-      this.map.set(fileHandle.name, {
-          key: fileHandle.name,
-          src: tx.src,
-          width: tx.width,
-          height: tx.height,
-        },
-      )
+    for await (const file of directory.values()) {
+      if (file.kind === "directory") continue
+      const key = file.name
+      const url = URL.createObjectURL(await file.getFile())
+      const {width, height} = await uImage(url)
+      this.map.set(key, {key, url, width, height})
     }
   }
 
   get(key: string) {
-    let tx = this.map.get(key)
-    if (tx === undefined) tx = {key: "", src: "", width: 0, height: 0}
+    const tx = this.map.get(key)
+    if (tx === undefined)
+      return key.startsWith("#")
+        ? {key: key, url: uColorToUrl(key), width: 1, height: 1}
+        : {key: "ERROR", url: uColorToUrl("red"), width: 1, height: 1}
     return tx
-  }
-
-  get all() {
-    return Array.from(this.map.values())
   }
 
 }

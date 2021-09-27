@@ -49,13 +49,28 @@ export function uToggle<T>(array: Array<T>, item: T) {
   else array.splice(index, 1)
 }
 
-// image element from src, waits for onload
-export function uImage(src: string) {
+// image element from url, waits for onload
+export function uImage(url: string) {
   return new Promise<HTMLImageElement>((resolve, reject) => {
     const img = new Image()
-    img.src = src
+    img.src = url
     img.onload = () => resolve(img)
     img.onerror = () => reject()
   })
 }
 
+// sleep for n miliseconds
+export async function uSleep(n) {
+  return new Promise(resolve => setTimeout(resolve, n))
+}
+
+// create data url for given color
+export function uColorToUrl(color: string) {
+  const canvas = document.createElement("canvas")
+  canvas.width = 100
+  canvas.height = 100
+  const ctx = canvas.getContext("2d")!
+  ctx.fillStyle = color
+  ctx.fillRect(0, 0, 100, 100)
+  return canvas.toDataURL()
+}

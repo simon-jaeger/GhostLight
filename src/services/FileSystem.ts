@@ -1,50 +1,47 @@
 import __definitions__ from "wicg-file-system-access"
-import {Actor} from "/src/models/Actor"
-import {Selection} from "/src/services/Selection"
 import {Textures} from "/src/services/Textures"
+import {Scenes} from "/src/services/Scenes"
+import {makeAutoObservable} from "mobx"
+
+// TODO: allow multiple scenes in .ghostlight dir?
 
 export const FileSystem = new class {
-  readonly rootMark = ".ghostlight"
-  readonly sceneFile = "scene.json"
-  readonly textureDir = "textures"
+  readonly structure = {
+    root: ".ghostlight",
+    textures: "textures",
+    scenes: "scenes",
+  }
 
-  dirHandle!: FileSystemDirectoryHandle
-  fileHandle!: FileSystemFileHandle
+  rootDir!: FileSystemDirectoryHandle
+  texturesDir!: FileSystemDirectoryHandle
+  scenesDir!: FileSystemDirectoryHandle
+
+  constructor() {
+    makeAutoObservable(this)
+  }
 
   async open() {
-    this.dirHandle = await showDirectoryPicker()
+    const picked = await showDirectoryPicker({id: "GhostLight_Alpha"})
+    await picked.requestPermission({mode: "readwrite"})
+
     try {
-      await this.dirHandle.getDirectoryHandle(this.rootMark)
+      this.rootDir = await picked.getDirectoryHandle(this.structure.root)
+      this.texturesDir = await this.rootDir.getDirectoryHandle(this.structure.textures)
+      this.scenesDir = await this.rootDir.getDirectoryHandle(this.structure.scenes)
     } catch {
-      alert(`Not a GhostLight directory, missing [${this.rootMark}]`)
-      return
+      return alert("ERROR: Not a valid GhostLight directory.")
     }
 
-    await Textures.register(await FileSystem.dirHandle.getDirectoryHandle(this.textureDir))
-    this.fileHandle = await this.dirHandle.getFileHandle(this.sceneFile, {create: true})
-    const scene = JSON.parse(await this.fileHandle.getFile().then(x => x.text()))
-    this.parse(scene)
-    console.log("opened")
+    Scenes.clearAll()
+    await Textures.load(this.texturesDir)
+    await Scenes.register(this.scenesDir)
+    await Scenes.load(Scenes.all[0])
   }
 
   async save() {
-    const stream = await this.fileHandle.createWritable()
-    await stream.write(this.serialize())
+    const stream = await Scenes.active.createWritable()
+    await stream.write(Scenes.serialize())
     await stream.close()
     console.log("saved")
   }
-
-  private serialize() {
-    const scene = {
-      actors: Actor.all,
-    }
-    return JSON.stringify(scene, null, 2)
-  }
-
-  private parse(scene) {
-    Selection.clear()
-    Actor.destroy(...Actor.all)
-    Actor.createMany(scene.actors)
-  }
-
 }
