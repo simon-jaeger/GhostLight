@@ -8,12 +8,13 @@ import {CameraControl} from "/src/components/controls/CameraControl"
 import {FileControl} from "/src/components/controls/FileControl"
 import {TextureControl} from "/src/components/controls/TextureControl"
 import {Selection} from "/src/services/Selection"
+import {SceneControl} from "/src/components/controls/SceneControl"
 
 export const Controls = observer(() => {
   return (
     <div>
       <div className="box-content fixed left-0 w-64 h-full bg-gray-800 border-r border-gray-600">
-        { Selection.all.length ? <ActorControl/> : null }
+        { Selection.all.length ? <ActorControl/> : <SceneControl/> }
         <DebugView/>
       </div>
       <div className="box-content fixed right-0 w-48 h-full bg-gray-800 border-l border-gray-600">

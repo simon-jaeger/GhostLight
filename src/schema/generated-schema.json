@@ -25,6 +25,27 @@
             },
             "type": "object"
         },
+        "Config": {
+            "properties": {
+                "background": {
+                    "default": "#000000",
+                    "type": "string"
+                },
+                "height": {
+                    "default": 800,
+                    "type": "number"
+                },
+                "name": {
+                    "default": "untitled_scene",
+                    "type": "string"
+                },
+                "width": {
+                    "default": 800,
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
         "Shape": {
             "properties": {
                 "height": {
@@ -49,6 +70,9 @@
                 "$ref": "#/definitions/Actor"
             },
             "type": "array"
+        },
+        "config": {
+            "$ref": "#/definitions/Config"
         }
     },
     "type": "object"

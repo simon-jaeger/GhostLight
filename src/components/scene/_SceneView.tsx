@@ -5,6 +5,7 @@ import {ActorView} from "/src/components/scene/ActorView"
 import {Cursor} from "/src/services/Cursor/Cursor"
 import {Camera} from "/src/services/Camera"
 import {ActorPreview} from "/src/components/scene/ActorPreview"
+import {Config} from "/src/models/Config"
 
 export const SceneView = observer(() => {
   const ref = useRef<HTMLDivElement>(null)
@@ -13,10 +14,13 @@ export const SceneView = observer(() => {
   return (
     <div
       ref={ref}
-      className="absolute inset-0 t-max"
+      className="absolute t-max"
       style={{
         left: Camera.x,
         top: Camera.y,
+        background: Config.background,
+        width: Config.width * Camera.zoom,
+        height: Config.height * Camera.zoom,
       }}
     >
       {Actor.all.map(a => <ActorView actor={a} key={a.id}/>)}
