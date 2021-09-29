@@ -33,6 +33,10 @@ export const Scenes = new class {
     Actor.createMany(scene.actors)
   }
 
+  find(name: string) {
+    return this.all.find(x => x.name === name)
+  }
+
   serialize() {
     const scene: GhostLightScene = {
       config: Config,

@@ -5,6 +5,7 @@ import {App} from "/src/services/App"
 import {Selection} from "/src/services/Selection"
 import {Grid} from "/src/services/Grid"
 import {Textures} from "/src/services/Textures"
+import {Scenes} from "/src/services/Scenes"
 
 export const Debugger = new class {
   run() {
@@ -22,6 +23,10 @@ export const Debugger = new class {
   executeTestCode() {
     // @ts-ignore
     window.Actor = Actor
+    //
+    const debugSceneFile = {name: "debug-scene.json"} as FileSystemFileHandle
+    Scenes.active = debugSceneFile
+    Scenes.all.push(debugSceneFile)
     //
     Actor.create({
       shape: {

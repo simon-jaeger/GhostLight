@@ -3,16 +3,19 @@ import {observer} from "mobx-react-lite"
 import {TextField} from "/src/components/generic/TextField"
 import {Config} from "/src/models/Config"
 import {Grid} from "/src/services/Grid"
+import {Select} from "/src/components/generic/Select"
+import {Scenes} from "/src/services/Scenes"
 
 export const SceneControl = observer(() => {
   return (
     <div className="fixed left-0 top-12 p-4 w-64 h-full bg-gray-800">
       <form>
         <fieldset className="grid gap-4">
-          <TextField
-            label="Name"
-            value={Config.name}
-            onChange={(v) => Config.name = v}
+          <Select
+            label="Scene"
+            value={Scenes.active.name}
+            options={Scenes.all.map(x => x.name)}
+            onChange={(v) => Scenes.load(Scenes.find(v)!)}
           />
           <TextField
             label="Background"
