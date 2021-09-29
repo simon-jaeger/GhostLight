@@ -40,6 +40,11 @@ button {
   display: block;
 }
 
+button {
+  width: 100%;
+  text-align: left;
+}
+
 input:disabled,
 textarea:disabled,
 button:disabled {
