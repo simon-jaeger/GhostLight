@@ -12,7 +12,7 @@ export const CameraControl = observer(() => {
       >
         <MinusSmIcon/></button>
       <button
-        className="w-10 h-12"
+        className="w-10 h-12 text-center"
         onClick={() => Camera.reset()}
       >{Camera.zoom * 100}%
       </button>

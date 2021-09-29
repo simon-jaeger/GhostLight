@@ -8,6 +8,9 @@ module.exports = {
       colors: {
         gray: colors.coolGray,
       },
+      boxShadow: {
+        DEFAULT: '0px 1px 1px 0px rgba(0, 0, 0, 0.5)',
+      },
     },
   },
   variants: {extend: {}},

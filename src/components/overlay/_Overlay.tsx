@@ -12,7 +12,7 @@ import {Config} from "/src/models/Config"
 export const Overlay = observer(() => {
   return (
     <div
-      className="absolute inset-0 pointer-events-none select-none"
+      className="absolute pointer-events-none select-none"
       style={{
         left: Camera.x,
         top: Camera.y,

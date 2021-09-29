@@ -4,6 +4,7 @@
 
 body {
   font-size: 14px;
+  line-height: 20px;
   overflow: hidden;
   height: 100vh;
   background: #000000;
@@ -41,7 +42,6 @@ button {
 }
 
 button {
-  width: 100%;
   text-align: left;
 }
 
@@ -77,4 +77,23 @@ svg:not([width]) {
   position: absolute;
   inset: 0;
   margin: -99999px;
+}
+
+/* high dpi fixes */
+@media (-webkit-device-pixel-ratio: 1.5) {
+  .border {
+    border-width: 0.666px;
+  }
+  .border-t {
+    border-top-width: 0.666px;
+  }
+  .border-r {
+    border-right-width: 0.666px;
+  }
+  .border-b {
+    border-bottom-width: 0.666px;
+  }
+  .border-l {
+    border-left-width: 0.666px;
+  }
 }
