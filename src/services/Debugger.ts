@@ -5,7 +5,8 @@ import {App} from "/src/services/App"
 import {Selection} from "/src/services/Selection"
 import {Grid} from "/src/services/Grid"
 import {Textures} from "/src/services/Textures"
-import {Scenes} from "/src/services/Scenes"
+import {Scene} from "/src/services/Scene"
+import {Modals} from "/src/services/Modals"
 
 export const Debugger = new class {
   run() {
@@ -14,8 +15,7 @@ export const Debugger = new class {
     const debug = {
       Actor: Actor.all,
       App: App,
-      Cursor: Cursor,
-      Selection: Selection,
+      Modals:Modals,
     }
     new Vue({el: "#debug", name: "Debug", data: debug})
   }
@@ -25,8 +25,10 @@ export const Debugger = new class {
     window.Actor = Actor
     //
     const debugSceneFile = {name: "debug-scene.json"} as FileSystemFileHandle
-    Scenes.active = debugSceneFile
-    Scenes.all.push(debugSceneFile)
+    // @ts-ignore
+    Scene.active = debugSceneFile
+    // @ts-ignore
+    Scene.map.set(debugSceneFile.name, debugSceneFile)
     //
     Actor.create({
       shape: {

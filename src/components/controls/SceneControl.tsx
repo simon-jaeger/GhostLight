@@ -4,7 +4,7 @@ import {TextField} from "/src/components/generic/TextField"
 import {Config} from "/src/models/Config"
 import {Grid} from "/src/services/Grid"
 import {Select} from "/src/components/generic/Select"
-import {Scenes} from "/src/services/Scenes"
+import {Scene} from "/src/services/Scene"
 import {DotsVerticalIcon} from "@heroicons/react/solid"
 import {Menu} from "/src/components/generic/Menu"
 import {useClickOutside} from "/src/hooks/useClickOutside"
@@ -19,9 +19,9 @@ export const SceneControl = observer(() => {
       <form>
         <header className="flex">
           <Select
-            value={Scenes.active.name}
-            options={Scenes.all.map(x => x.name)}
-            onChange={(v) => Scenes.load(Scenes.find(v)!)}
+            value={Scene.name}
+            options={Scene.all}
+            onChange={(v) => Scene.load(v)}
             style={{flex: 1}}
           />
           <button

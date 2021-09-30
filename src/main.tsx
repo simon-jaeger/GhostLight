@@ -1,4 +1,5 @@
-import '/src/style.css'
+import __definitions__ from "wicg-file-system-access"
+import "/src/style.css"
 import * as mobx from "mobx"
 import React from "react"
 import ReactDOM from "react-dom"
