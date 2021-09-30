@@ -5,7 +5,7 @@ export const Camera = new class {
   x = 256 + 32
   y = 48 + 32
   zoom = 4
-  private defaults = uClone(this)
+  private defaults = Object.freeze(uClone(this))
 
   constructor() {
     makeAutoObservable(this)

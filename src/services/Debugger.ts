@@ -23,6 +23,8 @@ export const Debugger = new class {
   executeTestCode() {
     // @ts-ignore
     window.Actor = Actor
+    // @ts-ignore
+    window.Scene = Scene
     //
     const debugSceneFile = {name: "debug-scene.json"} as FileSystemFileHandle
     // @ts-ignore

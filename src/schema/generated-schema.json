@@ -35,10 +35,6 @@
                     "default": 800,
                     "type": "number"
                 },
-                "name": {
-                    "default": "untitled_scene",
-                    "type": "string"
-                },
                 "width": {
                     "default": 800,
                     "type": "number"

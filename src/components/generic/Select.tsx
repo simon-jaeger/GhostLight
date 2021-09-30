@@ -22,13 +22,13 @@ export const Select = (p: Props) => {
   useClickOutside(ref, () => setOpen(false))
 
   return (
-    <div className="relative" ref={ref} style={p.style}>
+    <div className="relative min-w-0" ref={ref} style={p.style}>
       {p.label &&
       <label htmlFor={p.label} className="pb-2 text-gray-300">{p.label}</label>}
       <button
         type="button"
         id={p.label}
-        className="relative px-2 w-full h-8 bg-gray-900 border border-gray-600 hover:border-gray-500 focus:border-gray-500"
+        className="relative truncate pl-2 pr-7 w-full h-8 bg-gray-900 border border-gray-600 hover:border-gray-500 focus:border-gray-500"
         onClick={() => setOpen(!open)}
       >
         {p.value}
@@ -42,7 +42,7 @@ export const Select = (p: Props) => {
           <button
             type="button"
             key={option}
-            className="px-2 w-full h-8 bg-gray-900 hover:bg-gray-700"
+            className="px-2 truncate w-full h-8 bg-gray-900 hover:bg-gray-700"
             onClick={() => handleChange(option)}
           >{option}</button>)}
       </div>

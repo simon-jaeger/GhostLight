@@ -9,6 +9,7 @@ interface Props {
   max?: number
   step?: number
   onChange?: (newValue) => void
+  autoFocus?: boolean
   suffix?: string
   style?: React.CSSProperties
 }
@@ -44,6 +45,8 @@ export const TextField = (p: Props) => {
         disabled={p.disabled ?? false}
         step={p.step ?? 1}
         defaultValue={p.value}
+        autoFocus={p.autoFocus}
+        onFocus={e => p.autoFocus ? e.currentTarget.select() : null}
         className="px-2 w-full h-8 bg-gray-900 border border-gray-600 focus:border-gray-500"
         style={p.style}
       />

@@ -8,6 +8,8 @@ import {Scene} from "/src/services/Scene"
 import {DotsVerticalIcon} from "@heroicons/react/solid"
 import {Menu} from "/src/components/generic/Menu"
 import {useClickOutside} from "/src/hooks/useClickOutside"
+import {Modals} from "/src/services/Modals"
+import {ModalSceneNew} from "/src/components/modals/ModalSceneNew"
 
 export const SceneControl = observer(() => {
   const [showMenu, setShowMenu] = useState(false)
@@ -32,21 +34,23 @@ export const SceneControl = observer(() => {
           >
             <DotsVerticalIcon/>
           </button>
-          <Menu
-            actions={[
-              {name: "New Scene", fn: () => console.log("new")},
-              {name: "Rename", fn: () => console.log("ren")},
-              {name: "Delete", fn: () => console.log("del")},
-            ]}
-            style={{
-              visibility: showMenu ? "visible" : "hidden",
-              position: "absolute",
-              top: 16,
-              left: "100%",
-              marginLeft: -8,
-            }}
-          />
         </header>
+
+        <Menu
+          actions={[
+            {name: "New Scene", fn: () => Modals.open(ModalSceneNew)},
+            {name: "Rename", fn: () => console.log("ren")},
+            {name: "Delete", fn: () => console.log("del")},
+          ]}
+          style={{
+            visibility: showMenu ? "visible" : "hidden",
+            position: "absolute",
+            top: 16,
+            left: "100%",
+            marginLeft: -8,
+          }}
+        />
+        <ModalSceneNew/>
 
         <hr className="-mx-4 my-4 border-gray-600"/>
         <fieldset className="grid gap-4">

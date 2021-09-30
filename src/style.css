@@ -22,6 +22,10 @@ body {
   outline: 0 !important;
 }
 
+::selection {
+  @apply bg-gray-700
+}
+
 /* hide number input controls */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

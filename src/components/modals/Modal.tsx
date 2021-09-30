@@ -20,7 +20,13 @@ export const Modal = (p: Props) => {
         if (e.target === e.currentTarget) p.onClose?.()
       }}
     >
-      <div className="w-[480px] bg-gray-800 rounded border-gray-600 border overflow-hidden shadow">
+      <form
+        onSubmit={e => {
+          e.preventDefault()
+          p.action?.fn()
+        }}
+        className="w-[480px] bg-gray-800 rounded border-gray-600 border overflow-hidden shadow"
+      >
         <header className="px-4 py-2 bg-gray-900">
           <h2>{p.title}</h2>
         </header>
@@ -31,10 +37,10 @@ export const Modal = (p: Props) => {
 
         <footer className="flex gap-4 justify-end p-4 bg-gray-800 border-t border-gray-600">
           <Button onClick={p.onClose}>Cancel</Button>
-          <Button onClick={p.action?.fn}>{ p.action?.name }</Button>
+          <Button submit>{p.action?.name}</Button>
         </footer>
 
-      </div>
+      </form>
     </div>
     , document.getElementById("modals")!,
   )
