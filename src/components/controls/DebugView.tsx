@@ -6,19 +6,12 @@ import {Select} from "/src/components/generic/Select"
 import {TextField} from "/src/components/generic/TextField"
 import {Config} from "/src/models/Config"
 import {Menu} from "/src/components/generic/Menu"
+import {Modal} from "/src/components/modals/Modal"
 
 export const DebugView = observer(() => {
   return (
     <div className="fixed left-0 top-1/2 p-4 space-y-4 w-64 h-full bg-gray-800 border-t border-gray-600">
       <h2 className="mb-4">debug view</h2>
-
-      <Menu
-        actions={[
-          {name: "New Scene", fn: () => console.log("new")},
-          {name: "Rename", fn: () => console.log("ren")},
-          {name: "Delete", fn: () => console.log("del")},
-        ]}
-      />
 
       {/*<pre>mode: {App.mode} {App.subMode}</pre>*/}
       {/*<pre>cursor: {JSON.stringify({*/}
