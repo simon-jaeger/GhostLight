@@ -1,8 +1,8 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
 import {FolderOpenIcon, SaveIcon} from "@heroicons/react/solid"
-import {Project} from "/src/services/Project"
-import {Scene} from "/src/services/Scene"
+import {Project} from "/src/services/FileSystem/Project"
+import {Scene} from "/src/services/FileSystem/Scene"
 
 export const FileControl = observer(() => {
   return (

@@ -1,6 +1,6 @@
 import {Cursor} from "/src/services/Cursor/Cursor"
 import {CursorMode} from "/src/services/Cursor/CursorMode"
-import {Camera} from "/src/services/Camera"
+import {Camera} from "/src/models/Camera"
 
 export class CursorModePan implements CursorMode {
   cameraStart: Point = {x: 0, y: 0}

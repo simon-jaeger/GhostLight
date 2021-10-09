@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from "react"
 import {observer} from "mobx-react-lite"
 import {Modal} from "/src/components/modals/Modal"
-import {TextField} from "/src/components/generic/TextField"
+import {Field} from "/src/components/generic/Field"
 import {Modals} from "/src/services/Modals"
-import {Scene} from "/src/services/Scene"
+import {Scene} from "/src/services/FileSystem/Scene"
 
 export const ModalSceneRename = observer(() => {
   const [name, setName] = useState(Scene.name)
-  useEffect(() => resetName, [Scene.name])
+  useEffect(() => resetName, [Scene.active])
 
   async function action() {
-    if (name===Scene.name) return onClose()
-    await Scene.rename(name + '.json')
+    if (name === Scene.name) return onClose()
+    await Scene.rename(name + ".json")
     onClose()
   }
 
@@ -26,16 +26,18 @@ export const ModalSceneRename = observer(() => {
 
   return (
     <Modal
-      title="New scene"
+      title="Rename scene"
       show={Modals.isOpen(ModalSceneRename)}
       action={{name: "Rename", fn: action}}
       onClose={onClose}
     >
-      <TextField
+      <Field
         label="New name"
         suffix=".json"
         value={name}
         onChange={setName}
+        lowerCase
+        kebabCase
         autoFocus
       />
     </Modal>

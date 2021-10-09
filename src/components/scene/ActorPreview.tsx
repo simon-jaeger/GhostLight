@@ -1,9 +1,9 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
-import {Textures} from "/src/services/Textures"
+import {Textures} from "/src/services/FileSystem/Textures"
 import {App} from "/src/services/App"
 import {Cursor} from "/src/services/Cursor/Cursor"
-import {Camera} from "/src/services/Camera"
+import {Camera} from "/src/models/Camera"
 
 // TODO: size based on texture
 

@@ -4,7 +4,7 @@ import {Cursor} from "/src/services/Cursor/Cursor"
 import {App} from "/src/services/App"
 import {Selection} from "/src/services/Selection"
 import {uClone} from "/src/helpers/utils"
-import {Grid} from "/src/services/Grid"
+import {Grid} from "/src/models/Grid"
 import {when} from "mobx"
 
 // TODO: maybe side anchors too?

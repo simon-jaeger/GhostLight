@@ -1,12 +1,11 @@
-// TODO: register manually imported textures
-// TODO: periodic polling for changes?
-
 import {makeAutoObservable} from "mobx"
 import {uColorToUrl, uImage} from "/src/helpers/utils"
+import {FileSystem} from "/src/services/FileSystem/FileSystem"
 
 type Texture = { key: string, url: string, width: number, height: number }
 
 export const Textures = new class {
+  private fs!: FileSystem
   map: Map<string, Texture> = new Map()
   active: Texture = {key: "", url: "", width: 0, height: 0}
 
@@ -23,12 +22,12 @@ export const Textures = new class {
     this.map.clear()
   }
 
-  async load(directory: FileSystemDirectoryHandle) {
+  async load(dirHandle: FileSystemDirectoryHandle) {
     this.clear()
-    for await (const file of directory.values()) {
-      if (file.kind === "directory") continue
-      const key = file.name
-      const url = URL.createObjectURL(await file.getFile())
+    this.fs = await FileSystem.make(dirHandle)
+    for (const filename of this.fs.filenames) {
+      const key = filename
+      const url = URL.createObjectURL(await this.fs.readRaw(filename))
       const {width, height} = await uImage(url)
       this.map.set(key, {key, url, width, height})
     }

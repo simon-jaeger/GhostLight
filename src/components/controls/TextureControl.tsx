@@ -1,6 +1,6 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
-import {Textures} from "/src/services/Textures"
+import {Textures} from "/src/services/FileSystem/Textures"
 import {App} from "/src/services/App"
 
 export const TextureControl = observer(() => {

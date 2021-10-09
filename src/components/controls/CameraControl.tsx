@@ -1,6 +1,6 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
-import {Camera} from "/src/services/Camera"
+import {Camera} from "/src/models/Camera"
 import {MinusSmIcon, PlusSmIcon} from "@heroicons/react/solid"
 
 export const CameraControl = observer(() => {

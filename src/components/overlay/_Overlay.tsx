@@ -3,8 +3,8 @@ import {observer} from "mobx-react-lite"
 import {CursorHighlight} from "/src/components/overlay/CursorHighlight"
 import {TransformRing} from "/src/components/overlay/TransformRing"
 import {GridView} from "/src/components/overlay/GridView"
-import {Camera} from "/src/services/Camera"
-import {ZeroLines} from "/src/components/overlay/ZeroLines"
+import {Camera} from "/src/models/Camera"
+import {BorderLines} from "/src/components/overlay/BorderLines"
 import {Selection} from "/src/services/Selection"
 import {SelectionHighlight} from "/src/components/overlay/SelectionHighlight"
 import {Config} from "/src/models/Config"
@@ -21,7 +21,7 @@ export const Overlay = observer(() => {
       }}
     >
       <GridView/>
-      <ZeroLines/>
+      <BorderLines/>
       <CursorHighlight/>
       {Selection.all.map(a => <SelectionHighlight actor={a} key={a.id}/>)}
       <TransformRing/>

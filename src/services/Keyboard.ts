@@ -3,7 +3,7 @@ import {Selection} from "/src/services/Selection"
 import {Actor} from "/src/models/Actor"
 import {App} from "/src/services/App"
 import {Cursor} from "/src/services/Cursor/Cursor"
-import {Camera} from "/src/services/Camera"
+import {Camera} from "/src/models/Camera"
 
 export const Keyboard = new class {
   Shift = false

@@ -1,10 +1,10 @@
 import React, {useRef, useState} from "react"
 import {observer} from "mobx-react-lite"
-import {TextField} from "/src/components/generic/TextField"
+import {Field} from "/src/components/generic/Field"
 import {Config} from "/src/models/Config"
-import {Grid} from "/src/services/Grid"
+import {Grid} from "/src/models/Grid"
 import {Select} from "/src/components/generic/Select"
-import {Scene} from "/src/services/Scene"
+import {Scene} from "/src/services/FileSystem/Scene"
 import {DotsVerticalIcon} from "@heroicons/react/solid"
 import {Menu} from "/src/components/generic/Menu"
 import {useClickOutside} from "/src/hooks/useClickOutside"
@@ -17,16 +17,16 @@ export const SceneControl = observer(() => {
   const refMenuTrigger = useRef(null)
   useClickOutside(refMenuTrigger, () => setShowMenu(false))
 
-  async function duplicateAndSwitch() {
+  async function onDuplicate() {
     await Scene.save()
-    const duplicate = await Scene.duplicate()
-    await Scene.load(duplicate)
+    const copy = await Scene.duplicate()
+    await Scene.load(copy)
   }
 
-  async function destroyAndSwitch() {
+  async function onDestroy() {
     // TODO: prevent deleting single remaining scene, maybe change that later
     if (Scene.all.length <= 1) return
-    let toLoad = Scene.all[Scene.all.indexOf(Scene.filename) - 1] ?? Scene.all[1] // scene before or single remaining
+    let toLoad = Scene.all[Scene.all.indexOf(Scene.active) - 1] ?? Scene.all[1] // scene before or single remaining
     await Scene.destroy()
     await Scene.load(toLoad)
   }
@@ -36,7 +36,7 @@ export const SceneControl = observer(() => {
       <form>
         <header className="flex">
           <Select
-            value={Scene.filename}
+            value={Scene.active}
             options={Scene.all}
             onChange={(v) => Scene.load(v)}
             style={{flex: 1}}
@@ -55,8 +55,8 @@ export const SceneControl = observer(() => {
           actions={[
             {name: "New Scene", fn: () => Modals.open(ModalSceneNew)},
             {name: "Rename", fn: () => Modals.open(ModalSceneRename)},
-            {name: "Duplicate", fn: () => duplicateAndSwitch()},
-            {name: "Delete", fn: () => destroyAndSwitch()},
+            {name: "Duplicate", fn: () => onDuplicate()},
+            {name: "Delete", fn: () => onDestroy()},
           ]}
           style={{
             visibility: showMenu ? "visible" : "hidden",
@@ -72,13 +72,13 @@ export const SceneControl = observer(() => {
 
         <hr className="-mx-4 my-4 border-gray-600"/>
         <fieldset className="grid gap-4">
-          <TextField
+          <Field
             label="Background"
             value={Config.background}
             onChange={(v) => Config.background = v}
           />
           <div className="flex gap-4">
-            <TextField
+            <Field
               label="Width"
               value={Config.width}
               type="number"
@@ -86,7 +86,7 @@ export const SceneControl = observer(() => {
               step={Grid.sizeX}
               onChange={(v) => Config.width = v}
             />
-            <TextField
+            <Field
               label="Height"
               value={Config.height}
               type="number"

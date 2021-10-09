@@ -3,7 +3,7 @@ import {CursorMode} from "/src/services/Cursor/CursorMode"
 import {Actor} from "/src/models/Actor"
 import {Selection} from "/src/services/Selection"
 import {App} from "/src/services/App"
-import {Textures} from "/src/services/Textures"
+import {Textures} from "/src/services/FileSystem/Textures"
 
 export class CursorModeCreate implements CursorMode {
   onMouseDown() {

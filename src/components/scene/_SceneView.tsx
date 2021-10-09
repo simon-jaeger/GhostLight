@@ -3,7 +3,7 @@ import {observer} from "mobx-react-lite"
 import {Actor} from "/src/models/Actor"
 import {ActorView} from "/src/components/scene/ActorView"
 import {Cursor} from "/src/services/Cursor/Cursor"
-import {Camera} from "/src/services/Camera"
+import {Camera} from "/src/models/Camera"
 import {ActorPreview} from "/src/components/scene/ActorPreview"
 import {Config} from "/src/models/Config"
 

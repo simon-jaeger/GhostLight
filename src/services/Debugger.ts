@@ -3,9 +3,9 @@ import {Actor} from "/src/models/Actor"
 import {Cursor} from "/src/services/Cursor/Cursor"
 import {App} from "/src/services/App"
 import {Selection} from "/src/services/Selection"
-import {Grid} from "/src/services/Grid"
-import {Textures} from "/src/services/Textures"
-import {Scene} from "/src/services/Scene"
+import {Grid} from "/src/models/Grid"
+import {Textures} from "/src/services/FileSystem/Textures"
+import {Scene} from "/src/services/FileSystem/Scene"
 import {Modals} from "/src/services/Modals"
 
 export const Debugger = new class {
@@ -25,12 +25,7 @@ export const Debugger = new class {
     window.Actor = Actor
     // @ts-ignore
     window.Scene = Scene
-    //
-    const debugSceneFile = {name: "debug-scene.json"} as FileSystemFileHandle
-    // @ts-ignore
-    Scene.active = debugSceneFile
-    // @ts-ignore
-    Scene.map.set(debugSceneFile.name, debugSceneFile)
+    Scene.active = 'debug-scene.json'
     //
     Actor.create({
       shape: {

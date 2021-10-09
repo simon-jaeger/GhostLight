@@ -1,8 +1,8 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
 import {Actor} from "/src/models/Actor"
-import {Textures} from "/src/services/Textures"
-import {Camera} from "/src/services/Camera"
+import {Textures} from "/src/services/FileSystem/Textures"
+import {Camera} from "/src/models/Camera"
 
 interface Props {
   actor: Actor

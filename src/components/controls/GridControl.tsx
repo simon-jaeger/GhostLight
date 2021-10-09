@@ -1,8 +1,8 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
-import {Grid} from "/src/services/Grid"
+import {Grid} from "/src/models/Grid"
 import {ViewGridIcon} from "@heroicons/react/solid"
-import {TextField} from "/src/components/generic/TextField"
+import {Field} from "/src/components/generic/Field"
 
 export const GridControl = observer(() => {
   return (
@@ -13,7 +13,7 @@ export const GridControl = observer(() => {
       >
         <ViewGridIcon className={!Grid.show ? "text-gray-500" : ""}/>
       </button>
-      <TextField
+      <Field
         value={Grid.sizeX}
         onChange={(v) => Grid.sizeX = v}
         type="number"
@@ -21,7 +21,7 @@ export const GridControl = observer(() => {
         style={{width: 60}}
         suffix="X"
       />
-      <TextField
+      <Field
         value={Grid.sizeY}
         onChange={(v) => Grid.sizeY = v}
         type="number"

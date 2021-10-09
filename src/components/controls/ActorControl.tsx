@@ -1,9 +1,9 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
-import {TextField} from "/src/components/generic/TextField"
+import {Field} from "/src/components/generic/Field"
 import {Selection} from "/src/services/Selection"
-import {Grid} from "/src/services/Grid"
-import {Textures} from "/src/services/Textures"
+import {Grid} from "/src/models/Grid"
+import {Textures} from "/src/services/FileSystem/Textures"
 
 // TODO: copy id to clipboard on click?
 
@@ -26,21 +26,21 @@ export const ActorControl = observer(() => {
 
         <hr className="-mx-4 my-4 border-gray-600"/>
         <fieldset className="grid grid-cols-2 gap-4">
-          <TextField
+          <Field
             label="X"
             type="number"
             step={Grid.sizeX}
             value={actor.shape.x}
             onChange={(v) => actor.shape.x = v}
           />
-          <TextField
+          <Field
             label="Y"
             type="number"
             step={Grid.sizeY}
             value={actor.shape.y}
             onChange={(v) => actor.shape.y = v}
           />
-          <TextField
+          <Field
             label="Width"
             type="number"
             min={Grid.sizeX}
@@ -48,7 +48,7 @@ export const ActorControl = observer(() => {
             value={actor.shape.width}
             onChange={(v) => actor.shape.width = v}
           />
-          <TextField
+          <Field
             label="Height"
             type="number"
             min={Grid.sizeY}
