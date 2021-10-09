@@ -16,6 +16,14 @@ export const SceneControl = observer(() => {
   const refMenuTrigger = useRef(null)
   useClickOutside(refMenuTrigger, () => setShowMenu(false))
 
+ async function destroyAndSwitch() {
+   // TODO: prevent deleting single remaining scene, maybe change that later
+   if (Scene.all.length <= 1) return
+   let toLoad = Scene.all[Scene.all.indexOf(Scene.name) - 1] ?? Scene.all[1] // scene before or single remaining
+   await Scene.destroy()
+   await Scene.load(toLoad)
+ }
+
   return (
     <div className="fixed left-0 top-12 p-4 w-64 h-full bg-gray-800">
       <form>
@@ -40,7 +48,7 @@ export const SceneControl = observer(() => {
           actions={[
             {name: "New Scene", fn: () => Modals.open(ModalSceneNew)},
             {name: "Rename", fn: () => console.log("ren")},
-            {name: "Delete", fn: () => console.log("del")},
+            {name: "Delete", fn: () => destroyAndSwitch()},
           ]}
           style={{
             visibility: showMenu ? "visible" : "hidden",

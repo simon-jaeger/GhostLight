@@ -4,6 +4,8 @@ import {Selection} from "/src/services/Selection"
 import {makeAutoObservable} from "mobx"
 import {Config} from "/src/models/Config"
 import {Project} from "/src/services/Project"
+import {act, Simulate} from "react-dom/test-utils"
+import load = Simulate.load
 
 export const Scene = new class {
   private map: Map<string, FileSystemFileHandle> = new Map()
@@ -66,6 +68,12 @@ export const Scene = new class {
     await stream.close()
     this.map.set(filename, handle)
     console.log("created")
+  }
+
+  async destroy() {
+    this.map.delete(this.active.name)
+    await Project.scenesDir.removeEntry(this.active.name)
+    console.log("deleted")
   }
 
 }
