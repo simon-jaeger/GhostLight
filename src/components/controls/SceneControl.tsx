@@ -16,20 +16,26 @@ export const SceneControl = observer(() => {
   const refMenuTrigger = useRef(null)
   useClickOutside(refMenuTrigger, () => setShowMenu(false))
 
- async function destroyAndSwitch() {
-   // TODO: prevent deleting single remaining scene, maybe change that later
-   if (Scene.all.length <= 1) return
-   let toLoad = Scene.all[Scene.all.indexOf(Scene.name) - 1] ?? Scene.all[1] // scene before or single remaining
-   await Scene.destroy()
-   await Scene.load(toLoad)
- }
+  async function duplicateAndSwitch() {
+    await Scene.save()
+    const duplicate = await Scene.duplicate()
+    await Scene.load(duplicate)
+  }
+
+  async function destroyAndSwitch() {
+    // TODO: prevent deleting single remaining scene, maybe change that later
+    if (Scene.all.length <= 1) return
+    let toLoad = Scene.all[Scene.all.indexOf(Scene.filename) - 1] ?? Scene.all[1] // scene before or single remaining
+    await Scene.destroy()
+    await Scene.load(toLoad)
+  }
 
   return (
     <div className="fixed left-0 top-12 p-4 w-64 h-full bg-gray-800">
       <form>
         <header className="flex">
           <Select
-            value={Scene.name}
+            value={Scene.filename}
             options={Scene.all}
             onChange={(v) => Scene.load(v)}
             style={{flex: 1}}
@@ -47,7 +53,7 @@ export const SceneControl = observer(() => {
         <Menu
           actions={[
             {name: "New Scene", fn: () => Modals.open(ModalSceneNew)},
-            {name: "Rename", fn: () => console.log("ren")},
+            {name: "Duplicate", fn: () => duplicateAndSwitch()},
             {name: "Delete", fn: () => destroyAndSwitch()},
           ]}
           style={{
@@ -58,6 +64,7 @@ export const SceneControl = observer(() => {
             marginLeft: -8,
           }}
         />
+
         <ModalSceneNew/>
 
         <hr className="-mx-4 my-4 border-gray-600"/>

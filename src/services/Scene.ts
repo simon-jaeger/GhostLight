@@ -4,8 +4,8 @@ import {Selection} from "/src/services/Selection"
 import {makeAutoObservable} from "mobx"
 import {Config} from "/src/models/Config"
 import {Project} from "/src/services/Project"
-import {act, Simulate} from "react-dom/test-utils"
-import load = Simulate.load
+import {uClone} from "/src/helpers/utils"
+import uuid4 from "uuid4"
 
 export const Scene = new class {
   private map: Map<string, FileSystemFileHandle> = new Map()
@@ -16,11 +16,15 @@ export const Scene = new class {
   }
 
   get all() {
-    return Array.from(this.map.keys())
+    return Array.from(this.map.keys()).sort()
+  }
+
+  get filename() {
+    return this.active.name
   }
 
   get name() {
-    return this.active.name
+    return this.filename.replace(/\.json$/, "")
   }
 
   clear() {
@@ -74,6 +78,25 @@ export const Scene = new class {
     this.map.delete(this.active.name)
     await Project.scenesDir.removeEntry(this.active.name)
     console.log("deleted")
+  }
+
+  async duplicate() {
+    let filename = this.name + "-copy-" + Date.now() + ".json"
+    const handle = await Project.scenesDir.getFileHandle(filename, {create: true})
+    const scene: GhostLightScene = {
+      config: Config,
+      actors: Actor.all.map((actor) => {
+        const clone = uClone(actor)
+        clone.id = uuid4()
+        return clone
+      }),
+    }
+    const stream = await handle.createWritable()
+    await stream.write(JSON.stringify(scene, null, 2))
+    await stream.close()
+    this.map.set(filename, handle)
+    console.log("duplicated")
+    return filename
   }
 
 }
