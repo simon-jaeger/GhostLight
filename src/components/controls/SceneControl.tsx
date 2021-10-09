@@ -10,6 +10,7 @@ import {Menu} from "/src/components/generic/Menu"
 import {useClickOutside} from "/src/hooks/useClickOutside"
 import {Modals} from "/src/services/Modals"
 import {ModalSceneNew} from "/src/components/modals/ModalSceneNew"
+import {ModalSceneRename} from "/src/components/modals/ModalSceneRename"
 
 export const SceneControl = observer(() => {
   const [showMenu, setShowMenu] = useState(false)
@@ -53,6 +54,7 @@ export const SceneControl = observer(() => {
         <Menu
           actions={[
             {name: "New Scene", fn: () => Modals.open(ModalSceneNew)},
+            {name: "Rename", fn: () => Modals.open(ModalSceneRename)},
             {name: "Duplicate", fn: () => duplicateAndSwitch()},
             {name: "Delete", fn: () => destroyAndSwitch()},
           ]}
@@ -66,6 +68,7 @@ export const SceneControl = observer(() => {
         />
 
         <ModalSceneNew/>
+        <ModalSceneRename/>
 
         <hr className="-mx-4 my-4 border-gray-600"/>
         <fieldset className="grid gap-4">

@@ -99,4 +99,16 @@ export const Scene = new class {
     return filename
   }
 
+  async rename(newFilename: string) {
+    const content = await this.active.getFile().then(x => x.text())
+    const handle = await Project.scenesDir.getFileHandle(newFilename, {create: true})
+    const stream = await handle.createWritable()
+    await stream.write(content)
+    await stream.close()
+    this.map.set(newFilename, handle)
+    await this.destroy()
+    this.active = handle
+    console.log("renamed")
+  }
+
 }
