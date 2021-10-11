@@ -7,6 +7,7 @@ import {Grid} from "/src/models/Grid"
 import {Textures} from "/src/services/FileSystem/Textures"
 import {Scene} from "/src/services/FileSystem/Scene"
 import {Modals} from "/src/services/Modals"
+import {Project} from "/src/services/FileSystem/Project"
 
 export const Debugger = new class {
   run() {
@@ -15,17 +16,19 @@ export const Debugger = new class {
     const debug = {
       Actor: Actor.all,
       App: App,
-      Modals:Modals,
+      Modals: Modals,
     }
     new Vue({el: "#debug", name: "Debug", data: debug})
   }
 
   executeTestCode() {
+    return
     // @ts-ignore
     window.Actor = Actor
     // @ts-ignore
     window.Scene = Scene
-    Scene.active = 'debug-scene.json'
+    Scene.active = "debug-scene.json"
+    Project.isOpen = true
     //
     Actor.create({
       shape: {

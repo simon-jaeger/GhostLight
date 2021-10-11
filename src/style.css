@@ -55,6 +55,12 @@ button:disabled {
   cursor: not-allowed;
 }
 
+hr {
+  border: none;
+  background: white;
+  height: 1px;
+}
+
 svg:not([width]) {
   /* default icon size */
   @apply w-5 h-5;
@@ -99,5 +105,8 @@ svg:not([width]) {
   }
   .border-l {
     border-left-width: 0.666px;
+  }
+  hr {
+    height: 0.666px;
   }
 }

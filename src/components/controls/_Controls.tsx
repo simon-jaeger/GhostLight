@@ -9,6 +9,7 @@ import {FileControl} from "/src/components/controls/FileControl"
 import {TextureControl} from "/src/components/controls/TextureControl"
 import {Selection} from "/src/services/Selection"
 import {SceneControl} from "/src/components/controls/SceneControl"
+import {Welcome} from "/src/components/controls/Welcome"
 
 export const Controls = observer(() => {
   return (
@@ -28,6 +29,8 @@ export const Controls = observer(() => {
       <div className="box-content fixed bottom-0 w-full h-12 bg-gray-800 border-t border-gray-600">
         <GridControl/>
       </div>
+
+      <Welcome/>
     </div>
   )
 })

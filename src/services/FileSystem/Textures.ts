@@ -22,7 +22,7 @@ export const Textures = new class {
     this.map.clear()
   }
 
-  async load(dirHandle: FileSystemDirectoryHandle) {
+  async register(dirHandle: FileSystemDirectoryHandle) {
     this.clear()
     this.fs = await FileSystem.make(dirHandle)
     for (const filename of this.fs.filenames) {

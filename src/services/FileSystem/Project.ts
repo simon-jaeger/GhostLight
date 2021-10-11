@@ -3,6 +3,7 @@ import {Scene} from "/src/services/FileSystem/Scene"
 import {makeAutoObservable} from "mobx"
 
 export const Project = new class {
+  isOpen = false
   readonly structure = {
     root: ".ghostlight",
     scenes: "scenes",
@@ -17,19 +18,38 @@ export const Project = new class {
     const picked = await showDirectoryPicker({id: "GhostLight_Alpha"})
     await picked.requestPermission({mode: "readwrite"})
 
-    let rootDir, scenesDir, texturesDir
+    let rootDirHandle, scenesDirHandle, texturesDirHandle
     try {
-      rootDir = await picked.getDirectoryHandle(this.structure.root)
-      scenesDir = await rootDir.getDirectoryHandle(this.structure.scenes)
-      texturesDir = await rootDir.getDirectoryHandle(this.structure.textures)
+      rootDirHandle = await picked.getDirectoryHandle(this.structure.root)
+      scenesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.scenes)
+      texturesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.textures)
     } catch {
       return alert("ERROR: Not a valid GhostLight directory.")
     }
 
     Scene.clear()
-    await Scene.register(scenesDir)
-    await Textures.load(texturesDir)
+    await Scene.register(scenesDirHandle)
+    await Textures.register(texturesDirHandle)
     await Scene.load(Scene.all[0])
+
+    this.isOpen = true
+  }
+
+  async create() {
+    const picked = await showDirectoryPicker({startIn: "documents"})
+    await picked.requestPermission({mode: "readwrite"})
+
+    const rootDirHandle = await picked.getDirectoryHandle(this.structure.root, {create: true})
+    const scenesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.scenes, {create: true})
+    const texturesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.textures, {create: true})
+
+    Scene.clear()
+    await Scene.register(scenesDirHandle)
+    await Textures.register(texturesDirHandle)
+    const emptyScene = await Scene.create("scene.json")
+    await Scene.load(emptyScene)
+
+    this.isOpen = true
   }
 
 }
