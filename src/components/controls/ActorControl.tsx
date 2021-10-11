@@ -24,7 +24,7 @@ export const ActorControl = observer(() => {
           </div>
         </header>
 
-        <hr className="-mx-4 my-4 border-gray-600"/>
+        <hr className="-mx-4 my-4 bg-gray-600"/>
         <fieldset className="grid grid-cols-2 gap-4">
           <Field
             label="X"

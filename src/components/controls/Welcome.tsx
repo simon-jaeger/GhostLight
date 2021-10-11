@@ -1,9 +1,14 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import {observer} from "mobx-react-lite"
 import {Project} from "/src/services/FileSystem/Project"
 import {DocumentAddIcon, FolderOpenIcon} from "@heroicons/react/outline"
 
 export const Welcome = observer(() => {
+  const [recent, setRecent] = useState([] as FileSystemDirectoryHandle[])
+  useEffect(() => {
+    Project.getRecent().then(setRecent)
+  }, [])
+
   if (Project.isOpen) return null
 
   const actions = [
@@ -12,13 +17,15 @@ export const Welcome = observer(() => {
   ]
 
   return (
-    <div className="flex fixed inset-0 justify-center py-48 bg-gray-900">
+    <div className="flex fixed inset-0 justify-center py-32 bg-gray-900">
       <div className="w-[640px]">
-        <h1 className="font-semibold text-lg tracking-wide uppercase mb-2">
+
+        <h1 className="mb-2 text-lg font-semibold tracking-wide uppercase">
           GhostLight <span className="text-gray-400">(Alpha)</span>
         </h1>
-        <hr className="h-1 bg-blue-500 bg-opacity-50 mb-8"></hr>
-        <div className="flex gap-4">
+        <hr className="mb-8 h-1 bg-blue-500 bg-opacity-50"></hr>
+
+        <div className="flex gap-4 mb-16">
           {actions.map(a => (
             <button
               key={a.name}
@@ -30,6 +37,22 @@ export const Welcome = observer(() => {
             </button>
           ))}
         </div>
+
+        {recent.length && <section>
+          <h2 className="py-2 pl-3 border-l-4 border-blue-500 border-opacity-50">
+            Recent projects
+          </h2>
+          <div className="flex flex-col-reverse">
+            {recent.map((handle) => (
+              <button
+                key={handle.name}
+                className="py-2 pl-4 w-full text-gray-400 hover:text-gray-200"
+                onClick={() => Project.open(handle)}
+              >{handle.name}</button>
+            ))}
+          </div>
+        </section>}
+
       </div>
     </div>
   )
