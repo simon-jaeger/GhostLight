@@ -32,6 +32,14 @@ export const Textures = new class {
       this.map.set(key, {key, url, width, height})
     }
   }
+  
+  async import(file:File) {
+    await this.fs.write(file.name, file)
+    const key = file.name
+    const url = URL.createObjectURL(file)
+    const {width, height} = await uImage(url)
+    this.map.set(key, {key, url, width, height})
+  }
 
   get(key: string) {
     const tx = this.map.get(key)

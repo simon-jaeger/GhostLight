@@ -22,7 +22,6 @@ export const Debugger = new class {
   }
 
   executeTestCode() {
-    return
     // @ts-ignore
     window.Actor = Actor
     // @ts-ignore

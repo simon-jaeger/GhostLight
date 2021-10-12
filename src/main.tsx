@@ -6,9 +6,11 @@ import ReactDOM from "react-dom"
 import {Root} from "/src/components/Root"
 import {Debugger} from "/src/services/Debugger"
 import {Keyboard} from "/src/services/Keyboard"
+import {DropHandler} from "/src/services/DropHandler"
 
 mobx.configure({enforceActions: "never"})
 Keyboard.addEventListeners()
+DropHandler.addEventListener()
 
 Debugger.run()
 Debugger.executeTestCode()

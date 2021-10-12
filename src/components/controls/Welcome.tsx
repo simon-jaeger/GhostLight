@@ -38,7 +38,7 @@ export const Welcome = observer(() => {
           ))}
         </div>
 
-        {recent.length && <section>
+        {!!recent.length && <section>
           <h2 className="py-2 pl-3 border-l-4 border-blue-500 border-opacity-50">
             Recent projects
           </h2>

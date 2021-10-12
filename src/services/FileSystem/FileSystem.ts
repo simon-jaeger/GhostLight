@@ -19,7 +19,7 @@ export class FileSystem {
     return this.readRaw(filename).then((x) => x.text())
   }
 
-  async write(filename: string, content: string) {
+  async write(filename: string, content: FileSystemWriteChunkType) {
     const handle = await this.dirHandle.getFileHandle(filename, {create: true})
     const stream = await handle.createWritable()
     await stream.write(content)
