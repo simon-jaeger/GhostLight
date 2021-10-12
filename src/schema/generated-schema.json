@@ -32,11 +32,11 @@
                     "type": "string"
                 },
                 "height": {
-                    "default": 800,
+                    "default": 256,
                     "type": "number"
                 },
                 "width": {
-                    "default": 800,
+                    "default": 256,
                     "type": "number"
                 }
             },

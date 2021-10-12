@@ -12,8 +12,7 @@ mobx.configure({enforceActions: "never"})
 Keyboard.addEventListeners()
 DropHandler.addEventListener()
 
-Debugger.run()
-Debugger.executeTestCode()
+// Debugger.run()
 
 ReactDOM.render(
   <React.StrictMode><Root/></React.StrictMode>,
