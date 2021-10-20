@@ -15,8 +15,7 @@ export const ActorView = observer(({actor}: Props) => {
       style={{
         pointerEvents: "none",
         position: "absolute",
-        left: actor.x * Camera.zoom,
-        top: actor.y * Camera.zoom,
+        transform:`translateX(${actor.x * Camera.zoom}px) translateY(${actor.y * Camera.zoom}px)`,
         width: actor.w * Camera.zoom,
         height: actor.h * Camera.zoom,
         backgroundImage: `url(${tx.url}`,
