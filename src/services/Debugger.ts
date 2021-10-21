@@ -2,7 +2,7 @@ import {Project} from "/src/services/FileSystem/Project"
 import {makeAutoObservable} from "mobx"
 import {Textures} from "/src/services/FileSystem/Textures"
 import {Actor} from "/src/models/Actor"
-import {uRand, uRange} from "/src/helpers/utils"
+import {uImage, uRand, uRange} from "/src/helpers/utils"
 
 export const Debugger = new class {
   active = false
@@ -17,14 +17,15 @@ export const Debugger = new class {
     this.createManyActors()
   }
 
-  createManyActors() {
+  async createManyActors() {
     Textures.map.set("demo.png", {
       key: "demo.png",
       url: "demo.png",
       width: 16,
       height: 16,
+      image: await uImage("demo.png"),
     })
-    Actor.createMany(uRange(100).map(() => ({
+    Actor.createMany(uRange(1000).map(() => ({
       shape: {
         x: uRand(0, 64) * 16,
         y: uRand(0, 64) * 16,

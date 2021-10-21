@@ -20,10 +20,10 @@ export const Overlay = observer(() => {
         height: Config.height * Camera.zoom,
       }}
     >
-      <GridView/>
-      <BorderLines/>
+      {/*<GridView/>*/}
+      {/*<BorderLines/>*/}
       <CursorHighlight/>
-      {Selection.all.map(a => <SelectionHighlight actor={a} key={a.id}/>)}
+      {/*{Selection.all.map(a => <SelectionHighlight actor={a} key={a.id}/>)}*/}
       <TransformRing/>
     </div>
   )
