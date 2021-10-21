@@ -19,6 +19,7 @@
     "uuid4": "2.0.2"
   },
   "devDependencies": {
+    "@types/fpsmeter": "0.3.31",
     "@types/lodash": "4.14.172",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",

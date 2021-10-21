@@ -25,14 +25,17 @@ export const Debugger = new class {
       height: 16,
       image: await uImage("demo.png"),
     })
-    Actor.createMany(uRange(1000).map(() => ({
+    const row = 8*8
+    const count = row ** 2
+    Actor.createMany(uRange(count).map((i) => ({
       shape: {
-        x: uRand(0, 64) * 16,
-        y: uRand(0, 64) * 16,
+        x: i % row * 32,
+        y: Math.floor(i / row) * 32,
         width: 16,
         height: 16,
       },
       sprite: {texture: "demo.png", opacity: 50},
     })))
+    console.log("actors: ", Actor.all.length)
   }
 }
