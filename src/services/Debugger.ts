@@ -6,6 +6,7 @@ import {uImage, uRand, uRange} from "/src/helpers/utils"
 
 export const Debugger = new class {
   active = false
+  fps = 60
   constructor() {
     makeAutoObservable(this)
   }
@@ -25,7 +26,7 @@ export const Debugger = new class {
       height: 16,
       image: await uImage("demo.png"),
     })
-    const row = 8*8
+    const row = 32
     const count = row ** 2
     Actor.createMany(uRange(count).map((i) => ({
       shape: {
@@ -36,6 +37,5 @@ export const Debugger = new class {
       },
       sprite: {texture: "demo.png", opacity: 50},
     })))
-    console.log("actors: ", Actor.all.length)
   }
 }
