@@ -3,7 +3,7 @@ import {observer} from "mobx-react-lite"
 import {Field} from "/src/components/generic/Field"
 import {Selection} from "/src/services/Selection"
 import {Grid} from "/src/models/Grid"
-import {Textures} from "/src/services/FileSystem/Textures"
+import {Assets} from "/src/services/FileSystem/Assets"
 
 // TODO: copy id to clipboard on click?
 
@@ -15,7 +15,7 @@ export const ActorControl = observer(() => {
       <form>
         <header className="flex gap-4 mb-4">
           <div
-            style={{backgroundImage: `url(${Textures.get(actor.sprite.texture).url})`}}
+            style={{backgroundImage: `url(${Assets.get(actor.sprite.texture).image.src})`}}
             className="w-16 h-16 bg-center bg-no-repeat bg-contain"
           ></div>
           <div className="overflow-hidden flex-1">

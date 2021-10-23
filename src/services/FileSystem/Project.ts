@@ -1,4 +1,4 @@
-import {Textures} from "/src/services/FileSystem/Textures"
+import {Assets} from "/src/services/FileSystem/Assets"
 import {Scene} from "/src/services/FileSystem/Scene"
 import {makeAutoObservable} from "mobx"
 import * as idb from "idb-keyval"
@@ -31,7 +31,7 @@ export const Project = new class {
 
     Scene.clear()
     await Scene.register(scenesDirHandle)
-    await Textures.register(texturesDirHandle)
+    await Assets.register(texturesDirHandle)
     await Scene.load(Scene.all[0])
 
     this.isOpen = true
@@ -48,7 +48,7 @@ export const Project = new class {
 
     Scene.clear()
     await Scene.register(scenesDirHandle)
-    await Textures.register(texturesDirHandle)
+    await Assets.register(texturesDirHandle)
     const emptyScene = await Scene.create("scene.json")
     await Scene.load(emptyScene)
 

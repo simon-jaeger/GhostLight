@@ -14,11 +14,13 @@ export class CursorModeMove implements CursorMode {
   onMouseMove() {
     if (Cursor.inertia) return
     action(() => {
-      const a = Selection.all
-      const length = a.length
+      const actors = Selection.all
+      const length = actors.length
       for (let i = 0; i < length; i++) {
-        a[i].x = this.initialPositions[i].x + Cursor.movedX
-        a[i].y = this.initialPositions[i].y + Cursor.movedY
+        const a = actors[i]
+        const initialPos = this.initialPositions[i]
+        a.x = initialPos.x + Cursor.movedX
+        a.y = initialPos.y + Cursor.movedY
       }
     })()
   }

@@ -1,16 +1,14 @@
 import React, {useEffect, useRef} from "react"
 import {observer} from "mobx-react-lite"
 import {Actor} from "/src/models/Actor"
-import {Textures} from "/src/services/FileSystem/Textures"
+import {Assets} from "/src/services/FileSystem/Assets"
 import {Camera} from "/src/models/Camera"
 import "fpsmeter"
 import {Debugger} from "/src/services/Debugger"
 
-export const ActorList = observer(() => {
+export const Canvas = observer(() => {
   const refCanvas = useRef<HTMLCanvasElement>(null)
   const refAnimationFrame = useRef(0)
-  // @ts-ignore
-  const meter = new FPSMeter(hidden)
 
   function fitToScreen() {
     const canvas = refCanvas.current!
@@ -20,15 +18,16 @@ export const ActorList = observer(() => {
     canvas.style.height = canvas.height + "px"
   }
 
-  function render() {
+  function render(startTime: number) {
     // start
+    Debugger.performance(startTime)
     const canvas = refCanvas.current!
     const ctx = canvas.getContext("2d")!
-    meter.tickStart()
 
     // prepare
     ctx.setTransform(1, 0, 0, 1, 0, 0)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
     ctx.translate(Camera.x, Camera.y)
     ctx.scale(Camera.zoom, Camera.zoom)
     ctx.imageSmoothingEnabled = false
@@ -38,12 +37,10 @@ export const ActorList = observer(() => {
     const actorsLength = actors.length
     for (let i = 0; i < actorsLength; i++) {
       const a = actors[i]
-      ctx.drawImage(Textures.get(a.sprite.texture).image, a.x, a.y, a.w, a.h)
+      ctx.drawImage(Assets.get(a.sprite.texture).image, a.x, a.y, a.w, a.h)
     }
 
     // end
-    meter.tick()
-    Debugger.fps = meter.fps
     refAnimationFrame.current = requestAnimationFrame(render)
   }
 
@@ -62,4 +59,4 @@ export const ActorList = observer(() => {
   )
 })
 
-ActorList.displayName = nameof(ActorList)
+Canvas.displayName = nameof(Canvas)

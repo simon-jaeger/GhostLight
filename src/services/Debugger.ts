@@ -1,12 +1,15 @@
 import {Project} from "/src/services/FileSystem/Project"
 import {makeAutoObservable} from "mobx"
-import {Textures} from "/src/services/FileSystem/Textures"
+import {Assets} from "/src/services/FileSystem/Assets"
 import {Actor} from "/src/models/Actor"
 import {uImage, uRand, uRange} from "/src/helpers/utils"
 
 export const Debugger = new class {
   active = false
+  frames = [performance.now()]
+  delta = 16
   fps = 60
+
   constructor() {
     makeAutoObservable(this)
   }
@@ -14,20 +17,27 @@ export const Debugger = new class {
   run() {
     this.active = true
     Project.isOpen = true
+  }
 
-    this.createManyActors()
+  performance(frame: number) {
+    while (this.frames.length > 0 && this.frames[0] <= frame - 1000) {
+      this.frames.shift() // only keep frames that happened in the last second
+    }
+    this.frames.push(frame)
+    this.delta = frame - this.frames[this.frames.length - 2]
+    this.fps = this.frames.length
   }
 
   async createManyActors() {
-    Textures.map.set("demo.png", {
+    Assets.map.set("demo.png", {
       key: "demo.png",
-      url: "demo.png",
-      width: 16,
-      height: 16,
       image: await uImage("demo.png"),
     })
-    const row = 32
-    const count = row ** 2
+
+    let count = 1024 // 32*32
+    // count = 2304 // 48*48
+    // count = 4096 // 64*64
+    const row = Math.sqrt(count)
     Actor.createMany(uRange(count).map((i) => ({
       shape: {
         x: i % row * 32,
