@@ -30,6 +30,11 @@ export function uSnap(number: number, step: number) {
   return Math.floor(number / step) * step
 }
 
+// return last element of array
+export function uLast<T>(array: Array<T>): T {
+  return array[array.length - 1]
+}
+
 // remove items from array
 export function uRemove<T>(array: Array<T>, ...items: Array<T>) {
   const filtered = array.filter(x => !items.includes(x))
@@ -74,11 +79,15 @@ export function uColorToUrl(color: string) {
   ctx.fillRect(0, 0, 100, 100)
   return canvas.toDataURL()
 }
+
 // random integer, max exclusive
 export function uRand(min, max) {
-  min = Math.ceil(min)
-  max = Math.floor(max)
   return Math.floor(Math.random() * (max - min) + min)
+}
+
+// random array item
+export function uRandItem<T>(array: Array<T>): T {
+  return array[Math.floor(Math.random() * array.length)]
 }
 
 // range

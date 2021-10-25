@@ -7,6 +7,7 @@ export class Actor {
   shape: Shape = {x: 0, y: 0, width: 0, height: 0}
   sprite = {
     texture: "",
+    tiling: false,
     opacity: 100,
   }
 

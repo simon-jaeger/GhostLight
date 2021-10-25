@@ -13,7 +13,6 @@ Keyboard.addEventListeners()
 DropHandler.addEventListener()
 
 Debugger.run()
-Debugger.createManyActors()
 
 ReactDOM.render(
   <React.StrictMode><Root/></React.StrictMode>,

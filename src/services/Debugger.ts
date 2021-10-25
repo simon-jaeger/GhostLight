@@ -2,7 +2,9 @@ import {Project} from "/src/services/FileSystem/Project"
 import {makeAutoObservable} from "mobx"
 import {Assets} from "/src/services/FileSystem/Assets"
 import {Actor} from "/src/models/Actor"
-import {uImage, uRand, uRange} from "/src/helpers/utils"
+import {uImage, uRange, uRandItem} from "/src/helpers/utils"
+import demoScene from "/gitignore/demo/.ghostlight/scenes/level-01.json"
+import {Camera} from "/src/models/Camera"
 
 export const Debugger = new class {
   active = false
@@ -17,26 +19,38 @@ export const Debugger = new class {
   run() {
     this.active = true
     Project.isOpen = true
+    // this.loadDemoScene()
+    this.testManyActors()
   }
 
   performance(frame: number) {
-    while (this.frames.length > 0 && this.frames[0] <= frame - 1000) {
-      this.frames.shift() // only keep frames that happened in the last second
-    }
-    this.frames.push(frame)
-    this.delta = frame - this.frames[this.frames.length - 2]
+    this.frames = this.frames.filter(x => x > frame - 1000)
+    this.frames.unshift(frame)
+    this.delta = frame - this.frames[1]
     this.fps = this.frames.length
   }
 
-  async createManyActors() {
+  async loadDemoScene() {
+    const assets = Object.keys(import.meta.glob("/public/*")).map((x) => x.replaceAll("/public/", ""))
+    for (const asset of assets) {
+      Assets.map.set(asset, {
+        key: asset,
+        image: await uImage(asset),
+      })
+    }
+    Actor.createMany(demoScene.actors)
+  }
+
+  async testManyActors() {
     Assets.map.set("demo.png", {
       key: "demo.png",
       image: await uImage("demo.png"),
     })
 
-    let count = 1024 // 32*32
+    let count = 64 // 8 * 8
+    count = 1024 // 32*32
     // count = 2304 // 48*48
-    // count = 4096 // 64*64
+    count = 4096 // 64*64
     const row = Math.sqrt(count)
     Actor.createMany(uRange(count).map((i) => ({
       shape: {
@@ -45,7 +59,7 @@ export const Debugger = new class {
         width: 16,
         height: 16,
       },
-      sprite: {texture: "demo.png", opacity: 50},
+      sprite: {texture: "#10B981", tiling: false, opacity: 100},
     })))
   }
 }

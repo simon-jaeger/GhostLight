@@ -3,7 +3,6 @@ import {observer} from "mobx-react-lite"
 import {Actor} from "/src/models/Actor"
 import {Assets} from "/src/services/FileSystem/Assets"
 import {Camera} from "/src/models/Camera"
-import "fpsmeter"
 import {Debugger} from "/src/services/Debugger"
 
 export const Canvas = observer(() => {
@@ -25,19 +24,35 @@ export const Canvas = observer(() => {
     const ctx = canvas.getContext("2d")!
 
     // prepare
-    ctx.setTransform(1, 0, 0, 1, 0, 0)
+    ctx.resetTransform()
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    ctx.imageSmoothingEnabled = false
     ctx.translate(Camera.x, Camera.y)
     ctx.scale(Camera.zoom, Camera.zoom)
-    ctx.imageSmoothingEnabled = false
 
     // draw
     const actors = Actor.all
     const actorsLength = actors.length
     for (let i = 0; i < actorsLength; i++) {
-      const a = actors[i]
-      ctx.drawImage(Assets.get(a.sprite.texture).image, a.x, a.y, a.w, a.h)
+      const actor = actors[i]
+      //////////////////////////////////////////////////////////////////////////
+      if (actor.sprite.texture.startsWith("#")) {
+        ctx.fillStyle = actor.sprite.texture
+        ctx.fillRect(actor.x, actor.y, actor.w, actor.h)
+      }
+      //////////////////////////////////////////////////////////////////////////
+      else if (actor.sprite.tiling) {
+        const texture = Assets.get(actor.sprite.texture).image
+        ctx.translate(actor.x, actor.y) // set origin to actor origin temporarily. needed for correct pattern tiling.
+        ctx.fillStyle = ctx.createPattern(texture, "repeat")!
+        ctx.fillRect(0, 0, actor.w, actor.h)
+        ctx.translate(-actor.x, -actor.y)
+      }
+      //////////////////////////////////////////////////////////////////////////
+      else {
+        const texture = Assets.get(actor.sprite.texture).image
+        ctx.drawImage(texture, actor.x, actor.y, actor.w, actor.h)
+      }
     }
 
     // end

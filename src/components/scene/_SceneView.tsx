@@ -9,13 +9,13 @@ export const SceneView = observer(() => {
   useEffect(() => Cursor.addEventListeners(ref.current!), [])
 
   return (
-    <div
+    <section
       ref={ref}
       className="absolute"
       style={{background: Config.background}}
     >
       <Canvas/>
-    </div>
+    </section>
   )
 })
 

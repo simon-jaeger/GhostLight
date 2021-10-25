@@ -10,7 +10,7 @@ export class CursorModeCreate implements CursorMode {
     const asset = Assets.active
     const actor = Actor.create({
       shape: {...Cursor.pos, width: asset.image.width, height: asset.image.height},
-      sprite: {texture: asset.key, opacity: 100},
+      sprite: {texture: asset.key, tiling: true, opacity: 100},
     })
     Selection.set(actor)
     App.setMode("resize")

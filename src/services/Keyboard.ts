@@ -62,6 +62,7 @@ export const Keyboard = new class {
 
   onCtrlA(e: KeyboardEvent) {
     e.preventDefault()
+    App.setMode('select')
     Selection.set(...Actor.all)
   }
 }
