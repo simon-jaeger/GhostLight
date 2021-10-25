@@ -49,7 +49,7 @@ export const Canvas = observer(() => {
         ctx.translate(-actor.x, -actor.y)
       }
       //////////////////////////////////////////////////////////////////////////
-      else {
+      else { // normal scaling sprite
         const texture = Assets.get(actor.sprite.texture).image
         ctx.drawImage(texture, actor.x, actor.y, actor.w, actor.h)
       }

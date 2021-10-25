@@ -50,7 +50,8 @@ export const Debugger = new class {
     let count = 64 // 8 * 8
     count = 1024 // 32*32
     // count = 2304 // 48*48
-    count = 4096 // 64*64
+    // count = 4096 // 64*64
+    count = 6400 // 80*80
     const row = Math.sqrt(count)
     Actor.createMany(uRange(count).map((i) => ({
       shape: {
