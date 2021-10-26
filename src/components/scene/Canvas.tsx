@@ -1,11 +1,10 @@
 import React, {useEffect, useRef} from "react"
-import {observer} from "mobx-react-lite"
 import {Actor} from "/src/models/Actor"
 import {Assets} from "/src/services/FileSystem/Assets"
 import {Camera} from "/src/models/Camera"
 import {Debugger} from "/src/services/Debugger"
 
-export const Canvas = observer(() => {
+export const Canvas = () => {
   const refCanvas = useRef<HTMLCanvasElement>(null)
   const refAnimationFrame = useRef(0)
 
@@ -72,6 +71,4 @@ export const Canvas = observer(() => {
   return (
     <canvas ref={refCanvas}/>
   )
-})
-
-Canvas.displayName = nameof(Canvas)
+}

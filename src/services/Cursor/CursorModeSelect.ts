@@ -12,7 +12,7 @@ export class CursorModeSelect implements CursorMode {
       if (Keyboard.Shift) Selection.toggle(target)
       else if (!Selection.has(target)) Selection.set(target)
     } else {
-      if (!Keyboard.Shift) Selection.clear()
+      if (!Keyboard.Shift && !Cursor.rightClick) Selection.clear()
       App.setMode("dragSelect")
     }
   }
@@ -24,7 +24,7 @@ export class CursorModeSelect implements CursorMode {
 
   onMouseUp(e: MouseEvent) {
     // allows selecting on out of the currently selected actors
-    if (Keyboard.Shift) return
+    if (Keyboard.Shift || Cursor.rightClick) return
     const target = Actor.findByCollision(Cursor.posReal)
     if (target) Selection.set(target)
   }

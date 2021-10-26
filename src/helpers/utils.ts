@@ -5,24 +5,10 @@ export const uClone = l.cloneDeep
 // simple 2d box collision check
 export function uCollision(pA: Point | Shape, pB: Point | Shape) {
   if (pA === pB) return false
-  const a = Object.assign(({
-    x: 0,
-    y: 0,
-    width: 0.01,
-    height: 0.01,
-  } as Shape), pA)
-  const b = Object.assign(({
-    x: 0,
-    y: 0,
-    width: 0.01,
-    height: 0.01,
-  } as Shape), pB)
-  return a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y
-}
-
-// real device pixel
-export function uDp(n = 1) {
-  return n / window.devicePixelRatio
+  const a = pA as Shape
+  const b = pB as Shape
+  const min = Number.MIN_VALUE
+  return a.x < b.x + (b.width || min) && a.x + (a.width || min) > b.x && a.y < b.y + (b.height || min) && a.y + (a.height || min) > b.y
 }
 
 // snap number down to nearest multiple of step

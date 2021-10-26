@@ -18,6 +18,7 @@ export const Cursor = new class {
   posStart: Point = {x: 0, y: 0}
   posReal: Point = {x: 0, y: 0}
   down = false
+  rightClick = false
   private modes: { [key in AppMode]: CursorMode } = {
     select: new CursorModeSelect(),
     dragSelect: new CursorModeDragSelect(),
@@ -52,12 +53,13 @@ export const Cursor = new class {
     return this.cursorInertia.active
   }
 
-  addEventListeners(sceneView: HTMLDivElement) {
+  addEventListeners(sceneView: HTMLElement) {
     this.cursorInertia.addEventListeners()
     sceneView.addEventListener("mousedown", (e) => {
       Keyboard.Shift = e.shiftKey
       Keyboard.Alt = e.altKey
       Keyboard.Ctrl = e.ctrlKey
+      this.rightClick = e.button === 2
 
       this.down = true
       this.posStart.x = this.pos.x
@@ -66,8 +68,8 @@ export const Cursor = new class {
       this.currentMode.onMouseDown?.(e)
     })
     sceneView.addEventListener("mousemove", (e) => {
-      this.posReal.x = (e.offsetX - Camera.x) / Camera.zoom
-      this.posReal.y = (e.offsetY - Camera.y) / Camera.zoom
+      this.posReal.x = (e.x - Camera.x) / Camera.zoom
+      this.posReal.y = (e.y - Camera.y) / Camera.zoom
       this.pos.x = uSnap(this.posReal.x, Grid.sizeX)
       this.pos.y = uSnap(this.posReal.y, Grid.sizeY)
       this.currentMode.onMouseMove?.(e)

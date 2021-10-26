@@ -4,32 +4,24 @@ import {Cursor} from "/src/services/Cursor/Cursor"
 import {Grid} from "/src/models/Grid"
 import {Camera} from "/src/models/Camera"
 import {App} from "/src/services/App"
-import {uDp} from "/src/helpers/utils"
 
 export const CursorHighlight = observer(() => {
   if (!Grid.show) return null
   if (!App.isMode("select", "resize", "move")) return null
   if (App.isMode("resize") && App.subMode === "") return null
 
+  const offset = devicePixelRatio === 1.5 ? 1 / 1.5 : 1
+
   return (<>
       <div
         className="absolute bg-white bg-opacity-25"
         style={{
-          left: Cursor.pos.x * Camera.zoom + uDp(),
-          top: Cursor.pos.y * Camera.zoom + uDp(),
-          width: Grid.sizeX * Camera.zoom - uDp(),
-          height: Grid.sizeY * Camera.zoom - uDp(),
+          left: Cursor.pos.x * Camera.zoom + offset,
+          top: Cursor.pos.y * Camera.zoom + offset,
+          width: Grid.sizeX * Camera.zoom - offset,
+          height: Grid.sizeY * Camera.zoom - offset,
         }}
       ></div>
-      {/*<div*/}
-      {/*  className="absolute bg-blue-500 bg-opacity-25"*/}
-      {/*  style={{*/}
-      {/*    left: Cursor.posStart.x * Camera.zoom + uDp(),*/}
-      {/*    top: Cursor.posStart.y * Camera.zoom + uDp(),*/}
-      {/*    width: Grid.sizeX * Camera.zoom - uDp(),*/}
-      {/*    height: Grid.sizeY * Camera.zoom - uDp(),*/}
-      {/*  }}*/}
-      {/*></div>*/}
     </>
   )
 })

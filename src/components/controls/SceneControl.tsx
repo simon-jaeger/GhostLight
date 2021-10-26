@@ -53,7 +53,7 @@ export const SceneControl = observer(() => {
 
         <Menu
           actions={[
-            {name: "New Scene", fn: () => Modals.open(ModalSceneNew)},
+            {name: "New scene", fn: () => Modals.open(ModalSceneNew)},
             {name: "Rename", fn: () => Modals.open(ModalSceneRename)},
             {name: "Duplicate", fn: () => onDuplicate()},
             {name: "Delete", fn: () => onDestroy()},

@@ -10,13 +10,15 @@ import {TextureControl} from "/src/components/controls/TextureControl"
 import {Selection} from "/src/services/Selection"
 import {SceneControl} from "/src/components/controls/SceneControl"
 import {Welcome} from "/src/components/controls/Welcome"
+import {ContextMenu} from "/src/components/controls/ContextMenu"
 
 export const Controls = observer(() => {
   return (
-    <div>
+    <section id="controls">
       <DebugView/>
+
       <div className="box-content fixed left-0 w-64 h-full bg-gray-800 border-r border-gray-600">
-        { Selection.all.length ? <ActorControl/> : <SceneControl/> }
+        {Selection.all.length ? <ActorControl/> : <SceneControl/>}
       </div>
       <div className="box-content fixed right-0 w-48 h-full bg-gray-800 border-l border-gray-600">
         <TextureControl/>
@@ -30,8 +32,10 @@ export const Controls = observer(() => {
         <GridControl/>
       </div>
 
+      <ContextMenu/>
+
       <Welcome/>
-    </div>
+    </section>
   )
 })
 

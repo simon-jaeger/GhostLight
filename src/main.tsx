@@ -7,14 +7,16 @@ import {Root} from "/src/components/Root"
 import {Debugger} from "/src/services/Debugger"
 import {Keyboard} from "/src/services/Keyboard"
 import {DropHandler} from "/src/services/DropHandler"
+import {Cursor} from "/src/services/Cursor/Cursor"
 
 mobx.configure({enforceActions: "never"})
-Keyboard.addEventListeners()
-DropHandler.addEventListener()
-
 Debugger.run()
 
 ReactDOM.render(
   <React.StrictMode><Root/></React.StrictMode>,
   document.getElementById("root"),
 )
+
+Keyboard.addEventListeners()
+DropHandler.addEventListener()
+Cursor.addEventListeners(document.getElementById("scene")!)

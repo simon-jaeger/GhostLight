@@ -14,7 +14,8 @@ import {SelectionRectangle} from "/src/components/overlay/SelectionRectangle"
 
 export const Overlay = observer(() => {
   return (
-    <div
+    <section
+      id="overlay"
       className="absolute pointer-events-none select-none"
       style={{
         left: Camera.x,
@@ -31,7 +32,7 @@ export const Overlay = observer(() => {
       <SelectionRectangle/>
       <TransformRing/>
       <ActorPreview/>
-    </div>
+    </section>
   )
 })
 

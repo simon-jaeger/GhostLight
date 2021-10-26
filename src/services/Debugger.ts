@@ -19,8 +19,8 @@ export const Debugger = new class {
   run() {
     this.active = true
     Project.isOpen = true
-    // this.loadDemoScene()
-    this.testManyActors()
+    this.loadDemoScene()
+    // this.testManyActors()
   }
 
   performance(frame: number) {
@@ -48,7 +48,7 @@ export const Debugger = new class {
     })
 
     let count = 64 // 8 * 8
-    count = 1024 // 32*32
+    // count = 1024 // 32*32
     // count = 2304 // 48*48
     // count = 4096 // 64*64
     // count = 6400 // 80*80

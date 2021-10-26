@@ -7,6 +7,7 @@ import {Assets} from "/src/services/FileSystem/Assets"
 
 export class CursorModeCreate implements CursorMode {
   onMouseDown() {
+    if (Cursor.rightClick) return
     const asset = Assets.active
     const actor = Actor.create({
       shape: {...Cursor.pos, width: asset.image.width, height: asset.image.height},

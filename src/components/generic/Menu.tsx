@@ -19,7 +19,7 @@ export const Menu = (p: Props) => {
           type="button"
           key={a.name}
           className="px-4 w-full h-8 hover:bg-gray-700"
-          onClick={a.fn}
+          onMouseDown={a.fn}
         >{a.name}</button>
       ))}
     </div>
