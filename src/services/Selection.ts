@@ -1,23 +1,34 @@
 import {Actor} from "/src/models/Actor"
 import {makeAutoObservable} from "mobx"
-import {uToggle} from "/src/helpers/utils"
 
 export const Selection = new class {
-  readonly all: Actor[] = []
+  private items: Set<Actor> = new Set()
+  shape: Shape = {x: 0, y: 0, width: 100, height: 100}
 
   constructor() {
     makeAutoObservable(this)
   }
 
-  set(...actors: Actor[]) {
-    this.all.splice(0, this.all.length, ...actors)
+  get all() {
+    return Array.from(this.items)
   }
 
-  toggle(actor: Actor) {
-    uToggle(this.all, actor)
+  has(actor: Actor) {
+    return this.items.has(actor)
+  }
+
+  set(...actors: Actor[]) {
+    this.items = new Set(actors)
+  }
+
+  toggle(...actors: Actor[]) {
+    actors.forEach((a) => {
+      if (this.items.has(a)) this.items.delete(a)
+      else this.items.add(a)
+    })
   }
 
   clear() {
-    this.all.length = 0
+    this.items.clear()
   }
 }

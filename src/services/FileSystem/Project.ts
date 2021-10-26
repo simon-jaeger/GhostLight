@@ -1,4 +1,4 @@
-import {Textures} from "/src/services/FileSystem/Textures"
+import {Assets} from "/src/services/FileSystem/Assets"
 import {Scene} from "/src/services/FileSystem/Scene"
 import {makeAutoObservable} from "mobx"
 import * as idb from "idb-keyval"
@@ -8,7 +8,7 @@ export const Project = new class {
   private structure = {
     root: ".ghostlight",
     scenes: "scenes",
-    textures: "textures",
+    assets: "assets",
   }
 
   constructor() {
@@ -19,11 +19,11 @@ export const Project = new class {
     const picked = dirHandle ?? await showDirectoryPicker({id: "gl-alpha"})
     await picked.requestPermission({mode: "readwrite"})
 
-    let rootDirHandle, scenesDirHandle, texturesDirHandle
+    let rootDirHandle, scenesDirHandle, assetsDirHandle
     try {
       rootDirHandle = await picked.getDirectoryHandle(this.structure.root)
       scenesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.scenes)
-      texturesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.textures)
+      assetsDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.assets)
     } catch {
       return alert("ERROR: Not a valid GhostLight directory.")
     }
@@ -31,7 +31,7 @@ export const Project = new class {
 
     Scene.clear()
     await Scene.register(scenesDirHandle)
-    await Textures.register(texturesDirHandle)
+    await Assets.register(assetsDirHandle)
     await Scene.load(Scene.all[0])
 
     this.isOpen = true
@@ -43,12 +43,12 @@ export const Project = new class {
 
     const rootDirHandle = await picked.getDirectoryHandle(this.structure.root, {create: true})
     const scenesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.scenes, {create: true})
-    const texturesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.textures, {create: true})
+    const assetsDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.assets, {create: true})
     await this.addToRecent(picked)
 
     Scene.clear()
     await Scene.register(scenesDirHandle)
-    await Textures.register(texturesDirHandle)
+    await Assets.register(assetsDirHandle)
     const emptyScene = await Scene.create("scene.json")
     await Scene.load(emptyScene)
 

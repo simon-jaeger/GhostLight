@@ -54,14 +54,15 @@ export const Keyboard = new class {
   }
 
   onPlus() {
-    Camera.zoom *= 2
+    Camera.zoomIn()
   }
   onMinus() {
-    Camera.zoom /= 2
+    Camera.zoomOut()
   }
 
   onCtrlA(e: KeyboardEvent) {
     e.preventDefault()
+    App.setMode('select')
     Selection.set(...Actor.all)
   }
 }

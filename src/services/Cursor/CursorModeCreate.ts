@@ -3,14 +3,14 @@ import {CursorMode} from "/src/services/Cursor/CursorMode"
 import {Actor} from "/src/models/Actor"
 import {Selection} from "/src/services/Selection"
 import {App} from "/src/services/App"
-import {Textures} from "/src/services/FileSystem/Textures"
+import {Assets} from "/src/services/FileSystem/Assets"
 
 export class CursorModeCreate implements CursorMode {
   onMouseDown() {
-    const tx = Textures.active
+    const asset = Assets.active
     const actor = Actor.create({
-      shape: {...Cursor.pos, width: tx.width, height: tx.height},
-      sprite: {texture: tx.key, opacity: 100},
+      shape: {...Cursor.pos, width: asset.image.width, height: asset.image.height},
+      sprite: {texture: asset.key, tiling: true, opacity: 100},
     })
     Selection.set(actor)
     App.setMode("resize")

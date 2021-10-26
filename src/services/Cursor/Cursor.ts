@@ -64,8 +64,8 @@ export const Cursor = new class {
       this.currentMode.onMouseDown?.(e)
     })
     sceneView.addEventListener("mousemove", (e) => {
-      this.posReal.x = e.offsetX / Camera.zoom
-      this.posReal.y = e.offsetY / Camera.zoom
+      this.posReal.x = (e.offsetX - Camera.x) / Camera.zoom
+      this.posReal.y = (e.offsetY - Camera.y) / Camera.zoom
       this.pos.x = uSnap(this.posReal.x, Grid.sizeX)
       this.pos.y = uSnap(this.posReal.y, Grid.sizeY)
       this.currentMode.onMouseMove?.(e)

@@ -2,6 +2,7 @@ import {Cursor} from "/src/services/Cursor/Cursor"
 import {CursorMode} from "/src/services/Cursor/CursorMode"
 import {App} from "/src/services/App"
 import {Selection} from "/src/services/Selection"
+import {action} from "mobx"
 
 export class CursorModeMove implements CursorMode {
   initialPositions!: Point[]
@@ -12,10 +13,16 @@ export class CursorModeMove implements CursorMode {
 
   onMouseMove() {
     if (Cursor.inertia) return
-    Selection.all.forEach((a, i) => {
-      a.x = this.initialPositions[i].x + Cursor.movedX
-      a.y = this.initialPositions[i].y + Cursor.movedY
-    })
+    action(() => {
+      const actors = Selection.all
+      const length = actors.length
+      for (let i = 0; i < length; i++) {
+        const a = actors[i]
+        const initialPos = this.initialPositions[i]
+        a.x = initialPos.x + Cursor.movedX
+        a.y = initialPos.y + Cursor.movedY
+      }
+    })()
   }
 
   onMouseUp() {

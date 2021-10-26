@@ -3,7 +3,7 @@ import {observer} from "mobx-react-lite"
 import {Field} from "/src/components/generic/Field"
 import {Selection} from "/src/services/Selection"
 import {Grid} from "/src/models/Grid"
-import {Textures} from "/src/services/FileSystem/Textures"
+import {Assets} from "/src/services/FileSystem/Assets"
 
 // TODO: copy id to clipboard on click?
 
@@ -11,12 +11,15 @@ export const ActorControl = observer(() => {
   const actor = Selection.all[0]
 
   return (
-    <div className="fixed top-12 left-0 p-4 w-64 h-full bg-gray-800">
+    <div className="fixed left-0 top-12 p-4 w-64 h-full bg-gray-800">
       <form>
         <header className="flex gap-4 mb-4">
           <div
-            style={{backgroundImage: `url(${Textures.get(actor.sprite.texture).url})`}}
             className="w-16 h-16 bg-center bg-no-repeat bg-contain"
+            style={{
+              backgroundColor: actor.sprite.texture,
+              backgroundImage: `url(${Assets.get(actor.sprite.texture).image.src})`,
+            }}
           ></div>
           <div className="overflow-hidden flex-1">
             <h2 className="truncate">[Anonymous actor]</h2>

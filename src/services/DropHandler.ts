@@ -1,5 +1,5 @@
 import {makeAutoObservable} from "mobx"
-import {Textures} from "/src/services/FileSystem/Textures"
+import {Assets} from "/src/services/FileSystem/Assets"
 
 export const DropHandler = new class {
   constructor() {
@@ -14,7 +14,7 @@ export const DropHandler = new class {
   onDrop(e:DragEvent) {
     e.preventDefault()
     const files = [...e.dataTransfer!.files].filter((x) => x.type.startsWith('image'))
-    files.forEach((file) => Textures.import(file))
+    files.forEach((file) => Assets.import(file))
   }
 
   onDragOver(e:DragEvent) {

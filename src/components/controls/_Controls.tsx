@@ -14,9 +14,9 @@ import {Welcome} from "/src/components/controls/Welcome"
 export const Controls = observer(() => {
   return (
     <div>
+      <DebugView/>
       <div className="box-content fixed left-0 w-64 h-full bg-gray-800 border-r border-gray-600">
         { Selection.all.length ? <ActorControl/> : <SceneControl/> }
-        <DebugView/>
       </div>
       <div className="box-content fixed right-0 w-48 h-full bg-gray-800 border-l border-gray-600">
         <TextureControl/>
