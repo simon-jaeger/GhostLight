@@ -11,6 +11,7 @@ import {Config} from "/src/models/Config"
 import {ActorPreview} from "/src/components/overlay/ActorPreview"
 import {Cursor} from "/src/services/Cursor/Cursor"
 import {App} from "/src/services/App"
+import {SelectionRectangle} from "/src/components/overlay/SelectionRectangle"
 
 export const Overlay = observer(() => {
   return (
@@ -28,6 +29,7 @@ export const Overlay = observer(() => {
       <CursorHighlight/>
       {App.isMode("select", "resize") &&
       Selection.all.map(a => <SelectionHighlight actor={a} key={a.id}/>)}
+      <SelectionRectangle/>
       <TransformRing/>
       <ActorPreview/>
     </div>

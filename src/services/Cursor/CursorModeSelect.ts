@@ -10,7 +10,10 @@ export class CursorModeSelect implements CursorMode {
     if (Keyboard.Shift) return
     const target = Actor.findByCollision(Cursor.posReal)
     if (target && (!Selection.all.includes(target))) Selection.set(target)
-    else if (!target) return Selection.clear()
+    else if (!target) {
+      Selection.clear()
+      App.setMode('dragSelect')
+    }
   }
 
   onMouseMove() {
