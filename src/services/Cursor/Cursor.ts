@@ -11,6 +11,7 @@ import {Grid} from "/src/models/Grid"
 import {CursorInertia} from "/src/services/Cursor/CursorInertia"
 import {CursorModePan} from "/src/services/Cursor/CursorModePan"
 import {Camera} from "/src/models/Camera"
+import {CursorModeDragSelect} from "/src/services/Cursor/CursorModeDragSelect"
 
 export const Cursor = new class {
   pos: Point = {x: 0, y: 0}
@@ -19,6 +20,7 @@ export const Cursor = new class {
   down = false
   private modes: { [key in AppMode]: CursorMode } = {
     select: new CursorModeSelect(),
+    dragSelect: new CursorModeDragSelect(),
     create: new CursorModeCreate(),
     move: new CursorModeMove(),
     resize: new CursorModeResize(),

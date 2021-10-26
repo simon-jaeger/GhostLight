@@ -2,6 +2,7 @@ import {makeAutoObservable} from "mobx"
 
 export type AppMode =
   "select"
+  | "dragSelect"
   | "create"
   | "move"
   | "resize"
