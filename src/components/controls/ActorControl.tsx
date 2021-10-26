@@ -11,12 +11,15 @@ export const ActorControl = observer(() => {
   const actor = Selection.all[0]
 
   return (
-    <div className="fixed top-12 left-0 p-4 w-64 h-full bg-gray-800">
+    <div className="fixed left-0 top-12 p-4 w-64 h-full bg-gray-800">
       <form>
         <header className="flex gap-4 mb-4">
           <div
-            style={{backgroundImage: `url(${Assets.get(actor.sprite.texture).image.src})`}}
             className="w-16 h-16 bg-center bg-no-repeat bg-contain"
+            style={{
+              backgroundColor: actor.sprite.texture,
+              backgroundImage: `url(${Assets.get(actor.sprite.texture).image.src})`,
+            }}
           ></div>
           <div className="overflow-hidden flex-1">
             <h2 className="truncate">[Anonymous actor]</h2>
