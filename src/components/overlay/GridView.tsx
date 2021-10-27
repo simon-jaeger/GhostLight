@@ -8,8 +8,6 @@ export const GridView = observer(() => {
   const sizeX = Grid.sizeX * Camera.zoom
   const sizeY = Grid.sizeY * Camera.zoom
 
-  const line = devicePixelRatio === 1.5 ? 1 / 1.5 : 1
-
   return (
     <div
       style={{
@@ -18,8 +16,8 @@ export const GridView = observer(() => {
         opacity: Grid.show ? 0.25 : 0,
         backgroundSize: `${sizeX}px ${sizeY}px`,
         backgroundImage: `
-          linear-gradient(to right, white 0 ${line}px, transparent ${line}px),
-          linear-gradient(to bottom, white 0 ${line}px, transparent ${line}px)
+          linear-gradient(to right, white 0 1px, transparent 1px),
+          linear-gradient(to bottom, white 0 1px, transparent 1px)
         `,
       }}
     ></div>

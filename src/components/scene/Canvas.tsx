@@ -10,8 +10,8 @@ export const Canvas = () => {
 
   function fitToScreen() {
     const canvas = refCanvas.current!
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    canvas.width = window.innerWidth*devicePixelRatio
+    canvas.height = window.innerHeight*devicePixelRatio
     canvas.style.width = canvas.width + "px"
     canvas.style.height = canvas.height + "px"
   }

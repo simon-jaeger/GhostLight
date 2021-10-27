@@ -12,9 +12,10 @@ import {SceneControl} from "/src/components/controls/SceneControl"
 import {Welcome} from "/src/components/controls/Welcome"
 import {ContextMenu} from "/src/components/controls/ContextMenu"
 
+// TODO: make zoom of controls configurable (and sync with modals portal!)
 export const Controls = observer(() => {
   return (
-    <section id="controls">
+    <section id="controls" style={{ zoom: 1}}>
       <DebugView/>
 
       <div className="box-content fixed left-0 w-64 h-full bg-gray-800 border-r border-gray-600">

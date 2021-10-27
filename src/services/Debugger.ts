@@ -4,7 +4,6 @@ import {Assets} from "/src/services/FileSystem/Assets"
 import {Actor} from "/src/models/Actor"
 import {uImage, uRange, uRandItem} from "/src/helpers/utils"
 import demoScene from "/gitignore/demo/.ghostlight/scenes/level-01.json"
-import {Camera} from "/src/models/Camera"
 
 export const Debugger = new class {
   active = false

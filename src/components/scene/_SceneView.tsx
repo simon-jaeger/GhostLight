@@ -8,7 +8,10 @@ export const SceneView = observer(() => {
     <section
       id="scene"
       className="fixed inset-0"
-      style={{background: Config.background}}
+      style={{
+        background: Config.background,
+        zoom: 1 / devicePixelRatio, // fix high dpi screens
+      }}
     >
       <Canvas/>
     </section>

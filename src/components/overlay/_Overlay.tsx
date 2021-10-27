@@ -22,6 +22,7 @@ export const Overlay = observer(() => {
         top: Camera.y,
         width: Config.width * Camera.zoom,
         height: Config.height * Camera.zoom,
+        zoom: 1 / devicePixelRatio, // fix high dpi screens
       }}
     >
       <GridView/>

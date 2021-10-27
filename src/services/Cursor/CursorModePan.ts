@@ -20,7 +20,7 @@ export class CursorModePan implements CursorMode {
 
   onMouseMove(e: MouseEvent) {
     if (!Cursor.down) return
-    Camera.x = this.cameraStart.x + (e.x - this.mouseStart.x)
-    Camera.y = this.cameraStart.y + (e.y - this.mouseStart.y)
+    Camera.x = this.cameraStart.x + (e.x - this.mouseStart.x) * devicePixelRatio
+    Camera.y = this.cameraStart.y + (e.y - this.mouseStart.y) * devicePixelRatio
   }
 }

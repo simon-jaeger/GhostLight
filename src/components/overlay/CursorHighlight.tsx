@@ -10,16 +10,14 @@ export const CursorHighlight = observer(() => {
   if (!App.isMode("select", "resize", "move")) return null
   if (App.isMode("resize") && App.subMode === "") return null
 
-  const offset = devicePixelRatio === 1.5 ? 1 / 1.5 : 1
-
   return (<>
       <div
         className="absolute bg-white bg-opacity-25"
         style={{
-          left: Cursor.pos.x * Camera.zoom + offset,
-          top: Cursor.pos.y * Camera.zoom + offset,
-          width: Grid.sizeX * Camera.zoom - offset,
-          height: Grid.sizeY * Camera.zoom - offset,
+          left: Cursor.pos.x * Camera.zoom + 1,
+          top: Cursor.pos.y * Camera.zoom + 1,
+          width: Grid.sizeX * Camera.zoom - 1,
+          height: Grid.sizeY * Camera.zoom - 1,
         }}
       ></div>
     </>
