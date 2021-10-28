@@ -15,6 +15,11 @@ export const Keyboard = new class {
     "+": "Plus",
     "-": "Minus",
     "a": "A",
+    "c": "C",
+    "v": "V",
+    "x": "X",
+    "y": "Y",
+    "z": "Z",
     "Control": "Ctrl",
   }
 
@@ -35,6 +40,20 @@ export const Keyboard = new class {
       if (key in this) this[key] = false
       this["on" + key + "Up"]?.(e)
     })
+  }
+
+  onCtrlX() {
+    Actor.cut(...Selection.all)
+    Selection.clear()
+  }
+
+  onCtrlC() {
+    Actor.copy(...Selection.all)
+  }
+
+  async onCtrlV() {
+    const pasted = await Actor.paste()
+    if (pasted) Selection.set(...pasted)
   }
 
   onDelete() {

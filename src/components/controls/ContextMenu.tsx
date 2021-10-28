@@ -12,6 +12,20 @@ export const ContextMenu = observer(() => {
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
 
+  function onCut() {
+    Actor.cut(...Selection.all)
+    Selection.clear()
+  }
+
+  function onCopy() {
+    Actor.copy(...Selection.all)
+  }
+
+  async function onPaste() {
+    const pasted = await Actor.paste()
+    if (pasted) Selection.set(...pasted)
+  }
+
   function onDelete() {
     Actor.destroy(...Selection.all)
     Selection.clear()
@@ -19,15 +33,17 @@ export const ContextMenu = observer(() => {
 
   function getActions(): action[] {
     if (Selection.all.length) return [
-      {name: "Cut", fn: () => console.log("Cut")},
-      {name: "Copy", fn: () => console.log("Copy")},
-      {name: "Paste", fn: () => console.log("Paste")},
+      {name: "Cut", fn: onCut},
+      {name: "Copy", fn: onCopy},
+      {name: "Paste", fn: onPaste},
       {name: "Delete", fn: onDelete},
       {name: "To front", fn: () => Actor.toFront(...Selection.all)},
       {name: "To back", fn: () => Actor.toBack(...Selection.all)},
     ]
     else return [
-      {name: "Paste", fn: () => console.log("Paste")},
+      {name: "Paste", fn: onPaste},
+      {name: "Undo", fn: () => console.log("Undo")},
+      {name: "Redo", fn: () => console.log("Redo")},
       {name: "Toggle UI", fn: () => console.log("Toggle UI")},
       {name: "Help", fn: () => console.log("Help")},
     ]
