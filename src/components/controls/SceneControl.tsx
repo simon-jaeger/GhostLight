@@ -20,7 +20,7 @@ export const SceneControl = observer(() => {
   async function onDuplicate() {
     await Scene.save()
     const copy = await Scene.duplicate()
-    await Scene.load(copy)
+    await Scene.open(copy)
   }
 
   async function onDestroy() {
@@ -28,7 +28,7 @@ export const SceneControl = observer(() => {
     if (Scene.all.length <= 1) return
     let toLoad = Scene.all[Scene.all.indexOf(Scene.active) - 1] ?? Scene.all[1] // scene before or single remaining
     await Scene.destroy()
-    await Scene.load(toLoad)
+    await Scene.open(toLoad)
   }
 
   return (
@@ -38,7 +38,7 @@ export const SceneControl = observer(() => {
           <Select
             value={Scene.active}
             options={Scene.all}
-            onChange={(v) => Scene.load(v)}
+            onChange={(v) => Scene.open(v)}
             style={{flex: 1}}
           />
           <button

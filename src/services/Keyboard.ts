@@ -1,9 +1,11 @@
-import {makeAutoObservable} from "mobx"
+import {makeAutoObservable, runInAction} from "mobx"
 import {Selection} from "/src/services/Selection"
 import {Actor} from "/src/models/Actor"
 import {App} from "/src/services/App"
 import {Cursor} from "/src/services/Cursor/Cursor"
 import {Camera} from "/src/models/Camera"
+import {Clipboard} from "/src/services/Clipboard"
+import {History} from "/src/services/History"
 
 export const Keyboard = new class {
   Shift = false
@@ -38,22 +40,27 @@ export const Keyboard = new class {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
       let key = this.nameMap[e.key] ?? e.key
       if (key in this) this[key] = false
-      this["on" + key + "Up"]?.(e)
+      this["on" + (this.Ctrl ? "Ctrl" : "") + key + "Up"]?.(e)
     })
   }
 
+  onCtrlC() {
+    Clipboard.copy(...Selection.all)
+  }
   onCtrlX() {
-    Actor.cut(...Selection.all)
+    Clipboard.cut(...Selection.all)
     Selection.clear()
   }
-
-  onCtrlC() {
-    Actor.copy(...Selection.all)
+  async onCtrlV() {
+    const pasted = await Clipboard.paste()
+    if (pasted) Selection.set(...pasted)
   }
 
-  async onCtrlV() {
-    const pasted = await Actor.paste()
-    if (pasted) Selection.set(...pasted)
+  onCtrlZ() {
+    History.undo()
+  }
+  onCtrlY() {
+    History.redo()
   }
 
   onDelete() {
@@ -81,7 +88,7 @@ export const Keyboard = new class {
 
   onCtrlA(e: KeyboardEvent) {
     e.preventDefault()
-    App.setMode('select')
+    App.setMode("select")
     Selection.set(...Actor.all)
   }
 }

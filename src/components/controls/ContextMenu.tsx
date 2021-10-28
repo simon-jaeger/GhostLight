@@ -3,6 +3,7 @@ import {observer} from "mobx-react-lite"
 import {Menu} from "/src/components/generic/Menu"
 import {Selection} from "/src/services/Selection"
 import {Actor} from "/src/models/Actor"
+import {Clipboard} from "/src/services/Clipboard"
 
 type action = { name: string, fn: () => void }
 
@@ -13,16 +14,16 @@ export const ContextMenu = observer(() => {
   const [y, setY] = useState(0)
 
   function onCut() {
-    Actor.cut(...Selection.all)
+    Clipboard.cut(...Selection.all)
     Selection.clear()
   }
 
   function onCopy() {
-    Actor.copy(...Selection.all)
+    Clipboard.copy(...Selection.all)
   }
 
   async function onPaste() {
-    const pasted = await Actor.paste()
+    const pasted = await Clipboard.paste()
     if (pasted) Selection.set(...pasted)
   }
 

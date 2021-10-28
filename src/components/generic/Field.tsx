@@ -50,6 +50,9 @@ export const Field = (_p: Props) => {
       ref.current?.removeEventListener("input", handleInput)
     }
   })
+  useEffect(() => {
+    if (p.autoFocus) ref.current!.focus()
+  }, [ref])
 
   return (
     <div className="relative">
@@ -62,7 +65,6 @@ export const Field = (_p: Props) => {
         disabled={p.disabled ?? false}
         step={p.step}
         defaultValue={p.value}
-        autoFocus={p.autoFocus}
         onFocus={e => p.autoFocus ? e.currentTarget.select() : null}
         className="px-2 w-full h-8 bg-gray-900 border border-gray-600 focus:border-gray-500"
         style={p.style}

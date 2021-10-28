@@ -11,7 +11,7 @@ export const ModalSceneNew = observer(() => {
   async function action() {
     await Scene.save()
     const created = await Scene.create(name + ".json")
-    await Scene.load(created)
+    await Scene.open(created)
     onClose()
   }
 

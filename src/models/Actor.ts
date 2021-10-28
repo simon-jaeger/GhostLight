@@ -1,7 +1,6 @@
-import {makeAutoObservable, observable} from "mobx"
+import {makeAutoObservable, observable, runInAction} from "mobx"
 import uuid4 from "uuid4"
-import {uClone, uCollision, uFindLast, uRemove} from "/src/helpers/utils"
-import {Cursor} from "/src/services/Cursor/Cursor"
+import {uCollision, uFindLast, uRemove} from "/src/helpers/utils"
 
 export class Actor {
   id = ""
@@ -59,7 +58,9 @@ export class Actor {
   }
 
   static createMany(partials: Partial<Actor>[]) {
-    return partials.map(x => this.create(x))
+    let created
+    runInAction(() => created = partials.map(x => this.create(x)))
+    return created
   }
 
   static destroy(...actors: Actor[]) {
@@ -68,39 +69,6 @@ export class Actor {
 
   static findByCollision(shape: Point | Shape) {
     return uFindLast(this.all, x => uCollision(x.shape, shape)) ?? null
-  }
-
-  static cut(...actors: Actor[]) {
-    this.destroy(...actors)
-    navigator.clipboard.writeText(JSON.stringify(actors))
-  }
-
-  static copy(...actors: Actor[]) {
-    const copies = actors.map((x) => {
-      const copy = uClone(x)
-      copy.id = uuid4()
-      return copy
-    })
-    navigator.clipboard.writeText(JSON.stringify(copies))
-  }
-
-  static async paste() {
-    let data
-    try {
-      data = JSON.parse(await navigator.clipboard.readText())
-    } catch (e) {
-      console.warn("Invalid clipboard data:", e)
-      return
-    }
-    const actors = this.createMany(data)
-    const minX = Math.min(...actors.map((a) => a.x))
-    const minY = Math.min(...actors.map((a) => a.y))
-    actors.forEach((a) => {
-      a.x -= minX - Cursor.pos.x
-      a.y -= minY - Cursor.pos.y
-    })
-    this.copy(...actors) // re-copy actors to avoid duplicate ids on multiple paste operations
-    return actors
   }
 
   static toFront(...toMove: Actor[]) {

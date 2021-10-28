@@ -1,6 +1,8 @@
 import l from "lodash"
 
 export const uClone = l.cloneDeep
+export const uIntersection = l.intersection
+export const uIsEqual = l.isEqual
 
 // simple 2d box collision check
 export function uCollision(pA: Point | Shape, pB: Point | Shape) {

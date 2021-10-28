@@ -32,7 +32,7 @@ export const Project = new class {
     Scene.clear()
     await Scene.register(scenesDirHandle)
     await Assets.register(assetsDirHandle)
-    await Scene.load(Scene.all[0])
+    await Scene.open(Scene.all[0])
 
     this.isOpen = true
   }
@@ -50,7 +50,7 @@ export const Project = new class {
     await Scene.register(scenesDirHandle)
     await Assets.register(assetsDirHandle)
     const emptyScene = await Scene.create("scene.json")
-    await Scene.load(emptyScene)
+    await Scene.open(emptyScene)
 
     this.isOpen = true
   }

@@ -4,6 +4,7 @@ import {Assets} from "/src/services/FileSystem/Assets"
 import {Actor} from "/src/models/Actor"
 import {uImage, uRange, uRandItem} from "/src/helpers/utils"
 import demoScene from "/gitignore/demo/.ghostlight/scenes/level-01.json"
+import {Scene} from "/src/services/FileSystem/Scene"
 
 export const Debugger = new class {
   active = false
@@ -18,8 +19,8 @@ export const Debugger = new class {
   run() {
     this.active = true
     Project.isOpen = true
-    this.loadDemoScene()
-    // this.testManyActors()
+    // this.loadDemoScene()
+    this.testManyActors()
   }
 
   performance(frame: number) {
@@ -37,7 +38,7 @@ export const Debugger = new class {
         image: await uImage(asset),
       })
     }
-    Actor.createMany(demoScene.actors)
+    Scene.load(demoScene)
   }
 
   async testManyActors() {
@@ -46,7 +47,8 @@ export const Debugger = new class {
       image: await uImage("demo.png"),
     })
 
-    let count = 64 // 8 * 8
+    let count = 4 // 2* 2
+    // count = 64 // 8 * 8
     // count = 1024 // 32*32
     // count = 2304 // 48*48
     // count = 4096 // 64*64

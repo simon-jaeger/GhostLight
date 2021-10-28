@@ -1,9 +1,15 @@
 import React, {useState} from "react"
 import {observer} from "mobx-react-lite"
-import {FolderOpenIcon, SaveIcon} from "@heroicons/react/solid"
+import {
+  ArrowCircleLeftIcon,
+  ArrowCircleRightIcon,
+  MenuIcon,
+  SaveIcon,
+} from "@heroicons/react/solid"
 import {Project} from "/src/services/FileSystem/Project"
 import {Scene} from "/src/services/FileSystem/Scene"
 import {uSleep} from "/src/helpers/utils"
+import {History} from "/src/services/History"
 
 export const FileControl = observer(() => {
   const [saved, setSaved] = useState(false)
@@ -20,7 +26,15 @@ export const FileControl = observer(() => {
       <button
         onClick={() => Project.open()}
         className="flex justify-center items-center w-12 h-12 hover:bg-gray-700"
-      ><FolderOpenIcon/></button>
+      ><MenuIcon/></button>
+      <button
+        onClick={() => History.undo()}
+        className="flex justify-center items-center w-12 h-12 hover:bg-gray-700"
+      ><ArrowCircleLeftIcon/></button>
+      <button
+        onClick={() => History.redo()}
+        className="flex justify-center items-center w-12 h-12 hover:bg-gray-700"
+      ><ArrowCircleRightIcon/></button>
       <button
         onClick={onSave}
         className="flex justify-center items-center w-12 h-12 hover:bg-gray-700"

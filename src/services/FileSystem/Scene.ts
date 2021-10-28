@@ -1,13 +1,19 @@
 import {Actor} from "/src/models/Actor"
 import {GhostLightScene} from "/src/schema/schema"
 import {Selection} from "/src/services/Selection"
-import {makeAutoObservable} from "mobx"
+import {makeAutoObservable, toJS} from "mobx"
 import {Config} from "/src/models/Config"
 import {FileSystem} from "/src/services/FileSystem/FileSystem"
+import {History} from "/src/services/History"
 
 export const Scene = new class {
   private fs!: FileSystem
   active = ""
+
+  readonly data: GhostLightScene = {
+    config: Config,
+    actors: Actor.all,
+  }
 
   constructor() {
     makeAutoObservable(this, {all: false})
@@ -38,22 +44,22 @@ export const Scene = new class {
     Actor.destroy(...Actor.all)
   }
 
-  async load(filename: string) {
+  async open(filename: string) {
     this.active = filename
     const json = await this.fs.read(filename)
-    const scene: GhostLightScene = JSON.parse(json)
+    this.load(json)
+    History.reset(json)
+  }
 
+  load(json: string) {
+    const scene: GhostLightScene = JSON.parse(json)
     this.clear()
     Object.assign(Config, scene.config)
     Actor.createMany(scene.actors)
   }
 
   async save() {
-    const scene: GhostLightScene = {
-      config: Config,
-      actors: Actor.all,
-    }
-    await this.fs.write(this.active, JSON.stringify(scene, null, 2))
+    await this.fs.write(this.active, JSON.stringify(this.data, null, 2))
     console.log("saved")
   }
 
