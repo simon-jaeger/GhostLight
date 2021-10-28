@@ -53,7 +53,7 @@ export class Actor {
     const actor = makeAutoObservable(new Actor())
     Object.assign(actor, partial)
     actor.id = actor.id || uuid4()
-    Actor.all.push(actor)
+    this.all.push(actor)
     return actor
   }
 
@@ -61,11 +61,21 @@ export class Actor {
     partials.forEach(x => this.create(x))
   }
 
+  static destroy(...actors: Actor[]) {
+    uRemove(this.all, ...actors)
+  }
+
   static findByCollision(shape: Point | Shape) {
     return uFindLast(this.all, x => uCollision(x.shape, shape)) ?? null
   }
 
-  static destroy(...actors: Actor[]) {
-    uRemove(this.all, ...actors)
+  static toFront(...toMove:Actor[]) {
+    this.destroy(...toMove)
+    this.all.push(...toMove)
+  }
+
+  static toBack(...toMove:Actor[]) {
+    this.destroy(...toMove)
+    this.all.unshift(...toMove)
   }
 }

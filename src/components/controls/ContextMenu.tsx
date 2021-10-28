@@ -23,8 +23,8 @@ export const ContextMenu = observer(() => {
       {name: "Copy", fn: () => console.log("Copy")},
       {name: "Paste", fn: () => console.log("Paste")},
       {name: "Delete", fn: onDelete},
-      {name: "To front", fn: () => console.log("To front")},
-      {name: "To back", fn: () => console.log("To back")},
+      {name: "To front", fn: () => Actor.toFront(...Selection.all)},
+      {name: "To back", fn: () => Actor.toBack(...Selection.all)},
     ]
     else return [
       {name: "Paste", fn: () => console.log("Paste")},
