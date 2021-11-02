@@ -9,7 +9,7 @@ export function uCollision(pA: Point | Shape, pB: Point | Shape) {
   if (pA === pB) return false
   const a = pA as Shape
   const b = pB as Shape
-  const min = Number.MIN_VALUE
+  const min = 0.001
   return a.x < b.x + (b.width || min) && a.x + (a.width || min) > b.x && a.y < b.y + (b.height || min) && a.y + (a.height || min) > b.y
 }
 

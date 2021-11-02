@@ -7,10 +7,10 @@ import {Camera} from "/src/models/Camera"
 
 export const TransformRing = observer(() => {
   if (!App.isMode("select", "resize")) return null
-  if (App.isMode("resize") && App.subMode === "") return null
   if (Selection.all.length !== 1) return null
 
   const target = Selection.all[0]
+  if (target.type.resize === "Disabled") return null
 
   const anchors: { position: string, top: string, left: string }[] = [
     {position: "nw", top: "0%", left: "0%"},
@@ -25,8 +25,8 @@ export const TransformRing = observer(() => {
       style={{
         left: target.x * Camera.zoom,
         top: target.y * Camera.zoom,
-        width: target.w * Camera.zoom,
-        height: target.h * Camera.zoom,
+        width: target.width * Camera.zoom,
+        height: target.height * Camera.zoom,
       }}
     >{anchors.map((x, i) => (
       <div

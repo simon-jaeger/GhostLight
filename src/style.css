@@ -66,6 +66,17 @@ svg:not([width]) {
   @apply w-5 h-5;
 }
 
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-gray-900
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-700
+}
+
 /* target area utility to increase mouse event area beyond visual area */
 .t-1:after {
   content: '';

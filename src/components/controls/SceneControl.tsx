@@ -4,7 +4,7 @@ import {Field} from "/src/components/generic/Field"
 import {Config} from "/src/models/Config"
 import {Grid} from "/src/models/Grid"
 import {Select} from "/src/components/generic/Select"
-import {Scene} from "/src/services/FileSystem/Scene"
+import {SceneFs} from "/src/services/FileSystem/SceneFs"
 import {DotsVerticalIcon} from "@heroicons/react/solid"
 import {Menu} from "/src/components/generic/Menu"
 import {useClickOutside} from "/src/hooks/useClickOutside"
@@ -18,17 +18,17 @@ export const SceneControl = observer(() => {
   useClickOutside(refMenuTrigger, () => setShowMenu(false))
 
   async function onDuplicate() {
-    await Scene.save()
-    const copy = await Scene.duplicate()
-    await Scene.open(copy)
+    await SceneFs.save()
+    const copy = await SceneFs.duplicate()
+    await SceneFs.open(copy)
   }
 
   async function onDestroy() {
     // TODO: prevent deleting single remaining scene, maybe change that later
-    if (Scene.all.length <= 1) return
-    let toLoad = Scene.all[Scene.all.indexOf(Scene.active) - 1] ?? Scene.all[1] // scene before or single remaining
-    await Scene.destroy()
-    await Scene.open(toLoad)
+    if (SceneFs.all.length <= 1) return
+    let toLoad = SceneFs.all[SceneFs.all.indexOf(SceneFs.active) - 1] ?? SceneFs.all[1] // scene before or single remaining
+    await SceneFs.destroy()
+    await SceneFs.open(toLoad)
   }
 
   return (
@@ -36,9 +36,9 @@ export const SceneControl = observer(() => {
       <form>
         <header className="flex">
           <Select
-            value={Scene.active}
-            options={Scene.all}
-            onChange={(v) => Scene.open(v)}
+            value={SceneFs.active}
+            options={SceneFs.all}
+            onChange={(v) => SceneFs.open(v)}
             style={{flex: 1}}
           />
           <button

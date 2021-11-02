@@ -1,14 +1,16 @@
-import {Assets} from "/src/services/FileSystem/Assets"
-import {Scene} from "/src/services/FileSystem/Scene"
+import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
+import {SceneFs} from "/src/services/FileSystem/SceneFs"
 import {makeAutoObservable} from "mobx"
 import * as idb from "idb-keyval"
+import {TypesFs} from "/src/services/FileSystem/TypesFs"
 
-export const Project = new class {
+export const ProjectFs = new class {
   isOpen = false
   private structure = {
     root: ".ghostlight",
     scenes: "scenes",
     assets: "assets",
+    types: "types",
   }
 
   constructor() {
@@ -19,20 +21,23 @@ export const Project = new class {
     const picked = dirHandle ?? await showDirectoryPicker({id: "gl-alpha"})
     await picked.requestPermission({mode: "readwrite"})
 
-    let rootDirHandle, scenesDirHandle, assetsDirHandle
+    let rootDirHandle: FileSystemDirectoryHandle, scenesDirHandle,
+      assetsDirHandle, typesDirHandle
     try {
       rootDirHandle = await picked.getDirectoryHandle(this.structure.root)
       scenesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.scenes)
       assetsDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.assets)
+      typesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.types)
     } catch {
       return alert("ERROR: Not a valid GhostLight directory.")
     }
     await this.addToRecent(picked)
 
-    Scene.clear()
-    await Scene.register(scenesDirHandle)
-    await Assets.register(assetsDirHandle)
-    await Scene.open(Scene.all[0])
+    SceneFs.clear()
+    await AssetsFs.register(assetsDirHandle)
+    await TypesFs.register(typesDirHandle)
+    await SceneFs.register(scenesDirHandle)
+    await SceneFs.open(SceneFs.all[0])
 
     this.isOpen = true
   }
@@ -44,13 +49,15 @@ export const Project = new class {
     const rootDirHandle = await picked.getDirectoryHandle(this.structure.root, {create: true})
     const scenesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.scenes, {create: true})
     const assetsDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.assets, {create: true})
+    const typesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.types, {create: true})
     await this.addToRecent(picked)
 
-    Scene.clear()
-    await Scene.register(scenesDirHandle)
-    await Assets.register(assetsDirHandle)
-    const emptyScene = await Scene.create("scene.json")
-    await Scene.open(emptyScene)
+    SceneFs.clear()
+    await AssetsFs.register(assetsDirHandle)
+    await TypesFs.register(typesDirHandle)
+    await SceneFs.register(scenesDirHandle)
+    const emptyScene = await SceneFs.create("scene.json")
+    await SceneFs.open(emptyScene)
 
     this.isOpen = true
   }

@@ -3,7 +3,6 @@ import {observer} from "mobx-react-lite"
 import {Grid} from "/src/models/Grid"
 import {Camera} from "/src/models/Camera"
 
-// TODO: line invisible if grid size not even? fix or lock grid to power of 2
 export const GridView = observer(() => {
   const sizeX = Grid.sizeX * Camera.zoom
   const sizeY = Grid.sizeY * Camera.zoom

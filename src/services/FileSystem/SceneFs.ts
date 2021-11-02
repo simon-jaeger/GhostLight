@@ -6,7 +6,7 @@ import {Config} from "/src/models/Config"
 import {FileSystem} from "/src/services/FileSystem/FileSystem"
 import {History} from "/src/services/History"
 
-export const Scene = new class {
+export const SceneFs = new class {
   private fs!: FileSystem
   active = ""
 

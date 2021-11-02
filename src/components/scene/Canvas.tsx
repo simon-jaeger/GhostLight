@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from "react"
 import {Actor} from "/src/models/Actor"
-import {Assets} from "/src/services/FileSystem/Assets"
+import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
 import {Camera} from "/src/models/Camera"
 import {Debugger} from "/src/services/Debugger"
 
@@ -10,8 +10,8 @@ export const Canvas = () => {
 
   function fitToScreen() {
     const canvas = refCanvas.current!
-    canvas.width = window.innerWidth*devicePixelRatio
-    canvas.height = window.innerHeight*devicePixelRatio
+    canvas.width = window.innerWidth * devicePixelRatio
+    canvas.height = window.innerHeight * devicePixelRatio
     canvas.style.width = canvas.width + "px"
     canvas.style.height = canvas.height + "px"
   }
@@ -35,22 +35,22 @@ export const Canvas = () => {
     for (let i = 0; i < actorsLength; i++) {
       const actor = actors[i]
       //////////////////////////////////////////////////////////////////////////
-      if (actor.sprite.texture.startsWith("#")) {
-        ctx.fillStyle = actor.sprite.texture
-        ctx.fillRect(actor.x, actor.y, actor.w, actor.h)
+      if (actor.type.texture.startsWith("#")) {
+        ctx.fillStyle = actor.type.texture
+        ctx.fillRect(actor.x, actor.y, actor.width, actor.height)
       }
       //////////////////////////////////////////////////////////////////////////
-      else if (actor.sprite.tiling) {
-        const texture = Assets.get(actor.sprite.texture).image
+      else if (actor.type.resize === "Repeat") {
+        const texture = AssetsFs.get(actor.type.texture)
         ctx.translate(actor.x, actor.y) // set origin to actor origin temporarily. needed for correct pattern tiling.
         ctx.fillStyle = ctx.createPattern(texture, "repeat")!
-        ctx.fillRect(0, 0, actor.w, actor.h)
+        ctx.fillRect(0, 0, actor.width, actor.height)
         ctx.translate(-actor.x, -actor.y)
       }
       //////////////////////////////////////////////////////////////////////////
-      else { // normal scaling sprite
-        const texture = Assets.get(actor.sprite.texture).image
-        ctx.drawImage(texture, actor.x, actor.y, actor.w, actor.h)
+      else { // non-tiling sprite
+        const texture = AssetsFs.get(actor.type.texture)
+        ctx.drawImage(texture, actor.x, actor.y, actor.width, actor.height)
       }
     }
 

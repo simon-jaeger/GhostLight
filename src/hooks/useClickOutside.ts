@@ -6,7 +6,7 @@ export function useClickOutside(ref: React.RefObject<any>, handler: () => void) 
     if (!ref.current.contains(e.target as Node)) handler()
   }
   useEffect(() => {
-    window.addEventListener("click", listener)
-    return () => window.removeEventListener("click", listener)
+    window.addEventListener("mousedown", listener)
+    return () => window.removeEventListener("mousedown", listener)
   }, [ref, handler])
 }

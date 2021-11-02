@@ -43,9 +43,6 @@ export const ContextMenu = observer(() => {
     ]
     else return [
       {name: "Paste", fn: onPaste},
-      {name: "Undo", fn: () => console.log("Undo")},
-      {name: "Redo", fn: () => console.log("Redo")},
-      {name: "Toggle UI", fn: () => console.log("Toggle UI")},
       {name: "Help", fn: () => console.log("Help")},
     ]
   }

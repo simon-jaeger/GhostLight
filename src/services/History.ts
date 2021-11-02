@@ -1,5 +1,5 @@
 import {autorun, observable, reaction, toJS} from "mobx"
-import {Scene} from "/src/services/FileSystem/Scene"
+import {SceneFs} from "/src/services/FileSystem/SceneFs"
 import {uLast} from "/src/helpers/utils"
 import {Cursor} from "/src/services/Cursor/Cursor"
 
@@ -9,7 +9,7 @@ export const History = new class {
   private paused = false
 
   listen() {
-    reaction(() => toJS(Scene.data), () => {
+    reaction(() => toJS(SceneFs.data), () => {
       if (!Cursor.down) this.snap()
     })
     reaction(() => Cursor.down, () => {
@@ -22,7 +22,7 @@ export const History = new class {
 
   private snap() {
     if (this.paused) return
-    const snap = JSON.stringify(Scene.data)
+    const snap = JSON.stringify(SceneFs.data)
     if (snap === uLast(this.undoStack)) return
     this.redoStack.length = 0 // clear redo on new change
     this.undoStack.push(snap)
@@ -32,7 +32,7 @@ export const History = new class {
     if (this.undoStack.length <= 1) return
     this.paused = true
     this.redoStack.push(this.undoStack.pop()!)
-    Scene.load(uLast(this.undoStack))
+    SceneFs.load(uLast(this.undoStack))
     setTimeout(() => this.paused = false)
   }
 
@@ -40,7 +40,7 @@ export const History = new class {
     if (this.redoStack.length <= 0) return
     this.paused = true
     this.undoStack.push(this.redoStack.pop()!)
-    Scene.load(uLast(this.undoStack))
+    SceneFs.load(uLast(this.undoStack))
     setTimeout(() => this.paused = false)
   }
 

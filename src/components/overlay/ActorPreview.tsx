@@ -1,17 +1,17 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
-import {Assets} from "/src/services/FileSystem/Assets"
 import {App} from "/src/services/App"
 import {Cursor} from "/src/services/Cursor/Cursor"
 import {Camera} from "/src/models/Camera"
-
-// TODO: size based on texture
+import {Type} from "/src/models/Type"
+import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
+import {Grid} from "/src/models/Grid"
 
 export const ActorPreview = observer(() => {
   if (!App.isMode("create")) return null
+  if (Cursor.down) return null
 
-  const asset = Assets.active
-
+  const type = Type.active.value
   return (
     <div
       style={{
@@ -19,10 +19,11 @@ export const ActorPreview = observer(() => {
         position: "absolute",
         left: Cursor.pos.x * Camera.zoom,
         top: Cursor.pos.y * Camera.zoom,
-        width: asset.image.width * Camera.zoom,
-        height: asset.image.height * Camera.zoom,
-        backgroundImage: `url(${asset.image.src})`,
-        backgroundSize: `${asset.image.width * Camera.zoom}px ${asset.image.height * Camera.zoom}px`,
+        width: (type.width || Grid.sizeX) * Camera.zoom,
+        height: (type.height || Grid.sizeY) * Camera.zoom,
+        backgroundColor: type.texture.startsWith('#') ? type.texture : 'transparent',
+        backgroundImage: `url(${AssetsFs.get(type.texture).src})`,
+        backgroundSize: 'contain',
         opacity: 0.5,
       }}
     ></div>

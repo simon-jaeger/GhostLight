@@ -11,7 +11,7 @@ export const DebugView = observer(() => {
   if (!Debugger.active) return null
 
   return (
-    <div className="grid fixed bottom-12 right-48 left-64 grid-cols-4 grid-rows-3 grid-flow-col p-4 h-24 font-mono text-gray-300 bg-black bg-opacity-80 pointer-events-none">
+    <div className="grid fixed bottom-12 right-52 left-64 grid-cols-4 grid-rows-3 grid-flow-col p-4 h-24 font-mono text-gray-300 bg-clip-padding bg-black bg-opacity-80 border border-transparent pointer-events-none">
       <div>fps: {Debugger.fps}</div>
       <div>delta: {Debugger.delta.toFixed(3)}</div>
       <div>actors: {Actor.all.length}</div>

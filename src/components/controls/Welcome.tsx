@@ -1,19 +1,19 @@
 import React, {useEffect, useState} from "react"
 import {observer} from "mobx-react-lite"
-import {Project} from "/src/services/FileSystem/Project"
+import {ProjectFs} from "/src/services/FileSystem/ProjectFs"
 import {DocumentAddIcon, FolderOpenIcon} from "@heroicons/react/outline"
 
 export const Welcome = observer(() => {
   const [recent, setRecent] = useState([] as FileSystemDirectoryHandle[])
   useEffect(() => {
-    Project.getRecent().then(setRecent)
+    ProjectFs.getRecent().then(setRecent)
   }, [])
 
-  if (Project.isOpen) return null
+  if (ProjectFs.isOpen) return null
 
   const actions = [
-    {name: "New", icon: DocumentAddIcon, fn: () => Project.create()},
-    {name: "Open", icon: FolderOpenIcon, fn: () => Project.open()},
+    {name: "New", icon: DocumentAddIcon, fn: () => ProjectFs.create()},
+    {name: "Open", icon: FolderOpenIcon, fn: () => ProjectFs.open()},
   ]
 
   return (
@@ -47,7 +47,7 @@ export const Welcome = observer(() => {
               <button
                 key={handle.name}
                 className="py-2 pl-4 w-full text-gray-400 hover:text-gray-200"
-                onClick={() => Project.open(handle)}
+                onClick={() => ProjectFs.open(handle)}
               >{handle.name}</button>
             ))}
           </div>

@@ -3,15 +3,15 @@ import {observer} from "mobx-react-lite"
 import {Modal} from "/src/components/modals/Modal"
 import {Field} from "/src/components/generic/Field"
 import {Modals} from "/src/services/Modals"
-import {Scene} from "/src/services/FileSystem/Scene"
+import {SceneFs} from "/src/services/FileSystem/SceneFs"
 
 export const ModalSceneNew = observer(() => {
   const [name, setName] = useState('new-scene')
 
   async function action() {
-    await Scene.save()
-    const created = await Scene.create(name + ".json")
-    await Scene.open(created)
+    await SceneFs.save()
+    const created = await SceneFs.create(name + ".json")
+    await SceneFs.open(created)
     onClose()
   }
 

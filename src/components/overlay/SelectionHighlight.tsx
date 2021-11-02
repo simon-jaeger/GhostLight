@@ -14,8 +14,8 @@ export const SelectionHighlight = observer(({actor}: Props) => {
       style={{
         left: actor.x * Camera.zoom,
         top: actor.y * Camera.zoom,
-        width: actor.w * Camera.zoom,
-        height: actor.h * Camera.zoom,
+        width: actor.width * Camera.zoom,
+        height: actor.height * Camera.zoom,
       }}
     >
     </div>

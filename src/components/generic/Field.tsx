@@ -51,11 +51,13 @@ export const Field = (_p: Props) => {
     }
   })
   useEffect(() => {
-    if (p.autoFocus) ref.current!.focus()
+    if (p.autoFocus) {
+      setTimeout(() => ref.current!.focus())
+    }
   }, [ref])
 
   return (
-    <div className="relative">
+    <div className="relative flex-1">
       {p.label &&
       <label htmlFor={p.label} className="pb-2 text-gray-300">{p.label}</label>}
       <input

@@ -1,6 +1,7 @@
 import {makeAutoObservable} from "mobx"
-import {Assets} from "/src/services/FileSystem/Assets"
+import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
 
+// TODO: refactor to support new type system
 export const DropHandler = new class {
   constructor() {
     makeAutoObservable(this)
@@ -14,7 +15,7 @@ export const DropHandler = new class {
   onDrop(e:DragEvent) {
     e.preventDefault()
     const files = [...e.dataTransfer!.files].filter((x) => x.type.startsWith('image'))
-    files.forEach((file) => Assets.import(file))
+    files.forEach((file) => AssetsFs.import(file))
   }
 
   onDragOver(e:DragEvent) {

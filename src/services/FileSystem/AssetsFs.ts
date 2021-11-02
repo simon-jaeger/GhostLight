@@ -2,13 +2,9 @@ import {makeAutoObservable} from "mobx"
 import {uImage} from "/src/helpers/utils"
 import {FileSystem} from "/src/services/FileSystem/FileSystem"
 
-type Asset = { key: string, image: HTMLImageElement, }
-
-// TODO: simplify map to key-->Image, should be possible after actor types are implemented
-export const Assets = new class {
+export const AssetsFs = new class {
   private fs!: FileSystem
-  map: Map<string, Asset> = new Map()
-  active: Asset = {key: "", image: new Image()}
+  map: Map<string, HTMLImageElement> = new Map()
 
   constructor() {
     makeAutoObservable(this)
@@ -19,7 +15,7 @@ export const Assets = new class {
   }
 
   private clear() {
-    this.map.forEach(x => URL.revokeObjectURL(x.image.src))
+    this.map.forEach(x => URL.revokeObjectURL(x.src))
     this.map.clear()
   }
 
@@ -30,7 +26,7 @@ export const Assets = new class {
       const key = filename
       const url = URL.createObjectURL(await this.fs.readRaw(filename))
       const image = await uImage(url)
-      this.map.set(key, {key, image})
+      this.map.set(key, image)
     }
   }
 
@@ -39,14 +35,14 @@ export const Assets = new class {
     const key = file.name
     const url = URL.createObjectURL(file)
     const image = await uImage(url)
-    this.map.set(key, {key, image})
+    this.map.set(key, image)
+    return image
   }
 
-  // TODO: better fallback and color support
-  get(key: string): Asset {
-    const asset = this.map.get(key)
-    if (asset === undefined) return {key: "", image: new Image()}
-    return asset
+  get(key: string) {
+    const image = this.map.get(key)
+    if (image === undefined) return new Image()
+    else return image
   }
 
 }

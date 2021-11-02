@@ -7,6 +7,7 @@ import {uClone} from "/src/helpers/utils"
 import {Grid} from "/src/models/Grid"
 import {when} from "mobx"
 
+// TODO: refactor an cleanup (also, actors larger than grid on initial resize to nw "jumps")
 // TODO: maybe side anchors too?
 
 export class CursorModeResize implements CursorMode {
@@ -63,8 +64,8 @@ export class CursorModeResize implements CursorMode {
     if (App.subMode === "nw") {
       this.target.x = Cursor.pos.x
       this.target.y = Cursor.pos.y
-      this.target.w = this.initial.w - Cursor.movedX
-      this.target.h = this.initial.h - Cursor.movedY
+      this.target.width = this.initial.width - Cursor.movedX
+      this.target.height = this.initial.height - Cursor.movedY
 
       if (Cursor.pos.x >= this.target.xw) {
         this.target.x = this.initial.xw
@@ -78,11 +79,11 @@ export class CursorModeResize implements CursorMode {
     ////////////////////////////////////////////////////////////////////////////
     else if (App.subMode === "ne") {
       this.target.y = Cursor.pos.y
-      this.target.w = this.initial.w + Cursor.movedX
-      this.target.h = this.initial.h - Cursor.movedY
+      this.target.width = this.initial.width + Cursor.movedX
+      this.target.height = this.initial.height - Cursor.movedY
 
       if (Cursor.pos.x < this.target.x) {
-        this.target.w = 0
+        this.target.width = 0
         return App.setMode("resize", "nw")
       }
       if (Cursor.pos.y >= this.target.yh) {
@@ -92,23 +93,23 @@ export class CursorModeResize implements CursorMode {
     }
     ////////////////////////////////////////////////////////////////////////////
     else if (App.subMode === "se") {
-      this.target.w = this.initial.w + Cursor.movedX
-      this.target.h = this.initial.h + Cursor.movedY
+      this.target.width = this.initial.width + Cursor.movedX
+      this.target.height = this.initial.height + Cursor.movedY
 
       if (Cursor.pos.x < this.target.x) {
-        this.target.w = 0
+        this.target.width = 0
         return App.setMode("resize", "sw")
       }
       if (Cursor.pos.y < this.target.y) {
-        this.target.h = 0
+        this.target.height = 0
         return App.setMode("resize", "ne")
       }
     }
     ////////////////////////////////////////////////////////////////////////////
     else if (App.subMode === "sw") {
       this.target.x = Cursor.pos.x
-      this.target.w = this.initial.w - Cursor.movedX
-      this.target.h = this.initial.h + Cursor.movedY
+      this.target.width = this.initial.width - Cursor.movedX
+      this.target.height = this.initial.height + Cursor.movedY
 
       if (Cursor.pos.x >= this.target.xw) {
         this.target.x = this.initial.xw
@@ -116,7 +117,7 @@ export class CursorModeResize implements CursorMode {
       }
 
       if (Cursor.pos.y < this.target.y) {
-        this.target.h = 0
+        this.target.height = 0
         return App.setMode("resize", "nw")
       }
     }
@@ -125,8 +126,8 @@ export class CursorModeResize implements CursorMode {
 
   onMouseUp() {
     // prevent "invisible" actor of zero w/h
-    this.target.w = this.target.w <= 0 ? Grid.sizeX : this.target.w
-    this.target.h = this.target.h <= 0 ? Grid.sizeY : this.target.h
+    this.target.width = this.target.width <= 0 ? Grid.sizeX : this.target.width
+    this.target.height = this.target.height <= 0 ? Grid.sizeY : this.target.height
     App.revertMode()
   }
 }

@@ -3,15 +3,15 @@ import {observer} from "mobx-react-lite"
 import {Modal} from "/src/components/modals/Modal"
 import {Field} from "/src/components/generic/Field"
 import {Modals} from "/src/services/Modals"
-import {Scene} from "/src/services/FileSystem/Scene"
+import {SceneFs} from "/src/services/FileSystem/SceneFs"
 
 export const ModalSceneRename = observer(() => {
-  const [name, setName] = useState(Scene.name)
-  useEffect(() => resetName, [Scene.active])
+  const [name, setName] = useState(SceneFs.name)
+  useEffect(() => resetName, [SceneFs.active])
 
   async function action() {
-    if (name === Scene.name) return onClose()
-    await Scene.rename(name + ".json")
+    if (name === SceneFs.name) return onClose()
+    await SceneFs.rename(name + ".json")
     onClose()
   }
 
@@ -21,7 +21,7 @@ export const ModalSceneRename = observer(() => {
   }
 
   function resetName() {
-    setName(Scene.name)
+    setName(SceneFs.name)
   }
 
   return (

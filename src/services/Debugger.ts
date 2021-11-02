@@ -1,10 +1,20 @@
-import {Project} from "/src/services/FileSystem/Project"
+import {ProjectFs} from "/src/services/FileSystem/ProjectFs"
 import {makeAutoObservable} from "mobx"
-import {Assets} from "/src/services/FileSystem/Assets"
+import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
 import {Actor} from "/src/models/Actor"
 import {uImage, uRange, uRandItem} from "/src/helpers/utils"
-import demoScene from "/gitignore/demo/.ghostlight/scenes/level-01.json"
-import {Scene} from "/src/services/FileSystem/Scene"
+import demoScene from "/gitignore/demo/.ghostlight/scenes/level-01.json?raw"
+import demoSceneTypes from "/gitignore/demo/.ghostlight/types/types.json?raw"
+import {SceneFs} from "/src/services/FileSystem/SceneFs"
+import {Type} from "/src/models/Type"
+import {History} from "/src/services/History"
+import {TypesFs} from "/src/services/FileSystem/TypesFs"
+
+if (import.meta.hot) {
+  // prevent reload when demo scene saved
+  import.meta.hot.accept("/gitignore/demo/.ghostlight/scenes/level-01.json?raw", (x) => null)
+  import.meta.hot.accept("/gitignore/demo/.ghostlight/types/types.json?raw", (x) => null)
+}
 
 export const Debugger = new class {
   active = false
@@ -17,10 +27,12 @@ export const Debugger = new class {
   }
 
   run() {
+    // return
     this.active = true
-    Project.isOpen = true
-    // this.loadDemoScene()
-    this.testManyActors()
+    ProjectFs.isOpen = true
+    this.loadDemoScene()
+    // this.testManyActors()
+    // this.typesDemo()
   }
 
   performance(frame: number) {
@@ -30,22 +42,62 @@ export const Debugger = new class {
     this.fps = this.frames.length
   }
 
+  async typesDemo() {
+    // return
+    const assets = Object.keys(import.meta.glob("/public/*")).map((x) => x.replaceAll("/public/", ""))
+    for (const asset of assets) {
+      AssetsFs.map.set(asset, await uImage(asset))
+    }
+    Type.create({name: "lorem"})
+    Type.active.value = Type.create({name: "ipsum", texture: "#059669"})
+    Type.create({name: "dolor", texture: "#2563EB"})
+    Type.create({name: "alpha", texture: "#D97706"})
+    Type.create({name: "beta", texture: "#4F46E5"})
+    Type.create({name: "gamma", texture: "#DB2777"})
+    Type.create({
+      name: "Player",
+      texture: "Player.png",
+      resize: "Disabled",
+      width: 16,
+      height: 16,
+    })
+    Type.create({
+      name: "Wall",
+      texture: "Wall.png",
+      resize: "Repeat",
+      width: 16,
+      height: 16,
+    })
+    Type.create({
+      name: "Block",
+      texture: "Block.png",
+      resize: "Disabled",
+      width: 16,
+      height: 16,
+    })
+    Type.create({
+      name: "Cobblestone",
+      texture: "Cobblestone.png",
+      resize: "Disabled",
+      width: 32,
+      height: 32,
+    })
+
+    History.reset(JSON.stringify(SceneFs.data))
+  }
+
   async loadDemoScene() {
     const assets = Object.keys(import.meta.glob("/public/*")).map((x) => x.replaceAll("/public/", ""))
     for (const asset of assets) {
-      Assets.map.set(asset, {
-        key: asset,
-        image: await uImage(asset),
-      })
+      AssetsFs.map.set(asset, await uImage(asset))
     }
-    Scene.load(demoScene)
+    TypesFs.load(demoSceneTypes)
+    SceneFs.load(demoScene)
   }
 
   async testManyActors() {
-    Assets.map.set("demo.png", {
-      key: "demo.png",
-      image: await uImage("demo.png"),
-    })
+    const demoType = Type.create({name: "Demo", texture: "#059669", resize:'Scale'})
+    Type.active.value = demoType
 
     let count = 4 // 2* 2
     // count = 64 // 8 * 8
@@ -55,13 +107,11 @@ export const Debugger = new class {
     // count = 6400 // 80*80
     const row = Math.sqrt(count)
     Actor.createMany(uRange(count).map((i) => ({
-      shape: {
-        x: i % row * 32,
-        y: Math.floor(i / row) * 32,
-        width: 16,
-        height: 16,
-      },
-      sprite: {texture: "#10B981", tiling: false, opacity: 100},
+      x: i % row * 32,
+      y: Math.floor(i / row) * 32,
+      width: 16,
+      height: 16,
+      type_id: demoType.id,
     })))
   }
 }
