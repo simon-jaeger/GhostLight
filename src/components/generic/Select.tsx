@@ -35,14 +35,14 @@ export const Select = (p: Props) => {
         <ChevronDownIcon className="absolute right-1 top-1/2 text-gray-400 -translate-y-1/2"/>
       </button>
       <div
-        className="absolute z-10 w-full border-r border-b border-l border-gray-600 shadow"
+        className="absolute z-20 w-full border-r border-b border-l border-gray-600 shadow"
         style={{visibility: open ? "visible" : "hidden"}}
       >
         {p.options.map((option) =>
           <button
             type="button"
             key={option}
-            className="px-2 truncate w-full h-8 bg-gray-900 hover:bg-gray-700"
+            className="px-2 truncate w-full h-8 bg-gray-900 hover:bg-gray-700 focus:bg-gray-700"
             onClick={() => handleChange(option)}
           >{option}</button>)}
       </div>

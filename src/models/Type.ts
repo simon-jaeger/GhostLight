@@ -2,9 +2,17 @@ import {makeAutoObservable, observable, reaction, runInAction} from "mobx"
 import {uRemove} from "/src/helpers/utils"
 import uuid4 from "uuid4"
 
-export type ResizeOption = "Disabled" | "Scale" | "Repeat"
+// TODO:  maybe take a step back with the whole json shema thing too. demo project instead?
+// TODO: for the demo game, join actor and type on id to embed type props in actor and add names props after resolving via prop.id (kinda sql-like).
 
-// TODO: in the demo game, classes can have a static field id which matches the ghostlight type uuid
+export type ResizeOption = "Disabled" | "Scale" | "Repeat"
+export type CustomPropType = "string" | "number" | "boolean"
+export type CustomProp = {
+  id: string
+  name: string,
+  type: CustomPropType,
+  default: any,
+}
 
 export class Type {
   id = ""
@@ -13,6 +21,18 @@ export class Type {
   height = 0
   texture = "#6B7280"
   resize: ResizeOption = "Disabled"
+  props: CustomProp[] = []
+
+  addProp(name: string) {
+    const prop: CustomProp = {
+      id: uuid4(),
+      name: name.trim() || "newProp",
+      type: "string",
+      default: null,
+    }
+    while (this.props.find((x) => x.name === prop.name)) prop.name += "_"
+    this.props.push(prop)
+  }
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -42,4 +62,5 @@ export class Type {
   static destroy(...types: Type[]) {
     uRemove(this.all, ...types)
   }
+
 }

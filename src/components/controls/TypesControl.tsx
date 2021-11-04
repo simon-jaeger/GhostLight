@@ -14,7 +14,7 @@ export const TypesControl = observer(() => {
   }, [Type.all.length])
 
   const typeList = <>
-    <div className="grid grid-cols-3 content-start flex-1 overflow-y-scroll ml-2">
+    <div className="grid grid-cols-3">
       {Type.all.map(type => (
         <button
           key={type.name}
@@ -43,9 +43,10 @@ export const TypesControl = observer(() => {
     </div>
 
   return (<div>
-    {showDetails && <TypesControlDetails/>}
-    <div className="fixed right-0 top-12 bottom-12 flex flex-col w-52 bg-gray-800">
-      <header className="grid grid-cols-2 gap-4 p-4">
+    {/*{showDetails  && <TypesControlDetails/>}*/}
+    {true && <TypesControlDetails/>}
+    <div className="overflow-y-scroll fixed right-0 top-12 bottom-12 pl-2 w-52 bg-gray-800">
+      <header className="grid sticky top-0 z-10 grid-cols-2 gap-4 px-2 py-4 bg-gray-800">
         <Button
           onClick={() => {
             setShowDetails(!showDetails)

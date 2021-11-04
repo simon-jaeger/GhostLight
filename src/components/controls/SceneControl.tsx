@@ -1,6 +1,6 @@
 import React, {useRef, useState} from "react"
 import {observer} from "mobx-react-lite"
-import {Field} from "/src/components/generic/Field"
+import {Input} from "/src/components/generic/Input"
 import {Config} from "/src/models/Config"
 import {Grid} from "/src/models/Grid"
 import {Select} from "/src/components/generic/Select"
@@ -72,13 +72,13 @@ export const SceneControl = observer(() => {
 
         <hr className="-mx-4 my-4 bg-gray-600"/>
         <fieldset className="grid gap-4">
-          <Field
+          <Input
             label="Background"
             value={Config.background}
             onChange={(v) => Config.background = v}
           />
           <div className="flex gap-4">
-            <Field
+            <Input
               label="Width"
               value={Config.width}
               type="number"
@@ -86,7 +86,7 @@ export const SceneControl = observer(() => {
               step={Grid.sizeX}
               onChange={(v) => Config.width = v}
             />
-            <Field
+            <Input
               label="Height"
               value={Config.height}
               type="number"

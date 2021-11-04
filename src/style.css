@@ -55,6 +55,10 @@ button:disabled {
   cursor: not-allowed;
 }
 
+input::placeholder {
+  @apply text-gray-500
+}
+
 hr {
   border: none;
   background: white;

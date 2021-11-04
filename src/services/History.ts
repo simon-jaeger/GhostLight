@@ -2,6 +2,8 @@ import {autorun, observable, reaction, toJS} from "mobx"
 import {SceneFs} from "/src/services/FileSystem/SceneFs"
 import {uLast} from "/src/helpers/utils"
 import {Cursor} from "/src/services/Cursor/Cursor"
+import {Selection} from "/src/services/Selection"
+import {Actor} from "/src/models/Actor"
 
 export const History = new class {
   readonly undoStack: string[] = observable([])
@@ -30,17 +32,23 @@ export const History = new class {
 
   undo() {
     if (this.undoStack.length <= 1) return
-    this.paused = true
     this.redoStack.push(this.undoStack.pop()!)
-    SceneFs.load(uLast(this.undoStack))
-    setTimeout(() => this.paused = false)
+    this.restore()
   }
 
   redo() {
     if (this.redoStack.length <= 0) return
-    this.paused = true
     this.undoStack.push(this.redoStack.pop()!)
+    this.restore()
+  }
+
+  private restore() {
+    this.paused = true
+    const selectionIds = Selection.all.map((x) => x.id)
     SceneFs.load(uLast(this.undoStack))
+
+    const selectedActors = Actor.all.filter((x) => selectionIds.includes(x.id))
+    Selection.set(...selectedActors)
     setTimeout(() => this.paused = false)
   }
 

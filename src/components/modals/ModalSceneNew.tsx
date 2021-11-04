@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import {observer} from "mobx-react-lite"
 import {Modal} from "/src/components/modals/Modal"
-import {Field} from "/src/components/generic/Field"
+import {Input} from "/src/components/generic/Input"
 import {Modals} from "/src/services/Modals"
 import {SceneFs} from "/src/services/FileSystem/SceneFs"
 
@@ -27,7 +27,7 @@ export const ModalSceneNew = observer(() => {
       action={{name: "Create", fn: action}}
       onClose={onClose}
     >
-      <Field
+      <Input
         label="Name"
         suffix=".json"
         value={name}

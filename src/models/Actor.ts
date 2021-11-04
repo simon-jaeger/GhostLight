@@ -10,6 +10,7 @@ export class Actor {
   y = 0
   width = 0
   height = 0
+  props: Object = {}
 
   get type() {
     return Type.all.find((x) => x.id === this.type_id) ?? new Type()
@@ -50,6 +51,10 @@ export class Actor {
 
   static destroy(...actors: Actor[]) {
     uRemove(this.all, ...actors)
+  }
+
+  static findById(id: string) {
+    return this.all.find((x) => x.id === id)
   }
 
   static findByCollision(shape: Point | Shape) {

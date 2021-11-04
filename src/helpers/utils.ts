@@ -3,6 +3,7 @@ import l from "lodash"
 export const uClone = l.cloneDeep
 export const uIntersection = l.intersection
 export const uIsEqual = l.isEqual
+export const uDebounce = l.debounce
 
 // simple 2d box collision check
 export function uCollision(pA: Point | Shape, pB: Point | Shape) {
@@ -40,6 +41,11 @@ export function uToggle<T>(array: Array<T>, item: T) {
   const index = array.indexOf(item)
   if (index === -1) array.push(item)
   else array.splice(index, 1)
+}
+
+// capitalize string
+export function uCapitalize(string: string) {
+  return string && string[0].toUpperCase() + string.slice(1)
 }
 
 // image element from url, waits for onload

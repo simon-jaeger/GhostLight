@@ -58,6 +58,7 @@ export const SceneFs = new class {
     Actor.createMany(scene.actors)
   }
 
+  // TODO: maybe cleanup orphaned props before save
   async save() {
     await this.fs.write(this.active, JSON.stringify(this.data, null, 2))
     console.log("saved")
