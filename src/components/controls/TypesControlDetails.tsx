@@ -1,7 +1,6 @@
 import React, {useState} from "react"
 import {observer} from "mobx-react-lite"
 import {
-  CustomProp,
   CustomPropType,
   ResizeOption,
   Type,
@@ -9,9 +8,9 @@ import {
 import {Button} from "/src/components/generic/Button"
 import {Select} from "/src/components/generic/Select"
 import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
-import {uCapitalize, uRemove} from "/src/helpers/utils"
+import {uDebounce, uRemove} from "/src/helpers/utils"
 import {Input} from "/src/components/generic/Input"
-import {DotsVerticalIcon, XIcon} from "@heroicons/react/solid"
+import {ColorSwatchIcon, PhotographIcon, XIcon} from "@heroicons/react/solid"
 
 export const TypesControlDetails = observer(() => {
   const [newPropName, setNewPropName] = useState("")
@@ -28,8 +27,8 @@ export const TypesControlDetails = observer(() => {
     type.height = image.height
   }
 
-  function onPickColor() {
-    type.texture = "#6B7280"
+  function onPickColor(e: React.ChangeEvent) {
+    type.texture = e.target["value"]
     type.width = 0
     type.height = 0
   }
@@ -46,7 +45,7 @@ export const TypesControlDetails = observer(() => {
       <section className="p-4">
         <header className="flex gap-4 mb-4">
           <div
-            className="w-16 h-16  bg-center bg-no-repeat bg-contain"
+            className="w-16 h-16 bg-center bg-no-repeat bg-contain"
             style={{
               backgroundColor: type.texture.startsWith("#") ? type.texture : "transparent",
               backgroundImage: `url(${AssetsFs.get(type.texture).src})`,
@@ -77,8 +76,19 @@ export const TypesControlDetails = observer(() => {
               value={type.texture}
               onChange={(v) => type.texture = v}
             />
-            <Button onClick={onPickImage}>Image</Button>
-            <Button onClick={onPickColor}>Color</Button>
+            <Button onClick={onPickImage}>
+              <PhotographIcon/>
+            </Button>
+            <Button>
+              <ColorSwatchIcon/>
+              <input
+                className="absolute inset-0 mt-1 w-full h-full opacity-0 cursor-pointer"
+                id="config-background"
+                type="color"
+                onChange={onPickColor}
+              />
+            </Button>
+
           </div>
           <Select
             label="Resize"

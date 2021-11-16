@@ -83,7 +83,7 @@ export const Debugger = new class {
       height: 32,
     })
 
-    History.reset(JSON.stringify(SceneFs.data))
+    History.reset(Actor.all)
   }
 
   async loadDemoScene() {

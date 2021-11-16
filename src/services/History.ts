@@ -1,5 +1,4 @@
 import {autorun, observable, reaction, toJS} from "mobx"
-import {SceneFs} from "/src/services/FileSystem/SceneFs"
 import {uLast} from "/src/helpers/utils"
 import {Cursor} from "/src/services/Cursor/Cursor"
 import {Selection} from "/src/services/Selection"
@@ -11,7 +10,7 @@ export const History = new class {
   private paused = false
 
   listen() {
-    reaction(() => toJS(SceneFs.data), () => {
+    reaction(() => toJS(Actor.all), () => {
       if (!Cursor.down) this.snap()
     })
     reaction(() => Cursor.down, () => {
@@ -24,7 +23,7 @@ export const History = new class {
 
   private snap() {
     if (this.paused) return
-    const snap = JSON.stringify(SceneFs.data)
+    const snap = JSON.stringify(Actor.all)
     if (snap === uLast(this.undoStack)) return
     this.redoStack.length = 0 // clear redo on new change
     this.undoStack.push(snap)
@@ -45,17 +44,18 @@ export const History = new class {
   private restore() {
     this.paused = true
     const selectionIds = Selection.all.map((x) => x.id)
-    SceneFs.load(uLast(this.undoStack))
+    Actor.destroy(...Actor.all)
+    Actor.createMany(JSON.parse(uLast(this.undoStack)))
 
     const selectedActors = Actor.all.filter((x) => selectionIds.includes(x.id))
     Selection.set(...selectedActors)
     setTimeout(() => this.paused = false)
   }
 
-  // reset history and start with given scene data
-  reset(json: string) {
+  // reset history and start with given actor tree
+  reset(actors: Actor[]) {
     this.undoStack.length = 0
     this.redoStack.length = 0
-    this.undoStack.push(json)
+    this.undoStack.push(JSON.stringify(actors))
   }
 }

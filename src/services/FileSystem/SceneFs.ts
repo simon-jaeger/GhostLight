@@ -48,7 +48,7 @@ export const SceneFs = new class {
     this.active = filename
     const json = await this.fs.read(filename)
     this.load(json)
-    History.reset(json)
+    History.reset(Actor.all)
   }
 
   load(json: string) {

@@ -5,12 +5,18 @@ import {Config} from "/src/models/Config"
 import {Grid} from "/src/models/Grid"
 import {Select} from "/src/components/generic/Select"
 import {SceneFs} from "/src/services/FileSystem/SceneFs"
-import {DotsVerticalIcon} from "@heroicons/react/solid"
+import {
+  ColorSwatchIcon,
+  DotsVerticalIcon,
+  HashtagIcon,
+} from "@heroicons/react/solid"
 import {Menu} from "/src/components/generic/Menu"
 import {useClickOutside} from "/src/hooks/useClickOutside"
 import {Modals} from "/src/services/Modals"
 import {ModalSceneNew} from "/src/components/modals/ModalSceneNew"
 import {ModalSceneRename} from "/src/components/modals/ModalSceneRename"
+import {Button} from "/src/components/generic/Button"
+import {uDebounce} from "/src/helpers/utils"
 
 export const SceneControl = observer(() => {
   const [showMenu, setShowMenu] = useState(false)
@@ -72,11 +78,23 @@ export const SceneControl = observer(() => {
 
         <hr className="-mx-4 my-4 bg-gray-600"/>
         <fieldset className="grid gap-4">
-          <Input
-            label="Background"
-            value={Config.background}
-            onChange={(v) => Config.background = v}
-          />
+          <div className="flex items-end">
+            <Input
+              label="Background"
+              value={Config.background}
+              onChange={(v) => Config.background = v}
+            />
+            <Button>
+              <ColorSwatchIcon/>
+              <input
+                className="absolute inset-0 mt-1 w-full h-full opacity-0 cursor-pointer"
+                type="color"
+                onChange={(e: React.ChangeEvent) => {
+                  Config.background = e.target["value"]
+                }}
+              />
+            </Button>
+          </div>
           <div className="flex gap-4">
             <Input
               label="Width"

@@ -13,7 +13,7 @@ export const Button = (p: Props) => {
     <button
       type={p.submit ? "submit" : "button"}
       onClick={p.onClick}
-      className="px-2 h-8 text-center bg-gray-900 border border-gray-600 select-none hover:border-gray-400 focus:border-gray-400"
+      className="relative px-2 h-8 text-center bg-gray-900 border border-gray-600 select-none hover:border-gray-400 focus:border-gray-400"
       disabled={p.disabled}
       style={{
         opacity: p.disabled ? 0.5 : 1,
