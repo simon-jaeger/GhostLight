@@ -1,6 +1,6 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
-import {Camera} from "/src/models/Camera"
+import {Camera} from "/src/services/Camera"
 import {Selection} from "/src/services/Selection"
 import {App} from "/src/services/App"
 

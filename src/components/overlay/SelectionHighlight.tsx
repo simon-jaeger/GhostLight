@@ -1,6 +1,6 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
-import {Camera} from "/src/models/Camera"
+import {Camera} from "/src/services/Camera"
 import {Actor} from "/src/models/Actor"
 
 interface Props {
@@ -14,8 +14,8 @@ export const SelectionHighlight = observer(({actor}: Props) => {
       style={{
         left: actor.x * Camera.zoom,
         top: actor.y * Camera.zoom,
-        width: actor.width * Camera.zoom,
-        height: actor.height * Camera.zoom,
+        width: actor.width * Camera.zoom + 1,
+        height: actor.height * Camera.zoom + 1,
       }}
     >
     </div>

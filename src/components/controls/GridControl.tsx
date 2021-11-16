@@ -1,6 +1,6 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
-import {Grid} from "/src/models/Grid"
+import {Grid} from "/src/services/Grid"
 import {ViewGridIcon} from "@heroicons/react/solid"
 import {Input} from "/src/components/generic/Input"
 

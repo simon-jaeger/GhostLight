@@ -1,9 +1,9 @@
-import {makeAutoObservable, runInAction} from "mobx"
+import {makeAutoObservable} from "mobx"
 import {Selection} from "/src/services/Selection"
 import {Actor} from "/src/models/Actor"
 import {App} from "/src/services/App"
 import {Cursor} from "/src/services/Cursor/Cursor"
-import {Camera} from "/src/models/Camera"
+import {Camera} from "/src/services/Camera"
 import {Clipboard} from "/src/services/Clipboard"
 import {History} from "/src/services/History"
 

@@ -7,10 +7,10 @@ import {CursorModeSelect} from "/src/services/Cursor/CursorModeSelect"
 import {CursorModeMove} from "/src/services/Cursor/CursorModeMove"
 import {CursorModeResize} from "/src/services/Cursor/CursorModeResize"
 import {uSnap} from "/src/helpers/utils"
-import {Grid} from "/src/models/Grid"
+import {Grid} from "/src/services/Grid"
 import {CursorInertia} from "/src/services/Cursor/CursorInertia"
 import {CursorModePan} from "/src/services/Cursor/CursorModePan"
-import {Camera} from "/src/models/Camera"
+import {Camera} from "/src/services/Camera"
 import {CursorModeDragSelect} from "/src/services/Cursor/CursorModeDragSelect"
 
 export const Cursor = new class {

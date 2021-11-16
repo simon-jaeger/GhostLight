@@ -1,8 +1,8 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
 import {Cursor} from "/src/services/Cursor/Cursor"
-import {Grid} from "/src/models/Grid"
-import {Camera} from "/src/models/Camera"
+import {Grid} from "/src/services/Grid"
+import {Camera} from "/src/services/Camera"
 import {App} from "/src/services/App"
 
 export const CursorHighlight = observer(() => {

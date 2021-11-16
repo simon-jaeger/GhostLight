@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react"
 import {Actor} from "/src/models/Actor"
 import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
-import {Camera} from "/src/models/Camera"
+import {Camera} from "/src/services/Camera"
 import {Debugger} from "/src/services/Debugger"
 
 export const Canvas = () => {

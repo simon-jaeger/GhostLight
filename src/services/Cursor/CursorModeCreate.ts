@@ -5,7 +5,7 @@ import {Selection} from "/src/services/Selection"
 import {App} from "/src/services/App"
 import {Type} from "/src/models/Type"
 import {uCollision} from "/src/helpers/utils"
-import {Grid} from "/src/models/Grid"
+import {Grid} from "/src/services/Grid"
 
 export class CursorModeCreate implements CursorMode {
   private created: Actor[] = []

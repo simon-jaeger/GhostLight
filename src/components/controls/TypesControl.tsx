@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react"
+import React, {useEffect, useState} from "react"
 import {observer} from "mobx-react-lite"
 import {Type} from "/src/models/Type"
 import {Button} from "/src/components/generic/Button"
@@ -39,13 +39,12 @@ export const TypesControl = observer(() => {
 
   const emptyState =
     <div className="p-4 mx-4 text-center text-gray-400 rounded-lg border-2 border-gray-600 border-dashed">
-      No types defined
+      Click <em>New</em> or <br/>
+      drop an image
     </div>
 
-  return (<div>
-    {/*{showDetails  && <TypesControlDetails/>}*/}
-    {true && <TypesControlDetails/>}
-    <div className="overflow-y-scroll fixed right-0 top-12 bottom-12 pl-2 w-52 bg-gray-800">
+  return (
+    <div className="overflow-y-scroll fixed right-0 top-12 bottom-0 pl-2 w-52 bg-gray-800">
       <header className="grid sticky top-0 z-10 grid-cols-2 gap-4 px-2 py-4 bg-gray-800">
         <Button
           onClick={() => {
@@ -61,9 +60,13 @@ export const TypesControl = observer(() => {
           }}
         >New</Button>
       </header>
+
       {Type.all.length ? typeList : emptyState}
+
+      {/*{showDetails  && <TypesControlDetails/>}*/}
+      {true && <TypesControlDetails/>}
     </div>
-  </div>)
+  )
 })
 
 TypesControl.displayName = nameof(TypesControl)

@@ -2,10 +2,10 @@ import React from "react"
 import {observer} from "mobx-react-lite"
 import {App} from "/src/services/App"
 import {Cursor} from "/src/services/Cursor/Cursor"
-import {Camera} from "/src/models/Camera"
+import {Camera} from "/src/services/Camera"
 import {Type} from "/src/models/Type"
 import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
-import {Grid} from "/src/models/Grid"
+import {Grid} from "/src/services/Grid"
 
 export const ActorPreview = observer(() => {
   if (!App.isMode("create")) return null

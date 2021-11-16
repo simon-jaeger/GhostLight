@@ -1,14 +1,10 @@
 import React, {useState} from "react"
 import {observer} from "mobx-react-lite"
-import {
-  CustomPropType,
-  ResizeOption,
-  Type,
-} from "/src/models/Type"
+import {CustomPropType, ResizeOption, Type} from "/src/models/Type"
 import {Button} from "/src/components/generic/Button"
 import {Select} from "/src/components/generic/Select"
 import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
-import {uDebounce, uRemove} from "/src/helpers/utils"
+import {uRemove} from "/src/helpers/utils"
 import {Input} from "/src/components/generic/Input"
 import {ColorSwatchIcon, PhotographIcon, XIcon} from "@heroicons/react/solid"
 
@@ -39,7 +35,7 @@ export const TypesControlDetails = observer(() => {
   }
 
   return (
-    <form className="flex fixed top-12 bottom-12 right-52 flex-col w-96 bg-gray-800 border-r border-l border-gray-600">
+    <form className="flex fixed top-12 bottom-0 right-52 flex-col w-96 bg-gray-800 border-r border-l border-gray-600">
 
       {/*common settings*/}
       <section className="p-4">
@@ -117,7 +113,7 @@ export const TypesControlDetails = observer(() => {
               <div className="flex justify-start">
                 <Input
                   value={p.name}
-                  onChange={(v) => p.name = v}
+                  onInput={(v) => p.name = v}
                 />
                 <Select
                   value={p.type}

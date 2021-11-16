@@ -1,7 +1,7 @@
 import {Actor} from "/src/models/Actor"
 import {GhostLightScene} from "/src/schema/schema"
 import {Selection} from "/src/services/Selection"
-import {makeAutoObservable, toJS} from "mobx"
+import {makeAutoObservable} from "mobx"
 import {Config} from "/src/models/Config"
 import {FileSystem} from "/src/services/FileSystem/FileSystem"
 import {History} from "/src/services/History"

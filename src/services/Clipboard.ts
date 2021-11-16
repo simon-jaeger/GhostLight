@@ -1,4 +1,4 @@
-import {action, makeAutoObservable, runInAction} from "mobx"
+import {makeAutoObservable, runInAction} from "mobx"
 import {uClone, uIntersection} from "/src/helpers/utils"
 import {Cursor} from "/src/services/Cursor/Cursor"
 import {Actor} from "/src/models/Actor"

@@ -2,21 +2,16 @@ import React, {useRef, useState} from "react"
 import {observer} from "mobx-react-lite"
 import {Input} from "/src/components/generic/Input"
 import {Config} from "/src/models/Config"
-import {Grid} from "/src/models/Grid"
+import {Grid} from "/src/services/Grid"
 import {Select} from "/src/components/generic/Select"
 import {SceneFs} from "/src/services/FileSystem/SceneFs"
-import {
-  ColorSwatchIcon,
-  DotsVerticalIcon,
-  HashtagIcon,
-} from "@heroicons/react/solid"
+import {ColorSwatchIcon, DotsVerticalIcon} from "@heroicons/react/solid"
 import {Menu} from "/src/components/generic/Menu"
 import {useClickOutside} from "/src/hooks/useClickOutside"
 import {Modals} from "/src/services/Modals"
 import {ModalSceneNew} from "/src/components/modals/ModalSceneNew"
 import {ModalSceneRename} from "/src/components/modals/ModalSceneRename"
 import {Button} from "/src/components/generic/Button"
-import {uDebounce} from "/src/helpers/utils"
 
 export const SceneControl = observer(() => {
   const [showMenu, setShowMenu] = useState(false)

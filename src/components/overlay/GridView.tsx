@@ -1,7 +1,7 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
-import {Grid} from "/src/models/Grid"
-import {Camera} from "/src/models/Camera"
+import {Grid} from "/src/services/Grid"
+import {Camera} from "/src/services/Camera"
 
 export const GridView = observer(() => {
   const sizeX = Grid.sizeX * Camera.zoom

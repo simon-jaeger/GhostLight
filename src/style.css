@@ -49,12 +49,6 @@ button {
   text-align: left;
 }
 
-input:disabled,
-textarea:disabled,
-button:disabled {
-  cursor: not-allowed;
-}
-
 input::placeholder {
   @apply text-gray-500
 }

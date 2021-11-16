@@ -1,4 +1,4 @@
-import {makeAutoObservable, runInAction} from "mobx"
+import {makeAutoObservable} from "mobx"
 import {uClone, uFindLast, uLast} from "/src/helpers/utils"
 
 export const Camera = new class {

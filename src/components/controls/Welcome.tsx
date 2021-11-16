@@ -12,7 +12,7 @@ export const Welcome = observer(() => {
   if (ProjectFs.isOpen) return null
 
   const actions = [
-    {name: "New", icon: DocumentAddIcon, fn: () => ProjectFs.create()},
+    {name: "New", icon: DocumentAddIcon, fn: () => ProjectFs.open(null, true)},
     {name: "Open", icon: FolderOpenIcon, fn: () => ProjectFs.open()},
   ]
 

@@ -18,7 +18,7 @@ export const Menu = (p: Props) => {
         <button
           type="button"
           key={a.name}
-          className="px-4 w-full h-8 hover:bg-gray-700"
+          className="px-4 whitespace-nowrap w-full h-8 hover:bg-gray-700"
           onMouseDown={a.fn}
         >{a.name}</button>
       ))}

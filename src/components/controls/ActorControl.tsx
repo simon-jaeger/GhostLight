@@ -1,12 +1,11 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import {observer} from "mobx-react-lite"
 import {Input} from "/src/components/generic/Input"
 import {Selection} from "/src/services/Selection"
-import {Grid} from "/src/models/Grid"
+import {Grid} from "/src/services/Grid"
 import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
 import {uCapitalize} from "/src/helpers/utils"
 import {Button} from "/src/components/generic/Button"
-import {divide} from "lodash"
 
 // TODO: copy id to clipboard on click?
 
