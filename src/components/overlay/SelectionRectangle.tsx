@@ -9,7 +9,7 @@ export const SelectionRectangle = observer(() => {
   if (Selection.rect.width === 0) return null
   return (
     <div
-      className="absolute bg-yellow-500 bg-opacity-20 border border-yellow-500"
+      className="absolute bg-green-300 bg-opacity-20 border border-green-300"
       style={{
         left: Selection.rect.x * Camera.zoom,
         top: Selection.rect.y * Camera.zoom,

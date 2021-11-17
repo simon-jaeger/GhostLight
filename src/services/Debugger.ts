@@ -13,6 +13,8 @@ import {TypesFs} from "/src/services/FileSystem/TypesFs"
 import sceneJson from "/gitignore/demo/.ghostlight/scenes/parseme.json?raw"
 import typesJson from "/gitignore/demo/.ghostlight/types/types.json?raw"
 import {glParse} from "/src/parser/glParse"
+import {Config} from "/src/models/Config"
+import {Grid} from "/src/services/Grid"
 
 if (import.meta.hot) {
   // prevent reload when demo scene saved
@@ -29,6 +31,19 @@ export const Debugger = new class {
 
   constructor() {
     makeAutoObservable(this)
+    // @ts-ignore
+    window.d = this
+  }
+
+  glParse() {
+    const sceneJson = JSON.stringify({
+      config: Config,
+      grid: Grid,
+      actors: Actor.all,
+    })
+    const typesJson = JSON.stringify(Type.all)
+    const scene = glParse(sceneJson, typesJson)
+    console.log(scene)
   }
 
   parseTest() {

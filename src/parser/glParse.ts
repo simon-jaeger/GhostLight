@@ -24,7 +24,7 @@ interface Type {
 }
 
 export function glParse(sceneJson: string, typesJson: string) {
-  const scene: { config: Config, actors: Actor[] } = JSON.parse(sceneJson)
+  const scene: { config: Config, actors: Actor[]} = JSON.parse(sceneJson)
   const types: Type[] = JSON.parse(typesJson)
 
   scene.actors.forEach((a) => {
