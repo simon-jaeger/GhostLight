@@ -7,6 +7,11 @@ import {ParserFs} from "/src/services/FileSystem/ParserFs"
 
 export const ProjectFs = new class {
   isOpen = false
+  rootDirHandle: FileSystemDirectoryHandle | null = null
+  scenesDirHandle: FileSystemDirectoryHandle | null = null
+  assetsDirHandle: FileSystemDirectoryHandle | null = null
+  typesDirHandle: FileSystemDirectoryHandle | null = null
+  parserDirHandle: FileSystemDirectoryHandle | null = null
   private structure = {
     root: ".ghostlight",
     scenes: "scenes",
@@ -23,24 +28,22 @@ export const ProjectFs = new class {
     const projectDirHandle = dirHandle ?? await showDirectoryPicker({id: "gl-alpha"})
     await projectDirHandle.requestPermission({mode: "readwrite"})
 
-    let rootDirHandle, scenesDirHandle, assetsDirHandle, typesDirHandle,
-      parserDirHandle
     try {
-      rootDirHandle = await projectDirHandle.getDirectoryHandle(this.structure.root, {create})
-      scenesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.scenes, {create})
-      assetsDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.assets, {create})
-      typesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.types, {create})
-      parserDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.parser, {create})
+      this.rootDirHandle = await projectDirHandle.getDirectoryHandle(this.structure.root, {create})
+      this.scenesDirHandle = await this.rootDirHandle.getDirectoryHandle(this.structure.scenes, {create})
+      this.assetsDirHandle = await this.rootDirHandle.getDirectoryHandle(this.structure.assets, {create})
+      this.typesDirHandle = await this.rootDirHandle.getDirectoryHandle(this.structure.types, {create})
+      this.parserDirHandle = await this.rootDirHandle.getDirectoryHandle(this.structure.parser, {create})
     } catch {
       return alert("ERROR: Not a valid GhostLight directory.")
     }
     await this.addToRecent(projectDirHandle)
 
     SceneFs.clear()
-    await ParserFs.setup(parserDirHandle)
-    await AssetsFs.setup(assetsDirHandle)
-    await TypesFs.setup(typesDirHandle)
-    await SceneFs.setup(scenesDirHandle)
+    await ParserFs.setup(this.parserDirHandle)
+    await AssetsFs.setup(this.assetsDirHandle)
+    await TypesFs.setup(this.typesDirHandle)
+    await SceneFs.setup(this.scenesDirHandle)
     if (create) await SceneFs.create("scene.json")
     await SceneFs.open(SceneFs.all[0])
 

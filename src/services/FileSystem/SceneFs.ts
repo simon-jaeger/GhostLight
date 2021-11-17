@@ -4,8 +4,9 @@ import {makeAutoObservable} from "mobx"
 import {Config} from "/src/models/Config"
 import {FileSystem} from "/src/services/FileSystem/FileSystem"
 import {History} from "/src/services/History"
+import {Grid} from "/src/services/Grid"
 
-type SceneFile = { config: typeof Config, actors: Actor[] }
+type SceneFile = { config: typeof Config, grid: typeof Grid, actors: Actor[] }
 
 export const SceneFs = new class {
   private fs!: FileSystem
@@ -48,9 +49,10 @@ export const SceneFs = new class {
   }
 
   load(json: string) {
-    const scene:SceneFile = JSON.parse(json)
+    const scene: SceneFile = JSON.parse(json)
     this.clear()
     Object.assign(Config, scene.config)
+    Object.assign(Grid, scene.grid)
     Actor.createMany(scene.actors)
   }
 
@@ -58,6 +60,7 @@ export const SceneFs = new class {
   async save() {
     await this.fs.write(this.active, JSON.stringify({
       config: Config,
+      grid: Grid,
       actors: Actor.all,
     } as SceneFile, null, 2))
     console.log("saved")
@@ -65,8 +68,9 @@ export const SceneFs = new class {
 
   async create(filename: string) {
     filename = this.ensureUnique(filename)
-    const defaultScene:SceneFile = {
+    const defaultScene: SceneFile = {
       config: Config.defaults,
+      grid: Grid.defaults,
       actors: [],
     }
     await this.fs.write(filename, JSON.stringify(defaultScene, null, 2))

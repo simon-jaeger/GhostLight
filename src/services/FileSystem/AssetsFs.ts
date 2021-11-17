@@ -31,7 +31,7 @@ export const AssetsFs = new class {
   }
 
   async import(file: File) {
-    await this.fs.write(file.name, file)
+    if (!this.fs.filenames.has(file.name)) await this.fs.write(file.name, file)
     const key = file.name
     const url = URL.createObjectURL(file)
     const image = await uImage(url)

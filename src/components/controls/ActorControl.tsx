@@ -14,7 +14,7 @@ export const ActorControl = observer(() => {
   const type = actor.type
 
   return (
-    <form className="flex fixed left-0 top-12 bottom-12 flex-col w-64 bg-gray-800">
+    <form className="flex fixed left-0 top-12 bottom-0 flex-col w-64 bg-gray-800">
 
       <header className="flex gap-4 p-4">
         <div

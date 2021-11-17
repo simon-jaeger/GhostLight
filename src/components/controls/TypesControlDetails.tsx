@@ -7,6 +7,7 @@ import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
 import {uRemove} from "/src/helpers/utils"
 import {Input} from "/src/components/generic/Input"
 import {ColorSwatchIcon, PhotographIcon, XIcon} from "@heroicons/react/solid"
+import {ProjectFs} from "/src/services/FileSystem/ProjectFs"
 
 export const TypesControlDetails = observer(() => {
   const [newPropName, setNewPropName] = useState("")
@@ -14,7 +15,8 @@ export const TypesControlDetails = observer(() => {
   const type = Type.active.value
 
   async function onPickImage() {
-    const fileHandle = (await window.showOpenFilePicker())[0]
+    // @ts-ignore
+    const fileHandle = (await window.showOpenFilePicker({startIn: ProjectFs.assetsDirHandle}))[0]
     const file = await fileHandle.getFile()
     const image = await AssetsFs.import(file)
     type.texture = file.name

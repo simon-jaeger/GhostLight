@@ -5,7 +5,11 @@ import {Config} from "/src/models/Config"
 import {Grid} from "/src/services/Grid"
 import {Select} from "/src/components/generic/Select"
 import {SceneFs} from "/src/services/FileSystem/SceneFs"
-import {ColorSwatchIcon, DotsVerticalIcon} from "@heroicons/react/solid"
+import {
+  ColorSwatchIcon,
+  DotsVerticalIcon,
+  EyeIcon, EyeOffIcon,
+} from "@heroicons/react/solid"
 import {Menu} from "/src/components/generic/Menu"
 import {useClickOutside} from "/src/hooks/useClickOutside"
 import {Modals} from "/src/services/Modals"
@@ -107,6 +111,25 @@ export const SceneControl = observer(() => {
               step={Grid.sizeY}
               onChange={(v) => Config.height = v}
             />
+          </div>
+          <div className="flex gap-2 items-end">
+            <Input
+              label="Grid"
+              value={Grid.sizeX}
+              onChange={(v) => Grid.sizeX = v}
+              type="number"
+              min={1}
+            />
+            <span className="h-8 flex items-center">✕</span>
+            <Input
+              value={Grid.sizeY}
+              onChange={(v) => Grid.sizeY = v}
+              type="number"
+              min={1}
+            />
+            <Button onClick={() => Grid.show=!Grid.show}>
+              { Grid.show ? <EyeIcon/> : <EyeOffIcon/>}
+            </Button>
           </div>
 
         </fieldset>

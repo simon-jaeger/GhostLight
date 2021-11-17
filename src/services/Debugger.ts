@@ -29,8 +29,6 @@ export const Debugger = new class {
 
   constructor() {
     makeAutoObservable(this)
-    // @ts-ignore
-    window.d = this
   }
 
   parseTest() {

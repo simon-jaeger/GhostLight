@@ -63,8 +63,8 @@ export const TypesControl = observer(() => {
 
       {Type.all.length ? typeList : emptyState}
 
-      {/*{showDetails  && <TypesControlDetails/>}*/}
-      {true && <TypesControlDetails/>}
+      {showDetails  && <TypesControlDetails/>}
+      {/*{true && <TypesControlDetails/>}*/}
     </div>
   )
 })

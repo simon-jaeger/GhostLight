@@ -16,7 +16,7 @@ export const Controls = observer(() => {
   return (
     <section id="controls" style={{ zoom: 1}}>
       <div className="box-content fixed left-0 w-64 h-full bg-gray-800 border-r border-gray-600">
-        {Selection.all.length ? <ActorControl/> : <SceneControl/>}
+        {Selection.all.length === 1 ? <ActorControl/> : <SceneControl/>}
       </div>
       <div className="box-content fixed right-0 w-52 h-full bg-gray-800 border-l border-gray-600">
         {/*<TextureControl/>*/}
