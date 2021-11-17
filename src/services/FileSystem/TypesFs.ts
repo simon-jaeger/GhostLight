@@ -5,7 +5,7 @@ export const TypesFs = new class {
   private fs!: FileSystem
   private readonly filename = "types.json"
 
-  async register(dirHandle: FileSystemDirectoryHandle) {
+  async setup(dirHandle: FileSystemDirectoryHandle) {
     Type.destroy(...Type.all)
     this.fs = await FileSystem.make(dirHandle)
     if (!this.fs.filenames.has(this.filename)) await this.save() // create file if necessary

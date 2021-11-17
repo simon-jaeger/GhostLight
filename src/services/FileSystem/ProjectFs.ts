@@ -3,6 +3,7 @@ import {SceneFs} from "/src/services/FileSystem/SceneFs"
 import {makeAutoObservable} from "mobx"
 import * as idb from "idb-keyval"
 import {TypesFs} from "/src/services/FileSystem/TypesFs"
+import {ParserFs} from "/src/services/FileSystem/ParserFs"
 
 export const ProjectFs = new class {
   isOpen = false
@@ -11,6 +12,7 @@ export const ProjectFs = new class {
     scenes: "scenes",
     assets: "assets",
     types: "types",
+    parser: "parser",
   }
 
   constructor() {
@@ -21,22 +23,24 @@ export const ProjectFs = new class {
     const projectDirHandle = dirHandle ?? await showDirectoryPicker({id: "gl-alpha"})
     await projectDirHandle.requestPermission({mode: "readwrite"})
 
-    let rootDirHandle: FileSystemDirectoryHandle, scenesDirHandle,
-      assetsDirHandle, typesDirHandle
+    let rootDirHandle, scenesDirHandle, assetsDirHandle, typesDirHandle,
+      parserDirHandle
     try {
       rootDirHandle = await projectDirHandle.getDirectoryHandle(this.structure.root, {create})
       scenesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.scenes, {create})
       assetsDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.assets, {create})
       typesDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.types, {create})
+      parserDirHandle = await rootDirHandle.getDirectoryHandle(this.structure.parser, {create})
     } catch {
       return alert("ERROR: Not a valid GhostLight directory.")
     }
     await this.addToRecent(projectDirHandle)
 
     SceneFs.clear()
-    await AssetsFs.register(assetsDirHandle)
-    await TypesFs.register(typesDirHandle)
-    await SceneFs.register(scenesDirHandle)
+    await ParserFs.setup(parserDirHandle)
+    await AssetsFs.setup(assetsDirHandle)
+    await TypesFs.setup(typesDirHandle)
+    await SceneFs.setup(scenesDirHandle)
     if (create) await SceneFs.create("scene.json")
     await SceneFs.open(SceneFs.all[0])
 

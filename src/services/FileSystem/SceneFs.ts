@@ -1,19 +1,15 @@
 import {Actor} from "/src/models/Actor"
-import {GhostLightScene} from "/src/schema/schema"
 import {Selection} from "/src/services/Selection"
 import {makeAutoObservable} from "mobx"
 import {Config} from "/src/models/Config"
 import {FileSystem} from "/src/services/FileSystem/FileSystem"
 import {History} from "/src/services/History"
 
+type SceneFile = { config: typeof Config, actors: Actor[] }
+
 export const SceneFs = new class {
   private fs!: FileSystem
   active = ""
-
-  readonly data: GhostLightScene = {
-    config: Config,
-    actors: Actor.all,
-  }
 
   constructor() {
     makeAutoObservable(this, {all: false})
@@ -28,7 +24,7 @@ export const SceneFs = new class {
     return Array.from(this.fs.filenames).sort()
   }
 
-  async register(dirHandle: FileSystemDirectoryHandle) {
+  async setup(dirHandle: FileSystemDirectoryHandle) {
     this.fs = await FileSystem.make(dirHandle)
   }
 
@@ -52,7 +48,7 @@ export const SceneFs = new class {
   }
 
   load(json: string) {
-    const scene: GhostLightScene = JSON.parse(json)
+    const scene:SceneFile = JSON.parse(json)
     this.clear()
     Object.assign(Config, scene.config)
     Actor.createMany(scene.actors)
@@ -60,13 +56,16 @@ export const SceneFs = new class {
 
   // TODO: maybe cleanup orphaned props before save
   async save() {
-    await this.fs.write(this.active, JSON.stringify(this.data, null, 2))
+    await this.fs.write(this.active, JSON.stringify({
+      config: Config,
+      actors: Actor.all,
+    } as SceneFile, null, 2))
     console.log("saved")
   }
 
   async create(filename: string) {
     filename = this.ensureUnique(filename)
-    const defaultScene: GhostLightScene = {
+    const defaultScene:SceneFile = {
       config: Config.defaults,
       actors: [],
     }

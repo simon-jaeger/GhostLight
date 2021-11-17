@@ -4,8 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "serve": "vite preview",
-    "schema": "typescript-json-schema tsconfig.json GhostLightScene --out src/schema/generated-schema.json"
+    "serve": "vite preview"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.4",
@@ -27,7 +26,6 @@
     "tailwindcss": "^2.2.2",
     "ts-nameof": "^5.0.0",
     "typescript": "^4.1.2",
-    "typescript-json-schema": "0.51.0",
     "vite": "^2.0.0",
     "vite-plugin-ts-nameof": "^1.0.0"
   }

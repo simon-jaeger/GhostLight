@@ -19,7 +19,7 @@ export const AssetsFs = new class {
     this.map.clear()
   }
 
-  async register(dirHandle: FileSystemDirectoryHandle) {
+  async setup(dirHandle: FileSystemDirectoryHandle) {
     this.clear()
     this.fs = await FileSystem.make(dirHandle)
     for (const filename of this.fs.filenames) {

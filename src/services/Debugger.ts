@@ -10,9 +10,14 @@ import {Type} from "/src/models/Type"
 import {History} from "/src/services/History"
 import {TypesFs} from "/src/services/FileSystem/TypesFs"
 
+import sceneJson from "/gitignore/demo/.ghostlight/scenes/parseme.json?raw"
+import typesJson from "/gitignore/demo/.ghostlight/types/types.json?raw"
+import {glParse} from "/src/parser/glParse"
+
 if (import.meta.hot) {
   // prevent reload when demo scene saved
   import.meta.hot.accept("/gitignore/demo/.ghostlight/scenes/level-01.json?raw", (x) => null)
+  import.meta.hot.accept("/gitignore/demo/.ghostlight/scenes/parseme.json?raw", (x) => null)
   import.meta.hot.accept("/gitignore/demo/.ghostlight/types/types.json?raw", (x) => null)
 }
 
@@ -24,6 +29,14 @@ export const Debugger = new class {
 
   constructor() {
     makeAutoObservable(this)
+    // @ts-ignore
+    window.d = this
+  }
+
+  parseTest() {
+    const scene = glParse(sceneJson, typesJson)
+    console.log(scene.actors[0].id)
+    console.log(scene)
   }
 
   run() {
@@ -96,7 +109,11 @@ export const Debugger = new class {
   }
 
   async testManyActors() {
-    const demoType = Type.create({name: "Demo", texture: "#059669", resize:'Scale'})
+    const demoType = Type.create({
+      name: "Demo",
+      texture: "#059669",
+      resize: "Scale",
+    })
     Type.active.value = demoType
 
     let count = 4 // 2* 2
