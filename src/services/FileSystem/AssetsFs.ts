@@ -45,4 +45,8 @@ export const AssetsFs = new class {
     else return image
   }
 
+  has(key: string) {
+    return this.map.has(key)
+  }
+
 }
