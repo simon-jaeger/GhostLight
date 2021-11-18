@@ -121,7 +121,7 @@ export const Debugger = new class {
     SceneFs.load(demoScene)
   }
 
-  async testManyActors() {
+  async testManyActors(count=4096) {
     const demoType = Type.create({
       name: "Demo",
       texture: "#059669",
@@ -129,13 +129,14 @@ export const Debugger = new class {
     })
     Type.active.value = demoType
 
-    let count = 4 // 2* 2
+    // count = 4 // 2* 2
     // count = 64 // 8 * 8
     // count = 1024 // 32*32
     // count = 2304 // 48*48
     // count = 4096 // 64*64
     // count = 6400 // 80*80
     const row = Math.sqrt(count)
+    Actor.destroy(...Actor.all)
     Actor.createMany(uRange(count).map((i) => ({
       x: i % row * 32,
       y: Math.floor(i / row) * 32,

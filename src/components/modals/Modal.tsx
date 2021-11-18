@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import ReactDOM from "react-dom"
 import {Button} from "/src/components/generic/Button"
 
@@ -12,6 +12,7 @@ interface Props {
 
 export const Modal = (p: Props) => {
   if (!p.show) return null
+  const [busy, setBusy] = useState(false)
 
   return ReactDOM.createPortal(
     <div
@@ -21,25 +22,28 @@ export const Modal = (p: Props) => {
       }}
     >
       <form
-        onSubmit={e => {
+        onSubmit={async (e) => {
+          setBusy(true)
           e.preventDefault()
-          p.action?.fn()
+          await p.action?.fn()
+          setBusy(false)
         }}
         className="w-[480px] bg-gray-800 rounded border-gray-600 border overflow-hidden shadow"
       >
-        <header className="px-4 py-2 bg-gray-900">
-          <h2>{p.title}</h2>
-        </header>
+        <fieldset disabled={busy}>
+          <header className="px-4 py-2 bg-gray-900">
+            <h2>{p.title}</h2>
+          </header>
 
-        <div className="p-4">
-          {p.children}
-        </div>
+          <div className="p-4">
+            {p.children}
+          </div>
 
-        <footer className="flex gap-4 justify-end p-4 bg-gray-800 border-t border-gray-600">
-          <Button onClick={p.onClose}>Cancel</Button>
-          <Button submit>{p.action?.name}</Button>
-        </footer>
-
+          <footer className="flex gap-4 justify-end p-4 bg-gray-800 border-t border-gray-600">
+            <Button onClick={p.onClose}>Cancel</Button>
+            <Button submit>{p.action?.name}</Button>
+          </footer>
+        </fieldset>
       </form>
     </div>
     , document.getElementById("modals")!,
