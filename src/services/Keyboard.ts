@@ -6,6 +6,8 @@ import {Cursor} from "/src/services/Cursor/Cursor"
 import {Camera} from "/src/services/Camera"
 import {Clipboard} from "/src/services/Clipboard"
 import {History} from "/src/services/History"
+import {uCapitalize} from "/src/helpers/utils"
+import {Grid} from "/src/services/Grid"
 
 export const Keyboard = new class {
   Shift = false
@@ -16,12 +18,6 @@ export const Keyboard = new class {
     " ": "Space",
     "+": "Plus",
     "-": "Minus",
-    "a": "A",
-    "c": "C",
-    "v": "V",
-    "x": "X",
-    "y": "Y",
-    "z": "Z",
     "Control": "Ctrl",
   }
 
@@ -32,13 +28,13 @@ export const Keyboard = new class {
   addEventListeners() {
     window.addEventListener("keydown", (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
-      let key = this.nameMap[e.key] ?? e.key
+      let key = this.nameMap[e.key] ?? uCapitalize(e.key)
       if (key in this) this[key] = true
       this["on" + (this.Ctrl ? "Ctrl" : "") + key]?.(e)
     })
     window.addEventListener("keyup", (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
-      let key = this.nameMap[e.key] ?? e.key
+      let key = this.nameMap[e.key] ?? uCapitalize(e.key)
       if (key in this) this[key] = false
       this["on" + (this.Ctrl ? "Ctrl" : "") + key + "Up"]?.(e)
     })
@@ -90,5 +86,18 @@ export const Keyboard = new class {
     e.preventDefault()
     App.setMode("select")
     Selection.set(...Actor.all)
+  }
+
+  onArrowUp() {
+    Selection.all.forEach((a) => a.y -= Grid.sizeY)
+  }
+  onArrowDown() {
+    Selection.all.forEach((a) => a.y += Grid.sizeY)
+  }
+  onArrowLeft() {
+    Selection.all.forEach((a) => a.x -= Grid.sizeX)
+  }
+  onArrowRight() {
+    Selection.all.forEach((a) => a.x += Grid.sizeX)
   }
 }
