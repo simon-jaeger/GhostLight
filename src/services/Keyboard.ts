@@ -38,6 +38,14 @@ export const Keyboard = new class {
       if (key in this) this[key] = false
       this["on" + (this.Ctrl ? "Ctrl" : "") + key + "Up"]?.(e)
     })
+
+    // alias middle mouse button to space
+    window.addEventListener("mousedown", (e: MouseEvent) => {
+      if (e.button !== 0 && e.button !== 2) this.onSpace()
+    }, {capture: true})
+    window.addEventListener("mouseup", (e: MouseEvent) => {
+      if (e.button !== 0 && e.button !== 2) this.onSpaceUp()
+    }, {capture: true})
   }
 
   onCtrlC() {
@@ -66,6 +74,7 @@ export const Keyboard = new class {
 
   onEscape() {
     Selection.clear()
+    App.setMode("select")
   }
 
   onSpace() {
