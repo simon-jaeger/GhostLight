@@ -25,7 +25,7 @@ export const Keyboard = new class {
     makeAutoObservable(this)
   }
 
-  addEventListeners() {
+  addEventListeners(sceneView: HTMLElement) {
     window.addEventListener("keydown", (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
       let key = this.nameMap[e.key] ?? uCapitalize(e.key)
@@ -40,12 +40,19 @@ export const Keyboard = new class {
     })
 
     // alias middle mouse button to space
-    window.addEventListener("mousedown", (e: MouseEvent) => {
+    sceneView.addEventListener("mousedown", (e: MouseEvent) => {
       if (e.button !== 0 && e.button !== 2) this.onSpace()
     }, {capture: true})
-    window.addEventListener("mouseup", (e: MouseEvent) => {
+    sceneView.addEventListener("mouseup", (e: MouseEvent) => {
       if (e.button !== 0 && e.button !== 2) this.onSpaceUp()
     }, {capture: true})
+
+    // alias scroll wheel to plus/minus
+    sceneView.addEventListener("wheel", (e: WheelEvent) => {
+      console.log(e)
+      if (e.deltaY > 0) this.onMinus()
+      if (e.deltaY < 0) this.onPlus()
+    })
   }
 
   onCtrlC() {

@@ -4,6 +4,7 @@ export const uClone = l.cloneDeep
 export const uIntersection = l.intersection
 export const uIsEqual = l.isEqual
 export const uDebounce = l.debounce
+export const uThrottle = l.throttle
 
 // simple 2d box collision check
 export function uCollision(pA: Point | Shape, pB: Point | Shape) {

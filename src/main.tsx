@@ -18,7 +18,7 @@ ReactDOM.render(
   document.getElementById("root"),
 )
 
-Keyboard.addEventListeners()
+Keyboard.addEventListeners(document.getElementById("scene")!)
 DropHandler.addEventListener()
 Cursor.addEventListeners(document.getElementById("scene")!)
 History.listen()
