@@ -22,14 +22,16 @@ export const SceneControl = observer(() => {
   const refMenuTrigger = useRef(null)
   useClickOutside(refMenuTrigger, () => setShowMenu(false))
 
+  async function onChange(toOpen: string) {
+    await SceneFs.open(toOpen)
+  }
+
   async function onDuplicate() {
-    await SceneFs.save()
     const copy = await SceneFs.duplicate()
     await SceneFs.open(copy)
   }
 
   async function onDestroy() {
-    // TODO: prevent deleting single remaining scene, maybe change that later
     if (SceneFs.all.length <= 1) return
     let toLoad = SceneFs.all[SceneFs.all.indexOf(SceneFs.active) - 1] ?? SceneFs.all[1] // scene before or single remaining
     await SceneFs.destroy()
@@ -43,7 +45,7 @@ export const SceneControl = observer(() => {
           <Select
             value={SceneFs.active}
             options={SceneFs.all}
-            onChange={(v) => SceneFs.open(v)}
+            onChange={onChange}
             style={{flex: 1}}
           />
           <button
@@ -120,15 +122,15 @@ export const SceneControl = observer(() => {
               type="number"
               min={1}
             />
-            <span className="h-8 flex items-center">✕</span>
+            <span className="flex items-center h-8">✕</span>
             <Input
               value={Grid.sizeY}
               onChange={(v) => Grid.sizeY = v}
               type="number"
               min={1}
             />
-            <Button onClick={() => Grid.show=!Grid.show}>
-              { Grid.show ? <EyeIcon/> : <EyeOffIcon/>}
+            <Button onClick={() => Grid.show = !Grid.show}>
+              {Grid.show ? <EyeIcon/> : <EyeOffIcon/>}
             </Button>
           </div>
 

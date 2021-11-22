@@ -1,16 +1,28 @@
 import {Actor} from "/src/models/Actor"
 import {Selection} from "/src/services/Selection"
-import {makeAutoObservable} from "mobx"
+import {
+  IReactionDisposer,
+  makeAutoObservable,
+  reaction,
+  toJS,
+} from "mobx"
 import {Config} from "/src/models/Config"
 import {FileSystem} from "/src/services/FileSystem/FileSystem"
 import {History} from "/src/services/History"
 import {Grid} from "/src/services/Grid"
+import {uDebounce} from "/src/helpers/utils"
 
 type SceneFile = { config: typeof Config, grid: typeof Grid, actors: Actor[] }
 
 export const SceneFs = new class {
   private fs!: FileSystem
   active = ""
+  private data: SceneFile = {
+    config: Config,
+    grid: Grid,
+    actors: Actor.all,
+  }
+  private autoSaveDisposer: IReactionDisposer | null = null
 
   constructor() {
     makeAutoObservable(this, {all: false})
@@ -26,19 +38,24 @@ export const SceneFs = new class {
   }
 
   async setup(dirHandle: FileSystemDirectoryHandle) {
+    this.autoSaveOff()
     this.fs = await FileSystem.make(dirHandle)
+    this.autoSaveOn()
+  }
+
+  private autoSaveOn() {
+    this.autoSaveDisposer = reaction(() => toJS(this.data), uDebounce(() => {
+      this.save()
+    }, 1000))
+  }
+  private autoSaveOff() {
+    this.autoSaveDisposer?.()
   }
 
   private ensureUnique(filename: string) {
     return (this.fs.filenames.has(filename))
       ? filename.replace(/\.json$/, "-" + Date.now() + ".json")
       : filename
-  }
-
-  clear() {
-    Selection.clear()
-    Config.reset()
-    Actor.destroy(...Actor.all)
   }
 
   async open(filename: string) {
@@ -49,21 +66,19 @@ export const SceneFs = new class {
   }
 
   load(json: string) {
+    this.autoSaveOff()
     const scene: SceneFile = JSON.parse(json)
-    this.clear()
+    Selection.clear()
     Object.assign(Config, scene.config)
     Object.assign(Grid, scene.grid)
+    Actor.destroy(...Actor.all)
     Actor.createMany(scene.actors)
+    this.autoSaveOn()
   }
 
   // TODO: maybe cleanup orphaned props before save
-  async save() {
-    await this.fs.write(this.active, JSON.stringify({
-      config: Config,
-      grid: Grid,
-      actors: Actor.all,
-    } as SceneFile, null, 2))
-    console.log("saved")
+  private async save() {
+    await this.fs?.write(this.active, JSON.stringify(this.data, null, 2))
   }
 
   async create(filename: string) {

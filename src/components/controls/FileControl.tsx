@@ -8,26 +8,15 @@ import {
   XIcon,
 } from "@heroicons/react/solid"
 import {ProjectFs} from "/src/services/FileSystem/ProjectFs"
-import {SceneFs} from "/src/services/FileSystem/SceneFs"
-import {uSleep} from "/src/helpers/utils"
 import {History} from "/src/services/History"
-import {TypesFs} from "/src/services/FileSystem/TypesFs"
 import {Menu} from "/src/components/generic/Menu"
 import {useClickOutside} from "/src/hooks/useClickOutside"
 
 export const FileControl = observer(() => {
-  const [saved, setSaved] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
   const refMenuTrigger = useRef(null)
   useClickOutside(refMenuTrigger, () => setShowMenu(false))
 
-  async function onSave() {
-    await SceneFs.save()
-    await TypesFs.save()
-    setSaved(true)
-    await uSleep(1000)
-    setSaved(false)
-  }
 
   return (
     <div className="flex fixed top-0 left-0 items-center h-12 bg-gray-800">
@@ -46,11 +35,6 @@ export const FileControl = observer(() => {
         onClick={() => History.redo()}
         className="flex justify-center items-center w-12 h-12 disabled:opacity-50 hover:bg-gray-700"
       ><ArrowCircleRightIcon/></button>
-      <button
-        onClick={onSave}
-        className="flex justify-center items-center w-12 h-12 hover:bg-gray-700"
-      ><SaveIcon/></button>
-      {saved && <span className="ml-2">Saved</span>}
 
       <Menu
         actions={[

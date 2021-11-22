@@ -9,7 +9,6 @@ export const ModalSceneNew = observer(() => {
   const [name, setName] = useState('new-scene')
 
   async function action() {
-    await SceneFs.save()
     const created = await SceneFs.create(name + ".json")
     await SceneFs.open(created)
     onClose()

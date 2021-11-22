@@ -39,7 +39,6 @@ export const ProjectFs = new class {
     }
     await this.addToRecent(projectDirHandle)
 
-    SceneFs.clear()
     await ParserFs.setup(this.parserDirHandle)
     await AssetsFs.setup(this.assetsDirHandle)
     await TypesFs.setup(this.typesDirHandle)
@@ -63,7 +62,6 @@ export const ProjectFs = new class {
   }
 
   close() {
-    SceneFs.clear()
     this.isOpen = false
   }
 
