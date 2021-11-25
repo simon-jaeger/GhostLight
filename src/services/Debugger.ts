@@ -62,7 +62,7 @@ export const Debugger = new class {
   }
 
   performance(frame: number) {
-    this.frames = this.frames.filter(x => x > frame - 1000)
+    this.frames = this.frames.filter(x => x > performance.now() - 999)
     this.frames.unshift(frame)
     this.delta = frame - this.frames[1]
     this.fps = this.frames.length
@@ -119,30 +119,5 @@ export const Debugger = new class {
     }
     TypesFs.load(demoSceneTypes)
     SceneFs.load(demoScene)
-  }
-
-  async testManyActors(count=4096) {
-    const demoType = Type.create({
-      name: "Demo",
-      texture: "#059669",
-      resize: "Scale",
-    })
-    Type.active.value = demoType
-
-    // count = 4 // 2* 2
-    // count = 64 // 8 * 8
-    // count = 1024 // 32*32
-    // count = 2304 // 48*48
-    // count = 4096 // 64*64
-    // count = 6400 // 80*80
-    const row = Math.sqrt(count)
-    Actor.destroy(...Actor.all)
-    Actor.createMany(uRange(count).map((i) => ({
-      x: i % row * 32,
-      y: Math.floor(i / row) * 32,
-      width: 16,
-      height: 16,
-      type_id: demoType.id,
-    })))
   }
 }

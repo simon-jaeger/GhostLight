@@ -20,6 +20,11 @@ export function uSnap(number: number, step: number) {
   return Math.floor(number / step) * step
 }
 
+// calculate sum of numbers
+export function uSum(numbers: number[]) {
+  return numbers.reduce((a, b) => a + b, 0)
+}
+
 // return last element of array
 export function uLast<T>(array: Array<T>): T {
   return array[array.length - 1]
@@ -60,8 +65,8 @@ export function uImage(url: string) {
 }
 
 // sleep for n miliseconds
-export async function uSleep(n) {
-  return new Promise(resolve => setTimeout(resolve, n))
+export async function uSleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 // create data url for given color

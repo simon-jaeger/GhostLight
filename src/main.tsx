@@ -22,4 +22,3 @@ Keyboard.addEventListeners(document.getElementById("scene")!)
 DropHandler.addEventListener()
 Cursor.addEventListeners(document.getElementById("scene")!)
 History.listen()
-
