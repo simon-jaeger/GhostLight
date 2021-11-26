@@ -4,6 +4,9 @@ import {makeAutoObservable} from "mobx"
 import * as idb from "idb-keyval"
 import {TypesFs} from "/src/services/FileSystem/TypesFs"
 import {ParserFs} from "/src/services/FileSystem/ParserFs"
+import {App} from "/src/services/App"
+
+// TODO: loading indicator when opening/switching project?
 
 export const ProjectFs = new class {
   isOpen = false
@@ -25,7 +28,7 @@ export const ProjectFs = new class {
   }
 
   async open(dirHandle?: FileSystemDirectoryHandle | null, create = false) {
-    const projectDirHandle = dirHandle ?? await showDirectoryPicker({id: "gl-alpha"})
+    const projectDirHandle = dirHandle ?? await showDirectoryPicker({id: "gl-beta"})
     await projectDirHandle.requestPermission({mode: "readwrite"})
 
     try {
@@ -46,6 +49,7 @@ export const ProjectFs = new class {
     if (create) await SceneFs.create("scene.json")
     await SceneFs.open(SceneFs.all[0])
 
+    App.setMode('select')
     this.isOpen = true
   }
 

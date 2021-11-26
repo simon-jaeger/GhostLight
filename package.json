@@ -1,6 +1,6 @@
 {
   "name": "ghostlight",
-  "version": "0.0.0-alpha",
+  "version": "0.0.0-beta",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

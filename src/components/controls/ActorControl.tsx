@@ -73,7 +73,7 @@ export const ActorControl = observer(() => {
           if (p.type === "string" || p.type === "number") return (
             <Input
               key={p.id}
-              label={uCapitalize(p.name)}
+              label={uCapitalize(p.name) || ' '}
               placeholder={p.default}
               value={actor.props[p.id] ?? null}
               onInput={(v) => {

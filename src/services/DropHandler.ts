@@ -2,7 +2,6 @@ import {makeAutoObservable} from "mobx"
 import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
 import {Type} from "/src/models/Type"
 
-// TODO: refactor to support new type system
 export const DropHandler = new class {
   constructor() {
     makeAutoObservable(this)
@@ -26,7 +25,6 @@ export const DropHandler = new class {
         height: image.height,
       })
     }
-    // Type.active.value = Type.create()
   }
 
   onDragOver(e: DragEvent) {

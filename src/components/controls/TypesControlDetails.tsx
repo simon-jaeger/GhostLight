@@ -115,7 +115,7 @@ export const TypesControlDetails = observer(() => {
               <div className="flex justify-start">
                 <Input
                   value={p.name}
-                  onInput={(v) => p.name = v}
+                  onChange={(v) => p.name = v}
                 />
                 <Select
                   value={p.type}

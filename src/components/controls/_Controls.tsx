@@ -19,7 +19,6 @@ export const Controls = observer(() => {
         {Selection.all.length === 1 ? <ActorControl/> : <SceneControl/>}
       </div>
       <div className="box-content fixed right-0 w-52 h-full bg-gray-800 border-l border-gray-600">
-        {/*<TextureControl/>*/}
         <TypesControl/>
       </div>
       <div className="box-content fixed top-0 w-full h-12 bg-gray-800 border-b border-gray-600">

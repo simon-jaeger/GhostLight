@@ -2,12 +2,13 @@ import React, {useEffect, useState} from "react"
 import {observer} from "mobx-react-lite"
 import {ProjectFs} from "/src/services/FileSystem/ProjectFs"
 import {DocumentAddIcon, FolderOpenIcon} from "@heroicons/react/outline"
+import {version} from "/package.json"
 
 export const Welcome = observer(() => {
   const [recent, setRecent] = useState([] as FileSystemDirectoryHandle[])
   useEffect(() => {
     ProjectFs.getRecent().then(setRecent)
-  }, [])
+  }, [ProjectFs.isOpen])
 
   if (ProjectFs.isOpen) return null
 
@@ -21,7 +22,7 @@ export const Welcome = observer(() => {
       <div className="w-[640px]">
 
         <h1 className="mb-2 text-lg font-semibold tracking-wide uppercase">
-          GhostLight <span className="text-gray-400">(Alpha)</span>
+          GhostLight <span className="text-gray-400">({version})</span>
         </h1>
         <hr className="mb-8 h-1 bg-blue-500 bg-opacity-50"></hr>
 

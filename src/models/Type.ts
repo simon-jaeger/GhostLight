@@ -2,9 +2,6 @@ import {makeAutoObservable, observable, reaction, runInAction} from "mobx"
 import {uRemove} from "/src/helpers/utils"
 import uuid4 from "uuid4"
 
-// TODO:  maybe take a step back with the whole json shema thing too. demo project instead?
-// TODO: for the demo game, join actor and type on id to embed type props in actor and add names props after resolving via prop.id (kinda sql-like).
-
 export type ResizeOption = "Disabled" | "Scale" | "Repeat"
 export type CustomPropType = "string" | "number" | "boolean"
 export type CustomProp = {
