@@ -7,6 +7,7 @@ import {App} from "/src/services/App"
 
 export class CursorModeSelect implements CursorMode {
   onMouseDown(e: MouseEvent) {
+    if (Keyboard.Alt) return App.setMode("dragSelect")
     const target = Actor.findByCollision(Cursor.posReal)
     if (target) {
       if (Keyboard.Shift) Selection.toggle(target)

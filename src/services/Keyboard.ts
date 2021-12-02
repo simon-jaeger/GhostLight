@@ -6,7 +6,7 @@ import {Cursor} from "/src/services/Cursor/Cursor"
 import {Camera} from "/src/services/Camera"
 import {Clipboard} from "/src/services/Clipboard"
 import {History} from "/src/services/History"
-import {uCapitalize} from "/src/helpers/utils"
+import {uCapitalize, uThrottle} from "/src/helpers/utils"
 import {Grid} from "/src/services/Grid"
 
 export const Keyboard = new class {
@@ -48,11 +48,11 @@ export const Keyboard = new class {
     }, {capture: true})
 
     // alias scroll wheel to plus/minus
-    sceneView.addEventListener("wheel", (e: WheelEvent) => {
+    sceneView.addEventListener("wheel", uThrottle((e: WheelEvent) => {
       console.log(e)
       if (e.deltaY > 0) this.onMinus()
       if (e.deltaY < 0) this.onPlus()
-    })
+    }, 200))
   }
 
   onCtrlC() {

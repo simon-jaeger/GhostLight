@@ -65,6 +65,7 @@ export const Cursor = new class {
       this.posStart.x = this.pos.x
       this.posStart.y = this.pos.y
 
+      if (this.rightClick) App.setMode("select")
       this.currentMode.onMouseDown?.(e)
     })
     sceneView.addEventListener("mousemove", (e) => {
