@@ -39,6 +39,7 @@ export const Debugger = new class {
   async loadDemoScene() {
     const assets = Object.keys(import.meta.glob("/public/*")).map((x) => x.replaceAll("/public/", ""))
     for (const asset of assets) {
+      // @ts-ignore
       AssetsFs.map.set(asset, await uImage(asset))
     }
     TypesFs.load(demoSceneTypes)
