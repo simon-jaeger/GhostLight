@@ -91,6 +91,7 @@ export function uRandItem<T>(array: Array<T>): T {
 }
 
 // range
-export function uRange(size) {
-  return [...Array(size).keys()]
+export function uRange(start = 0, end?) {
+  if (end == null) return [...Array(start).keys()]
+  else return [...Array(end + 1 - start).keys()].map((x) => x + start)
 }

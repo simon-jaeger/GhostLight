@@ -37,7 +37,7 @@ export const TypesControlDetails = observer(() => {
   }
 
   return (
-    <form className="flex fixed top-12 bottom-0 right-52 flex-col w-96 bg-gray-800 border-r border-l border-gray-600">
+    <form className="flex fixed bottom-0 top-12 right-52 flex-col w-96 bg-gray-800 border-r border-l border-gray-600">
 
       {/*common settings*/}
       <section className="p-4">
@@ -91,7 +91,7 @@ export const TypesControlDetails = observer(() => {
           <Select
             label="Resize"
             value={type.resize}
-            options={["Disabled", "Scale", "Repeat"] as ResizeOption[]}
+            options={["Disabled", "Scale", "Repeat", "Sliced"] as ResizeOption[]}
             onChange={(v) => type.resize = v}
           />
         </fieldset>

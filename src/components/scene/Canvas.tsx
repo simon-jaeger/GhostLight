@@ -3,6 +3,7 @@ import {Actor} from "/src/models/Actor"
 import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
 import {Camera} from "/src/services/Camera"
 import {Debugger} from "/src/services/Debugger"
+import {drawSliced} from "/src/components/scene/drawSliced"
 
 export const Canvas = () => {
   const refCanvas = useRef<HTMLCanvasElement>(null)
@@ -48,7 +49,12 @@ export const Canvas = () => {
         ctx.translate(-actor.x, -actor.y)
       }
       //////////////////////////////////////////////////////////////////////////
-      else { // non-tiling sprite
+      else if (actor.type.resize === "Sliced") {
+        const texture = AssetsFs.get(actor.type.texture)
+        drawSliced(ctx, texture, actor.x, actor.y, actor.width, actor.height)
+      }
+      //////////////////////////////////////////////////////////////////////////
+      else { // simple image
         const texture = AssetsFs.get(actor.type.texture)
         ctx.drawImage(texture, actor.x, actor.y, actor.width, actor.height)
       }

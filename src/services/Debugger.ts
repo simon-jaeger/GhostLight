@@ -3,7 +3,7 @@ import {makeAutoObservable} from "mobx"
 import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
 import {Actor} from "/src/models/Actor"
 import {uImage, uRange} from "/src/helpers/utils"
-import demoScene from "/gitignore/demo/.ghostlight/scenes/level-01.json?raw"
+import demoScene from "/gitignore/demo/.ghostlight/scenes/scene.json?raw"
 import demoSceneTypes from "/gitignore/demo/.ghostlight/types/types.json?raw"
 import {SceneFs} from "/src/services/FileSystem/SceneFs"
 import {Type} from "/src/models/Type"
@@ -16,7 +16,7 @@ import {Grid} from "/src/services/Grid"
 
 if (import.meta.hot) {
   // prevent reload when demo scene saved
-  import.meta.hot.accept("/gitignore/demo/.ghostlight/scenes/level-01.json?raw", (x) => null)
+  import.meta.hot.accept("/gitignore/demo/.ghostlight/scenes/scene.json?raw", (x) => null)
   import.meta.hot.accept("/gitignore/demo/.ghostlight/types/types.json?raw", (x) => null)
 }
 

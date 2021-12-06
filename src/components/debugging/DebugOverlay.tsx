@@ -7,7 +7,7 @@ import {App} from "/src/services/App"
 import {Selection} from "/src/services/Selection"
 import {History} from "/src/services/History"
 
-export const DebugView = observer(() => {
+export const DebugOverlay = observer(() => {
   if (!Debugger.active) return null
 
   return (
@@ -26,4 +26,4 @@ export const DebugView = observer(() => {
   )
 })
 
-DebugView.displayName = nameof(DebugView)
+DebugOverlay.displayName = nameof(DebugOverlay)

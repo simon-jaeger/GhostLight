@@ -1,6 +1,5 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
-import {DebugView} from "/src/components/controls/DebugView"
 import {ModeControl} from "/src/components/controls/ModeControl"
 import {ActorControl} from "/src/components/controls/ActorControl"
 import {CameraControl} from "/src/components/controls/CameraControl"
@@ -29,7 +28,6 @@ export const Controls = observer(() => {
 
       <ContextMenu/>
 
-      <DebugView/>
       <Welcome/>
     </section>
   )
