@@ -119,7 +119,7 @@ export const TypesControlDetails = observer(() => {
                 />
                 <Select
                   value={p.type}
-                  options={["string", "number", "boolean"] as CustomPropType[]}
+                  options={["string", "number", "boolean", "link"] as CustomPropType[]}
                   onChange={(v) => p.type = v}
                   style={{width: 96}}
                 />

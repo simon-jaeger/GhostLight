@@ -3,7 +3,7 @@ import {uRemove} from "/src/helpers/utils"
 import uuid4 from "uuid4"
 
 export type ResizeOption = "Disabled" | "Scale" | "Repeat" | "Sliced"
-export type CustomPropType = "string" | "number" | "boolean"
+export type CustomPropType = "string" | "number" | "boolean" | "link"
 export type CustomProp = {
   id: string
   name: string,

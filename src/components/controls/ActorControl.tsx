@@ -4,17 +4,16 @@ import {Input} from "/src/components/generic/Input"
 import {Selection} from "/src/services/Selection"
 import {Grid} from "/src/services/Grid"
 import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
-import {uCapitalize} from "/src/helpers/utils"
 import {Button} from "/src/components/generic/Button"
-
-// TODO: copy id to clipboard on click?
+import {LinkIcon, XIcon} from "@heroicons/react/solid"
+import {App} from "/src/services/App"
 
 export const ActorControl = observer(() => {
   const actor = Selection.all[0]
   const type = actor.type
 
   return (
-    <form className="flex fixed left-0 top-12 bottom-0 flex-col w-64 bg-gray-800">
+    <form className="flex fixed bottom-0 left-0 top-12 flex-col w-64 bg-gray-800">
 
       <header className="flex gap-4 p-4">
         <div
@@ -26,7 +25,13 @@ export const ActorControl = observer(() => {
         ></div>
         <div className="overflow-hidden flex-1">
           <h2 className="truncate">{type.name || "[NO TYPE]"}</h2>
-          <p className="mb-2 text-gray-400 truncate">ID: {actor.id}</p>
+          <p
+            onClick={() => navigator.clipboard.writeText(actor.id)}
+            className="mb-2 text-gray-400 truncate"
+            style={{cursor: "copy"}}
+            title="Copy ID to clipboard"
+          >ID: {actor.id}</p>
+
         </div>
       </header>
 
@@ -73,10 +78,10 @@ export const ActorControl = observer(() => {
           if (p.type === "string" || p.type === "number") return (
             <Input
               key={p.id}
-              label={uCapitalize(p.name) || ' '}
+              label={p.name || " "}
               placeholder={p.default}
               value={actor.props[p.id] ?? null}
-              onInput={(v) => {
+              onInput={(v) => { // onInput to prevent losing data if component closed without a change trigger (like enter or blur)
                 if (v === null) delete actor.props[p.id]
                 else actor.props[p.id] = v
               }}
@@ -88,11 +93,31 @@ export const ActorControl = observer(() => {
 
           else if (p.type === "boolean") return (
             <div key={p.id}>
-              <label className="mb-2">{uCapitalize(p.name)}</label>
+              <label className="mb-2">{p.name}</label>
               <Button
                 onClick={() => actor.props[p.id] = !actor.props[p.id]}
                 style={{width: "100%"}}
               >{actor.props[p.id] ? "TRUE" : "FALSE"}</Button>
+            </div>
+          )
+
+          else if (p.type === "link") return (
+            <div key={p.id} className="flex items-end">
+              <Input
+                label={p.name || " "}
+                value={actor.props[p.id] ?? null}
+                onChange={(v) => actor.props[p.id] = v}
+                type="text"
+                nullable
+                placeholder="Select actor..."
+              />
+              <Button onClick={() => actor.props[p.id] = null}><XIcon/></Button>
+              <Button
+                onClick={() => {
+                  actor.props[p.id] = null
+                  App.setMode("link", {from: actor, prop: p.id})
+                }}
+              ><LinkIcon/></Button>
             </div>
           )
 

@@ -4,13 +4,14 @@ export type AppMode =
   "select"
   | "dragSelect"
   | "create"
+  | "link"
   | "move"
   | "resize"
   | "pan"
 
 export const App = new class {
   private _mode: AppMode = "select"
-  private _subMode = ""
+  private _subMode:any = ""
   private _previousMode = this._mode
 
   constructor() {
@@ -24,7 +25,7 @@ export const App = new class {
     return this._subMode
   }
 
-  setMode(newMode: AppMode, subMode = "") {
+  setMode(newMode: AppMode, subMode:any = "") {
     if (newMode !== this._mode) this._previousMode = this._mode
     this._mode = newMode
     this._subMode = subMode

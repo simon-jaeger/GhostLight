@@ -16,7 +16,7 @@ export const DebugOverlay = observer(() => {
       <div>delta: {Debugger.delta.toFixed(3)}</div>
       <div>actors: {Actor.all.length}</div>
 
-      <div>mode: {App.mode} {App.subMode}</div>
+      <div className="truncate">mode: {App.mode} {JSON.stringify(App.subMode)}</div>
       <div>cursor: {Cursor.pos.x + " " + Cursor.pos.y}</div>
       <div>selected: {Selection.all.length}</div>
 

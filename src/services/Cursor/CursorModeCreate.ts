@@ -23,7 +23,7 @@ export class CursorModeCreate implements CursorMode {
     const y = Cursor.pos.y
     const width = type.width || Grid.sizeX
     const height = type.height || Grid.sizeY
-    if (Actor.all.find((a) => a.type === type && a.x === x && a.y === y)) return
+    if (Actor.all.find((a) => a.type.id === type.id && a.x === x && a.y === y)) return
     const actor = Actor.create({x, y, width, height, type_id: type.id})
     Selection.set(actor)
     if (type.resize !== "Disabled") App.setMode("resize")

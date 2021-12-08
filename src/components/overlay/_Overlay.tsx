@@ -11,6 +11,7 @@ import {Config} from "/src/models/Config"
 import {ActorPreview} from "/src/components/overlay/ActorPreview"
 import {App} from "/src/services/App"
 import {SelectionRectangle} from "/src/components/overlay/SelectionRectangle"
+import {LinkArrows} from "/src/components/overlay/LinkArrows"
 
 export const Overlay = observer(() => {
   return (
@@ -28,6 +29,7 @@ export const Overlay = observer(() => {
       <GridView/>
       <BorderLines/>
       <CursorHighlight/>
+      <LinkArrows/>
       {App.isMode("select", "dragSelect", "resize", "create") &&
       Selection.all.map(a => <SelectionHighlight actor={a} key={a.id}/>)}
       <SelectionRectangle/>

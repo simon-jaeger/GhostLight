@@ -12,6 +12,7 @@ import {CursorInertia} from "/src/services/Cursor/CursorInertia"
 import {CursorModePan} from "/src/services/Cursor/CursorModePan"
 import {Camera} from "/src/services/Camera"
 import {CursorModeDragSelect} from "/src/services/Cursor/CursorModeDragSelect"
+import {CursorModeLink} from "/src/services/Cursor/CursorModeLink"
 
 export const Cursor = new class {
   pos: Point = {x: 0, y: 0}
@@ -23,6 +24,7 @@ export const Cursor = new class {
     select: new CursorModeSelect(),
     dragSelect: new CursorModeDragSelect(),
     create: new CursorModeCreate(),
+    link: new CursorModeLink(),
     move: new CursorModeMove(),
     resize: new CursorModeResize(),
     pan: new CursorModePan(),

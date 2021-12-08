@@ -7,7 +7,7 @@ import {App} from "/src/services/App"
 
 export const CursorHighlight = observer(() => {
   if (!Grid.show) return null
-  if (!App.isMode("select", "resize", "move")) return null
+  if (!App.isMode("select", "link", "resize", "move")) return null
   if (App.isMode("resize") && App.subMode === "") return null
 
   return (<>
