@@ -11,12 +11,12 @@ import {ProjectFs} from "/src/services/FileSystem/ProjectFs"
 import {History} from "/src/services/History"
 import {Menu} from "/src/components/generic/Menu"
 import {useClickOutside} from "/src/hooks/useClickOutside"
+import {ghostlight} from "/package.json"
 
 export const FileControl = observer(() => {
   const [showMenu, setShowMenu] = useState(false)
   const refMenuTrigger = useRef(null)
   useClickOutside(refMenuTrigger, () => setShowMenu(false))
-
 
   return (
     <div className="flex fixed top-0 left-0 items-center h-12 bg-gray-800">
@@ -40,7 +40,7 @@ export const FileControl = observer(() => {
         actions={[
           {name: "New project", fn: () => ProjectFs.open(null, true)},
           {name: "Open project", fn: () => ProjectFs.open()},
-          {name: "Help", fn: () => console.log("help")},
+          {name: "Help", fn: () => window.open(ghostlight.help, "_blank")},
           {name: "Exit", fn: () => ProjectFs.close()},
         ]}
         style={{

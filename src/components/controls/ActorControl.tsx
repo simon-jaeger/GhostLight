@@ -82,11 +82,10 @@ export const ActorControl = observer(() => {
               placeholder={p.default}
               value={actor.props[p.id] ?? null}
               onInput={(v) => { // onInput to prevent losing data if component closed without a change trigger (like enter or blur)
-                if (v === null) delete actor.props[p.id]
+                if (v === "") delete actor.props[p.id]
                 else actor.props[p.id] = v
               }}
               debounce={400}
-              nullable
               type={p.type === "number" ? "number" : "text"}
             />
           )

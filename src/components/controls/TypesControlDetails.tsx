@@ -14,6 +14,14 @@ export const TypesControlDetails = observer(() => {
 
   const type = Type.active.value
 
+  function onDestroy() {
+    if (!window.confirm(`Really delete [${ type.name }]? This action cannot be undone.`)) return
+    let index = Type.all.indexOf(type)
+    Type.destroy(type)
+    if (index >= Type.all.length) index--
+    Type.active.value = Type.all[index] ?? new Type()
+  }
+
   async function onPickImage() {
     // @ts-ignore
     const fileHandle = (await window.showOpenFilePicker({startIn: ProjectFs.assetsDirHandle}))[0]
@@ -56,12 +64,7 @@ export const TypesControlDetails = observer(() => {
               onChange={(v) => type.name = v}
             />
             <Button
-              onClick={() => {
-                let index = Type.all.indexOf(type)
-                Type.destroy(type)
-                if (index >= Type.all.length) index--
-                Type.active.value = Type.all[index] ?? new Type()
-              }}
+              onClick={onDestroy}
               style={{marginLeft: "auto"}}
             >Delete</Button>
           </div>
@@ -91,7 +94,7 @@ export const TypesControlDetails = observer(() => {
           <Select
             label="Resize"
             value={type.resize}
-            options={["Disabled", "Scale", "Repeat", "Sliced"] as ResizeOption[]}
+            options={["Disable", "Scale", "Repeat", "Slice"] as ResizeOption[]}
             onChange={(v) => type.resize = v}
           />
         </fieldset>

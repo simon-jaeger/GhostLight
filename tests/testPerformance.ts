@@ -1,9 +1,9 @@
 import {Actor} from "/src/models/Actor"
 import {Type} from "/src/models/Type"
 import {uRange, uSleep, uSum} from "/src/helpers/utils"
-import {Debugger} from "/src/services/Debugger"
 import {reaction} from "mobx"
 import {Camera} from "/src/services/Camera"
+import {Debugger} from "/src/services/Debugger"
 
 export const testPerformance = async () => {
   // setup

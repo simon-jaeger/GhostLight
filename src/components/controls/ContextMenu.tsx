@@ -4,6 +4,7 @@ import {Menu} from "/src/components/generic/Menu"
 import {Selection} from "/src/services/Selection"
 import {Actor} from "/src/models/Actor"
 import {Clipboard} from "/src/services/Clipboard"
+import {ghostlight} from "/package.json"
 
 type action = { name: string, fn: () => void }
 
@@ -43,7 +44,7 @@ export const ContextMenu = observer(() => {
     ]
     else return [
       {name: "Paste", fn: onPaste},
-      {name: "Help", fn: () => console.log("Help")},
+      {name: "Help", fn: () => window.open(ghostlight.help, "_blank")},
     ]
   }
 

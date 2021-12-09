@@ -3,7 +3,6 @@ import {SceneFs} from "/src/services/FileSystem/SceneFs"
 import {makeAutoObservable} from "mobx"
 import * as idb from "idb-keyval"
 import {TypesFs} from "/src/services/FileSystem/TypesFs"
-import {ParserFs} from "/src/services/FileSystem/ParserFs"
 import {App} from "/src/services/App"
 
 // TODO: loading indicator when opening/switching project?
@@ -14,13 +13,11 @@ export const ProjectFs = new class {
   scenesDirHandle: FileSystemDirectoryHandle | null = null
   assetsDirHandle: FileSystemDirectoryHandle | null = null
   typesDirHandle: FileSystemDirectoryHandle | null = null
-  parserDirHandle: FileSystemDirectoryHandle | null = null
   private structure = {
     root: ".ghostlight",
     scenes: "scenes",
     assets: "assets",
     types: "types",
-    parser: "parser",
   }
 
   constructor() {
@@ -36,13 +33,11 @@ export const ProjectFs = new class {
       this.scenesDirHandle = await this.rootDirHandle.getDirectoryHandle(this.structure.scenes, {create})
       this.assetsDirHandle = await this.rootDirHandle.getDirectoryHandle(this.structure.assets, {create})
       this.typesDirHandle = await this.rootDirHandle.getDirectoryHandle(this.structure.types, {create})
-      this.parserDirHandle = await this.rootDirHandle.getDirectoryHandle(this.structure.parser, {create})
     } catch {
       return alert("ERROR: Not a valid GhostLight directory.")
     }
     await this.addToRecent(projectDirHandle)
 
-    await ParserFs.setup(this.parserDirHandle)
     await AssetsFs.setup(this.assetsDirHandle)
     await TypesFs.setup(this.typesDirHandle)
     await SceneFs.setup(this.scenesDirHandle)

@@ -10,7 +10,7 @@ export const TransformRing = observer(() => {
   if (Selection.all.length !== 1) return null
 
   const target = Selection.all[0]
-  if (target.type.resize === "Disabled") return null
+  if (target.type.resize === "Disable") return null
 
   const anchors: { position: string, top: string, left: string }[] = [
     {position: "nw", top: "0%", left: "0%"},

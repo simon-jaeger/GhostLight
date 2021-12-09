@@ -47,11 +47,14 @@ export const Input = (_p: Props) => {
   }
   function handleInput() {
     if (!ref.current) return
+    const caret = ref.current.selectionStart
     let value: string | number = ref.current.value
     if (p.lowerCase) value = value.toLowerCase()
     if (p.kebabCase) value = value.replaceAll(" ", "-")
     ref.current.value = "" + value
     p.onInput?.(value)
+    ref.current.selectionStart = caret
+    ref.current.selectionEnd = caret
   }
   useEffect(() => {
     const onChange = p.debounce ? uDebounce(handleChange, p.debounce) : handleChange

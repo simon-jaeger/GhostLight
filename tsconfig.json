@@ -19,7 +19,8 @@
       "dom.iterable",
     ],
     "types": [
-      "vite/client"
+      "vite/client",
+      "node"
     ],
     "baseUrl": ".",
     "paths": {

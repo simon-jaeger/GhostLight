@@ -11,7 +11,7 @@ import {Cursor} from "/src/services/Cursor/Cursor"
 import {History} from "/src/services/History"
 
 mobx.configure({enforceActions: "never"})
-Debugger.run()
+// Debugger.run(
 
 ReactDOM.render(
   <React.StrictMode><Root/></React.StrictMode>,

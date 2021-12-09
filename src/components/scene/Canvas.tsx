@@ -49,7 +49,7 @@ export const Canvas = () => {
         ctx.translate(-actor.x, -actor.y)
       }
       //////////////////////////////////////////////////////////////////////////
-      else if (actor.type.resize === "Sliced") {
+      else if (actor.type.resize === "Slice") {
         const texture = AssetsFs.get(actor.type.texture)
         drawSliced(ctx, texture, actor.x, actor.y, actor.width, actor.height)
       }

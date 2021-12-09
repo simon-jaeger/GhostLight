@@ -1,24 +1,17 @@
 import {ProjectFs} from "/src/services/FileSystem/ProjectFs"
 import {makeAutoObservable} from "mobx"
 import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
-import {Actor} from "/src/models/Actor"
-import {uImage, uRange} from "/src/helpers/utils"
-import demoScene from "/gitignore/demo/.ghostlight/scenes/scene.json?raw"
-import demoSceneTypes from "/gitignore/demo/.ghostlight/types/types.json?raw"
+import {uImage} from "/src/helpers/utils"
+// import demoScene from "/gitignore/demo/.ghostlight/scenes/scene.json?raw"
+// import demoSceneTypes from "/gitignore/demo/.ghostlight/types/types.json?raw"
 import {SceneFs} from "/src/services/FileSystem/SceneFs"
-import {Type} from "/src/models/Type"
-import {History} from "/src/services/History"
 import {TypesFs} from "/src/services/FileSystem/TypesFs"
 
-import {glParse} from "/src/parser/glParse"
-import {Config} from "/src/models/Config"
-import {Grid} from "/src/services/Grid"
-
-if (import.meta.hot) {
-  // prevent reload when demo scene saved
-  import.meta.hot.accept("/gitignore/demo/.ghostlight/scenes/scene.json?raw", (x) => null)
-  import.meta.hot.accept("/gitignore/demo/.ghostlight/types/types.json?raw", (x) => null)
-}
+// if (import.meta.hot) {
+//   // prevent reload when demo scene saved
+//   import.meta.hot.accept("/gitignore/demo/.ghostlight/scenes/scene.json?raw", (x) => null)
+//   import.meta.hot.accept("/gitignore/demo/.ghostlight/types/types.json?raw", (x) => null)
+// }
 
 export const Debugger = new class {
   active = false
@@ -30,21 +23,21 @@ export const Debugger = new class {
     makeAutoObservable(this)
   }
 
-  run() {
-    this.active = true
-    ProjectFs.isOpen = true
-    this.loadDemoScene()
-  }
+  // run() {
+  //   this.active = true
+  //   ProjectFs.isOpen = true
+  //   this.loadDemoScene()
+  // }
 
-  async loadDemoScene() {
-    const assets = Object.keys(import.meta.glob("/public/*")).map((x) => x.replaceAll("/public/", ""))
-    for (const asset of assets) {
-      // @ts-ignore
-      AssetsFs.map.set(asset, await uImage(asset))
-    }
-    TypesFs.load(demoSceneTypes)
-    SceneFs.load(demoScene)
-  }
+  // async loadDemoScene() {
+  //   const assets = Object.keys(import.meta.glob("/public/*")).map((x) => x.replaceAll("/public/", ""))
+  //   for (const asset of assets) {
+  //     // @ts-ignore
+  //     AssetsFs.map.set(asset, await uImage(asset))
+  //   }
+  //   TypesFs.load(demoSceneTypes)
+  //   SceneFs.load(demoScene)
+  // }
 
   performance(frame: number) {
     this.frames = this.frames.filter(x => x > performance.now() - 999)
@@ -52,11 +45,4 @@ export const Debugger = new class {
     this.delta = frame - this.frames[1]
     this.fps = this.frames.length
   }
-
-  parseTest() {
-    const scene = glParse(demoScene, demoSceneTypes)
-    console.log(scene.actors[0].id)
-    console.log(scene)
-  }
-
 }

@@ -10,7 +10,7 @@ export const Selection = new class {
   }
 
   get all() {
-    return Array.from(this.items) ?? []
+    return Array.from(this.items)
   }
 
   has(actor: Actor) {

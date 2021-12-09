@@ -33,6 +33,7 @@ export const SceneControl = observer(() => {
 
   async function onDestroy() {
     if (SceneFs.all.length <= 1) return
+    if (!window.confirm(`Really delete [${SceneFs.active}]? This action cannot be undone.`)) return
     let toLoad = SceneFs.all[SceneFs.all.indexOf(SceneFs.active) - 1] ?? SceneFs.all[1] // scene before or single remaining
     await SceneFs.destroy()
     await SceneFs.open(toLoad)

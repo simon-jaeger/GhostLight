@@ -2,7 +2,7 @@ import {makeAutoObservable, observable, reaction, runInAction} from "mobx"
 import {uRemove} from "/src/helpers/utils"
 import uuid4 from "uuid4"
 
-export type ResizeOption = "Disabled" | "Scale" | "Repeat" | "Sliced"
+export type ResizeOption = "Disable" | "Scale" | "Repeat" | "Slice"
 export type CustomPropType = "string" | "number" | "boolean" | "link"
 export type CustomProp = {
   id: string
@@ -17,7 +17,7 @@ export class Type {
   width = 0
   height = 0
   texture = "#6B7280"
-  resize: ResizeOption = "Disabled"
+  resize: ResizeOption = "Disable"
   props: CustomProp[] = []
 
   addProp(name: string) {

@@ -6,4 +6,7 @@ import tsNameof from "vite-plugin-ts-nameof"
 export default defineConfig({
   plugins: [reactRefresh(), tsNameof()],
   server: {port: 3010},
+  optimizeDeps: {
+    exclude: ['help']
+  }
 })
