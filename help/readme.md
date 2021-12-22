@@ -4,15 +4,13 @@ GhostLight is a web based editor for 2d scenes. To use it,
 visit https://ghostlight.onrender.com with an up to date version of Google
 Chrome.
 
-## Demo game
+## Demo games
 
-Here's a reference for how to use GhostLight to create games: <br>
-
-[Live demo](https://ghostlight-excalibur-demo.onrender.com/) <br>
-[Source code](https://github.com/simon-jaeger/ghostlight-excalibur-demo)
-
-Try [downloading the source code](https://github.com/simon-jaeger/ghostlight-excalibur-demo)
-and opening it in GhostLight to modify it.
+Platformer | Shooter
+--- | ---
+![platformer](demo-platformer.png)|![shooter](demo-shooter.png)
+[Play](https://ghostlight-excalibur-demo.onrender.com/) | [Play](https://ghostlight-shooter-demo.onrender.com/)
+[Source](https://github.com/simon-jaeger/ghostlight-excalibur-demo) | [Source](https://github.com/simon-jaeger/ghostlight-shooter-demo)
 
 ## Community
 
