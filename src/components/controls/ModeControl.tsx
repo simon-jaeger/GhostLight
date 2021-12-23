@@ -1,18 +1,13 @@
 import React from "react"
 import {observer} from "mobx-react-lite"
-import {
-  CursorClickIcon,
-  HandIcon,
-  LinkIcon,
-  PlusCircleIcon,
-} from "@heroicons/react/solid"
+import {CursorClickIcon, HandIcon, PlusCircleIcon} from "@heroicons/react/solid"
 import {App, AppMode} from "/src/services/App"
 
 export const ModeControl = observer(() => {
   const modes: { mode: AppMode, highlight: AppMode[], icon: JSX.Element }[] = [
     {
       mode: "select",
-      highlight: ["select", "dragSelect", "move", "resize"],
+      highlight: ["select", "dragSelect", "move"],
       icon: <CursorClickIcon/>,
     },
     {mode: "create", highlight: ["create"], icon: <PlusCircleIcon/>},

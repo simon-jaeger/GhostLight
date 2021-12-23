@@ -23,17 +23,18 @@ export const AssetsFs = new class {
     for (const filename of this.fs.filenames) {
       const key = filename
       const file = await this.fs.readRaw(filename)
+      if (file.type.split('/')[0] !== 'image') continue
       const url = URL.createObjectURL(file)
       const image = await uImage(url)
       this.map.set(key, image)
       this.timestampsModified.set(key, file.lastModified)
     }
 
-    this.refreshIntervalId = window.setInterval(() => this.refresh(), 2000)
+    this.refreshIntervalId = window.setInterval(() => this.refresh(), 1000)
   }
 
   async import(file: File) {
-    if (!this.fs.filenames.has(file.name)) await this.fs.write(file.name, file)
+    await this.fs.write(file.name, file)
     const key = file.name
     const url = URL.createObjectURL(file)
     const image = await uImage(url)
@@ -55,14 +56,18 @@ export const AssetsFs = new class {
     }
   }
 
+  async destroy(key: string) {
+    const img = this.get(key)
+    URL.revokeObjectURL(img.src)
+    this.map.delete(key)
+    this.timestampsModified.delete(key)
+    await this.fs.destroy(key)
+  }
+
   get(key: string) {
     const image = this.map.get(key)
     if (image === undefined) return new Image()
     else return image
-  }
-
-  has(key: string) {
-    return this.map.has(key)
   }
 
 }

@@ -3,7 +3,6 @@ import uuid4 from "uuid4"
 import {uCollision, uFindLast, uRemove} from "/src/helpers/utils"
 import {Type} from "/src/models/Type"
 
-
 export class Actor {
   id = ""
   type_id = ""

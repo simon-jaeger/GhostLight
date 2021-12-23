@@ -1,11 +1,6 @@
 import {Actor} from "/src/models/Actor"
 import {Selection} from "/src/services/Selection"
-import {
-  IReactionDisposer,
-  makeAutoObservable,
-  reaction,
-  toJS,
-} from "mobx"
+import {IReactionDisposer, makeAutoObservable, reaction, toJS} from "mobx"
 import {Config} from "/src/models/Config"
 import {FileSystem} from "/src/services/FileSystem/FileSystem"
 import {History} from "/src/services/History"

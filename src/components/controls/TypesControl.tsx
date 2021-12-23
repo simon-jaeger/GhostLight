@@ -19,7 +19,7 @@ export const TypesControl = observer(() => {
         <button
           key={type.name}
           style={{paddingBottom: "100%"}}
-          className={`relative ${App.isMode('create') && Type.active.value === type ? "bg-gray-700" : "hover:bg-gray-700"}`}
+          className={`relative ${Type.active.value === type ? "bg-gray-700" : "hover:bg-gray-700"}`}
           onClick={() => {
             Type.active.value = type
             App.setMode("create")

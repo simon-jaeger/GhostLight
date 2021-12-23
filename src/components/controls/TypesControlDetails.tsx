@@ -15,11 +15,12 @@ export const TypesControlDetails = observer(() => {
   const type = Type.active.value
 
   function onDestroy() {
-    if (!window.confirm(`Really delete [${ type.name }]? This action cannot be undone.`)) return
+    if (!window.confirm(`Really delete [${type.name}]? This action cannot be undone.`)) return
     let index = Type.all.indexOf(type)
     Type.destroy(type)
     if (index >= Type.all.length) index--
     Type.active.value = Type.all[index] ?? new Type()
+    if (!type.texture.startsWith("#")) AssetsFs.destroy(type.texture)
   }
 
   async function onPickImage() {

@@ -1,41 +1,34 @@
-import React, {useEffect, useRef} from "react"
+import React from "react"
 import {observer} from "mobx-react-lite"
-import {uImage} from "/src/helpers/utils"
-import {drawSliced} from "/src/components/scene/drawSliced"
+import {makeAutoObservable} from "mobx"
 
-export const Sandbox = observer(() => {
-  const refCanvas = useRef<HTMLCanvasElement>(null)
-  const refAnimationFrame = useRef(0)
-  const refImage = useRef<HTMLImageElement>(document.createElement("img"))
+const state = makeAutoObservable(new class {
+  handle: FileSystemFileHandle | null = null
+  file: File | null = null
+  text = ""
 
-  function render() {
-    const canvas = refCanvas.current!
-    const ctx = canvas.getContext("2d")!
-    const image = refImage.current
-
-    ctx.imageSmoothingEnabled = false
-    ctx.resetTransform()
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.scale(4, 4)
-
-    drawSliced(ctx, image, 0, 0, image.width * 4, image.height * 2)
-
-    refAnimationFrame.current = requestAnimationFrame(render)
+  async read() {
+    console.log('read')
+    this.handle = this.handle ?? (await showOpenFilePicker())[0]
+    this.file = await this.handle.getFile()
+    this.text = await this.file.text()
   }
 
-  useEffect(() => {
-    refAnimationFrame.current = requestAnimationFrame(render)
-    uImage("/Slice1.png").then((x) => refImage.current = x)
-    return () => cancelAnimationFrame(refAnimationFrame.current)
-  }, [])
+  async refresh() {
+    console.log('check...')
+    if (!this.handle) return
+    const lastModified = (await this.handle.getFile()).lastModified
+    if (lastModified !== this.file?.lastModified) await this.read()
+  }
+})
 
+setInterval(() => state.refresh(),1000)
+
+export const Sandbox = observer(() => {
   return (
-    <div className="absolute inset-0 p-4 bg-gray-700">
-      <canvas
-        width={2000}
-        height={1000}
-        ref={refCanvas}
-      ></canvas>
+    <div className="absolute inset-0 p-4 bg-gray-800">
+      <button onClick={() => state.read()}>open</button>
+      <pre>{state.text}</pre>
     </div>
   )
 })

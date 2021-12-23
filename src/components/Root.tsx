@@ -4,7 +4,6 @@ import {SceneView} from "/src/components/scene/_SceneView"
 import {Overlay} from "/src/components/overlay/_Overlay"
 import {Controls} from "/src/components/controls/_Controls"
 import {DebugOverlay} from "/src/components/debugging/DebugOverlay"
-import {Sandbox} from "/src/components/debugging/Sandbox"
 import {isSupported} from "/src/helpers/isSupported"
 
 export const Root = observer(() => {
@@ -15,7 +14,7 @@ export const Root = observer(() => {
         className="underline"
         href="https://www.google.com/chrome/"
         target="_blank"
-      >Google Chrome</a>.</p>
+      >Google Chrome</a> for desktop.</p>
     </div>
   )
 
