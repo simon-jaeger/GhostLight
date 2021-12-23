@@ -17,7 +17,9 @@ export const DropHandler = new class {
     const files = [...e.dataTransfer!.files].filter((x) => x.type.startsWith("image"))
     files.sort((a, b) => a.name.localeCompare(b.name))
     for (const file of files) {
-      const image = AssetsFs.has(file.name) ? AssetsFs.get(file.name) : await AssetsFs.import(file)
+      const image = await AssetsFs.import(file)
+      const name = file.name.replace(/\..+/, "")
+      if (Type.all.find((x) => x.name === name)) return
       Type.create({
         texture: file.name,
         name: file.name.replace(/\..+/, ""),

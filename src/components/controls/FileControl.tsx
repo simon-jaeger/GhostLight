@@ -1,12 +1,6 @@
 import React, {useRef, useState} from "react"
 import {observer} from "mobx-react-lite"
-import {
-  ArrowCircleLeftIcon,
-  ArrowCircleRightIcon,
-  MenuIcon,
-  SaveIcon,
-  XIcon,
-} from "@heroicons/react/solid"
+import {ArrowCircleLeftIcon, ArrowCircleRightIcon, MenuIcon, XIcon} from "@heroicons/react/solid"
 import {ProjectFs} from "/src/services/FileSystem/ProjectFs"
 import {History} from "/src/services/History"
 import {Menu} from "/src/components/generic/Menu"

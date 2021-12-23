@@ -53,8 +53,10 @@ export const Input = (_p: Props) => {
     if (p.kebabCase) value = value.replaceAll(" ", "-")
     ref.current.value = "" + value
     p.onInput?.(value)
-    ref.current.selectionStart = caret
-    ref.current.selectionEnd = caret
+    if (caret !== null) {
+      ref.current.selectionStart = caret
+      ref.current.selectionEnd = caret
+    }
   }
   useEffect(() => {
     const onChange = p.debounce ? uDebounce(handleChange, p.debounce) : handleChange

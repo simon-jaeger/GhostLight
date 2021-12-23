@@ -5,11 +5,7 @@ import {Config} from "/src/models/Config"
 import {Grid} from "/src/services/Grid"
 import {Select} from "/src/components/generic/Select"
 import {SceneFs} from "/src/services/FileSystem/SceneFs"
-import {
-  ColorSwatchIcon,
-  DotsVerticalIcon,
-  EyeIcon, EyeOffIcon,
-} from "@heroicons/react/solid"
+import {ColorSwatchIcon, DotsVerticalIcon, EyeIcon, EyeOffIcon} from "@heroicons/react/solid"
 import {Menu} from "/src/components/generic/Menu"
 import {useClickOutside} from "/src/hooks/useClickOutside"
 import {Modals} from "/src/services/Modals"
