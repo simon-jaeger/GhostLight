@@ -2,15 +2,15 @@ import {ProjectFs} from "/src/services/FileSystem/ProjectFs"
 import {makeAutoObservable} from "mobx"
 import {AssetsFs} from "/src/services/FileSystem/AssetsFs"
 import {uImage} from "/src/helpers/utils"
-import testScene from "/tests/project/.ghostlight/scenes/scene.json?raw"
-import testSceneTypes from "/tests/project/.ghostlight/types/types.json?raw"
+import testScene from "/samples/platformer/.ghostlight/scenes/scene.json?raw"
+import testSceneTypes from "/samples/platformer/.ghostlight/types/types.json?raw"
 import {SceneFs} from "/src/services/FileSystem/SceneFs"
 import {TypesFs} from "/src/services/FileSystem/TypesFs"
 
 if (import.meta.hot) {
   // prevent reload when test scene saved
-  import.meta.hot.accept("/tests/project/.ghostlight/scenes/scene.json?raw", (x) => null)
-  import.meta.hot.accept("/tests/project/.ghostlight/types/types.json?raw", (x) => null)
+  import.meta.hot.accept("/samples/platformer/.ghostlight/scenes/scene.json?raw", (x) => null)
+  import.meta.hot.accept("/samples/platformer/.ghostlight/types/types.json?raw", (x) => null)
 }
 
 export const Debugger = new class {

@@ -3,6 +3,8 @@ import {observer} from "mobx-react-lite"
 import {ProjectFs} from "/src/services/FileSystem/ProjectFs"
 import {DocumentAddIcon, FolderOpenIcon} from "@heroicons/react/outline"
 import {version} from "/package.json"
+import coverPlatformer from "/samples/platformer/cover.png"
+import coverShooter from "/samples/shooter/cover.png"
 
 export const Welcome = observer(() => {
   const [recent, setRecent] = useState([] as FileSystemDirectoryHandle[])
@@ -16,17 +18,21 @@ export const Welcome = observer(() => {
     {name: "New", icon: DocumentAddIcon, fn: () => ProjectFs.open(null, true)},
     {name: "Open", icon: FolderOpenIcon, fn: () => ProjectFs.open()},
   ]
+  const samples = [
+    {key: 'platformer', cover: coverPlatformer},
+    {key: 'shooter', cover: coverShooter},
+  ]
 
   return (
     <div className="flex fixed inset-0 justify-center py-32 bg-gray-900">
-      <div className="w-[640px]">
+      <div className="w-full max-w-2xl">
 
         <h1 className="mb-2 text-lg font-semibold tracking-wide uppercase">
           GhostLight <span className="text-gray-400">({version})</span>
         </h1>
         <hr className="mb-8 h-1 bg-blue-500 bg-opacity-50"></hr>
 
-        <div className="flex gap-4 mb-16">
+        <div className="flex gap-4 items-center mb-16">
           {actions.map(a => (
             <button
               key={a.name}
@@ -35,6 +41,24 @@ export const Welcome = observer(() => {
             >
               <a.icon width="0" className="flex-1 w-12 text-gray-300"/>
               <span className="bottom-0 p-2 w-full text-center border-t border-gray-600">{a.name}</span>
+            </button>
+          ))}
+
+          <div className="flex justify-center items-center mr-4 ml-auto text-gray-500 -rotate-90">
+            <div className="bg-gray-600 h-[1px] absolute w-32"></div>
+            <div className="absolute px-2 mb-1 bg-gray-900">Samples</div>
+          </div>
+          {samples.map(s => (
+            <button
+              key={s.key}
+              className="w-32 h-32 bg-gray-800 shadow"
+              onClick={() => ProjectFs.openSample(s.key)}
+            >
+              <img
+                src={s.cover}
+                alt={s.key}
+                className="grayscale hover:grayscale-0"
+              />
             </button>
           ))}
         </div>

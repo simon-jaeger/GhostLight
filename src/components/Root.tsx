@@ -5,6 +5,7 @@ import {Overlay} from "/src/components/overlay/_Overlay"
 import {Controls} from "/src/components/controls/_Controls"
 import {DebugOverlay} from "/src/components/debugging/DebugOverlay"
 import {isSupported} from "/src/helpers/isSupported"
+import { Sandbox } from "./debugging/Sandbox"
 
 export const Root = observer(() => {
   if (!isSupported()) return (
