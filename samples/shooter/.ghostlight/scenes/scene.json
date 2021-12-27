@@ -1,0 +1,133 @@
+{
+  "config": {
+    "background": "#1F6363",
+    "width": 256,
+    "height": 192
+  },
+  "grid": {
+    "show": true,
+    "sizeX": 16,
+    "sizeY": 16
+  },
+  "actors": [
+    {
+      "id": "40edcdfc-1e48-482b-83bf-1ab9c225a0d5",
+      "type_id": "62527690-e369-4118-a236-4d0935e04db1",
+      "x": 0,
+      "y": 0,
+      "width": 256,
+      "height": 16,
+      "props": {}
+    },
+    {
+      "id": "69388250-a3b9-4acc-bb9e-1ca0c7156b8c",
+      "type_id": "1257c352-2507-43d6-9a13-7d4efa6ba83d",
+      "x": 32,
+      "y": 48,
+      "width": 16,
+      "height": 16,
+      "props": {}
+    },
+    {
+      "id": "83edc58e-9b36-45c7-801c-a4f185694dea",
+      "type_id": "46f5d88a-8ab7-4050-ba8f-6b961fa9063d",
+      "x": 208,
+      "y": 144,
+      "width": 16,
+      "height": 16,
+      "props": {}
+    },
+    {
+      "id": "e3bcb25f-2e46-4f5a-a3e6-c8f2fe266b3b",
+      "type_id": "46f5d88a-8ab7-4050-ba8f-6b961fa9063d",
+      "x": 208,
+      "y": 32,
+      "width": 16,
+      "height": 16,
+      "props": {}
+    },
+    {
+      "id": "b3e07f8d-952e-4704-9a6a-703009b47163",
+      "type_id": "46f5d88a-8ab7-4050-ba8f-6b961fa9063d",
+      "x": 64,
+      "y": 144,
+      "width": 16,
+      "height": 16,
+      "props": {}
+    },
+    {
+      "id": "89abbb71-8b59-4110-96f7-10f5e8e125b6",
+      "type_id": "46f5d88a-8ab7-4050-ba8f-6b961fa9063d",
+      "x": 96,
+      "y": 32,
+      "width": 16,
+      "height": 16,
+      "props": {}
+    },
+    {
+      "id": "409e85aa-8ead-4a06-a67f-b761deed2cfa",
+      "type_id": "46f5d88a-8ab7-4050-ba8f-6b961fa9063d",
+      "x": 32,
+      "y": 144,
+      "width": 16,
+      "height": 16,
+      "props": {}
+    },
+    {
+      "id": "b195a31e-a186-4670-9e1e-80a386aa3df8",
+      "type_id": "62527690-e369-4118-a236-4d0935e04db1",
+      "x": 0,
+      "y": 176,
+      "width": 256,
+      "height": 16,
+      "props": {}
+    },
+    {
+      "id": "546327ae-d49b-4f5c-ad77-f8e3ae0b8f02",
+      "type_id": "62527690-e369-4118-a236-4d0935e04db1",
+      "x": 0,
+      "y": 0,
+      "width": 16,
+      "height": 192,
+      "props": {}
+    },
+    {
+      "id": "2f76288a-987d-41b4-9165-828fe1fb11a3",
+      "type_id": "62527690-e369-4118-a236-4d0935e04db1",
+      "x": 240,
+      "y": 0,
+      "width": 16,
+      "height": 192,
+      "props": {}
+    },
+    {
+      "id": "33037e04-ecba-4182-9d3a-c34b8338ed22",
+      "type_id": "62527690-e369-4118-a236-4d0935e04db1",
+      "x": 64,
+      "y": 0,
+      "width": 16,
+      "height": 128,
+      "props": {}
+    },
+    {
+      "id": "0a89e6c3-eb40-43a1-bae7-72d35a089434",
+      "type_id": "62527690-e369-4118-a236-4d0935e04db1",
+      "x": 112,
+      "y": 48,
+      "width": 96,
+      "height": 80,
+      "props": {}
+    },
+    {
+      "id": "cd7a3af8-f3e0-44b0-8277-8ee0a25b83be",
+      "type_id": "455c66a2-b11a-4510-b849-ee6beacff5ed",
+      "x": 32,
+      "y": 16,
+      "width": 16,
+      "height": 16,
+      "props": {
+        "a83e2edf-edc1-49f3-99cc-bcf8a85da085": "WASD to move, arrows to shoot"
+      }
+    }
+  ]
+}

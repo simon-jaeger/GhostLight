@@ -4,6 +4,7 @@ import {makeAutoObservable} from "mobx"
 import * as idb from "idb-keyval"
 import {TypesFs} from "/src/services/FileSystem/TypesFs"
 import {App} from "/src/services/App"
+import {FileSystem} from "/src/services/FileSystem/FileSystem"
 
 // TODO: loading indicator when opening/switching project?
 
@@ -44,7 +45,7 @@ export const ProjectFs = new class {
     if (create) await SceneFs.create("scene.json")
     await SceneFs.open(SceneFs.all[0])
 
-    App.setMode('select')
+    App.setMode("select")
     this.isOpen = true
   }
 
@@ -62,6 +63,41 @@ export const ProjectFs = new class {
 
   close() {
     this.isOpen = false
+  }
+
+  async openSample(key: string) {
+    const samples = {
+      platformer: {
+        assets: import.meta.globEager("/samples/platformer/.ghostlight/assets/*"),
+        scene: import("/samples/platformer/.ghostlight/scenes/scene.json"),
+        types: import("/samples/platformer/.ghostlight/types/types.json"),
+      },
+      shooter: {
+        assets: import.meta.globEager("/samples/shooter/.ghostlight/assets/*"),
+        scene: import("/samples/shooter/.ghostlight/scenes/scene.json"),
+        types: import("/samples/shooter/.ghostlight/types/types.json"),
+      },
+    }
+
+    const projectDirHandle = await showDirectoryPicker({id: "gl-beta"})
+    await projectDirHandle.requestPermission({mode: "readwrite"})
+
+    const rootDirHandle = await projectDirHandle.getDirectoryHandle(this.structure.root, {create: true})
+    const fsScenes = await FileSystem.make(await rootDirHandle.getDirectoryHandle(this.structure.scenes, {create: true}))
+    const fsTypes = await FileSystem.make(await rootDirHandle.getDirectoryHandle(this.structure.types, {create: true}))
+    const fsAssets = await FileSystem.make(await rootDirHandle.getDirectoryHandle(this.structure.assets, {create: true}))
+
+    const sample = samples[key]
+    await fsScenes.write('scene.json', JSON.stringify(await sample.scene))
+    await fsTypes.write('types.json', JSON.stringify((await sample.types).default))
+    for (const module of Object.values(sample.assets) as { default: any }[]) {
+      const path = module.default
+      const filename = path.split("/").reverse()[0].replace(/\..+\./, ".") // no hash locally
+      const data = await (fetch(path).then((x) => x.blob()))
+      await fsAssets.write(filename, data)
+    }
+
+    await this.open(projectDirHandle)
   }
 
 }

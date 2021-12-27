@@ -1,0 +1,54 @@
+[
+  {
+    "id": "62527690-e369-4118-a236-4d0935e04db1",
+    "name": "Wall",
+    "width": 16,
+    "height": 16,
+    "texture": "Wall.png",
+    "resize": "Slice",
+    "props": []
+  },
+  {
+    "id": "1257c352-2507-43d6-9a13-7d4efa6ba83d",
+    "name": "Player",
+    "width": 16,
+    "height": 16,
+    "texture": "Player.png",
+    "resize": "Disable",
+    "props": []
+  },
+  {
+    "id": "46f5d88a-8ab7-4050-ba8f-6b961fa9063d",
+    "name": "Wasp",
+    "width": 16,
+    "height": 16,
+    "texture": "Wasp.png",
+    "resize": "Disable",
+    "props": []
+  },
+  {
+    "id": "7402c1d6-ae83-4bbe-9565-0fe6837779de",
+    "name": "Spider",
+    "width": 16,
+    "height": 16,
+    "texture": "Spider.png",
+    "resize": "Disable",
+    "props": []
+  },
+  {
+    "id": "455c66a2-b11a-4510-b849-ee6beacff5ed",
+    "name": "Info",
+    "width": 16,
+    "height": 16,
+    "texture": "Info.png",
+    "resize": "Disable",
+    "props": [
+      {
+        "id": "a83e2edf-edc1-49f3-99cc-bcf8a85da085",
+        "name": "text",
+        "type": "string",
+        "default": null
+      }
+    ]
+  }
+]
