@@ -17,7 +17,10 @@
       "y": 0,
       "width": 256,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Slice"
     },
     {
       "id": "69388250-a3b9-4acc-bb9e-1ca0c7156b8c",
@@ -26,7 +29,10 @@
       "y": 48,
       "width": 16,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Player",
+      "texture": "Player.png",
+      "resize": "Disable"
     },
     {
       "id": "83edc58e-9b36-45c7-801c-a4f185694dea",
@@ -35,7 +41,10 @@
       "y": 144,
       "width": 16,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Wasp",
+      "texture": "Wasp.png",
+      "resize": "Disable"
     },
     {
       "id": "e3bcb25f-2e46-4f5a-a3e6-c8f2fe266b3b",
@@ -44,7 +53,10 @@
       "y": 32,
       "width": 16,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Wasp",
+      "texture": "Wasp.png",
+      "resize": "Disable"
     },
     {
       "id": "b3e07f8d-952e-4704-9a6a-703009b47163",
@@ -53,7 +65,10 @@
       "y": 144,
       "width": 16,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Wasp",
+      "texture": "Wasp.png",
+      "resize": "Disable"
     },
     {
       "id": "89abbb71-8b59-4110-96f7-10f5e8e125b6",
@@ -62,7 +77,10 @@
       "y": 32,
       "width": 16,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Wasp",
+      "texture": "Wasp.png",
+      "resize": "Disable"
     },
     {
       "id": "409e85aa-8ead-4a06-a67f-b761deed2cfa",
@@ -71,7 +89,10 @@
       "y": 144,
       "width": 16,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Wasp",
+      "texture": "Wasp.png",
+      "resize": "Disable"
     },
     {
       "id": "b195a31e-a186-4670-9e1e-80a386aa3df8",
@@ -80,7 +101,10 @@
       "y": 176,
       "width": 256,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Slice"
     },
     {
       "id": "546327ae-d49b-4f5c-ad77-f8e3ae0b8f02",
@@ -89,7 +113,10 @@
       "y": 0,
       "width": 16,
       "height": 192,
-      "props": {}
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Slice"
     },
     {
       "id": "2f76288a-987d-41b4-9165-828fe1fb11a3",
@@ -98,7 +125,10 @@
       "y": 0,
       "width": 16,
       "height": 192,
-      "props": {}
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Slice"
     },
     {
       "id": "33037e04-ecba-4182-9d3a-c34b8338ed22",
@@ -107,7 +137,10 @@
       "y": 0,
       "width": 16,
       "height": 128,
-      "props": {}
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Slice"
     },
     {
       "id": "0a89e6c3-eb40-43a1-bae7-72d35a089434",
@@ -116,7 +149,10 @@
       "y": 48,
       "width": 96,
       "height": 80,
-      "props": {}
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Slice"
     },
     {
       "id": "cd7a3af8-f3e0-44b0-8277-8ee0a25b83be",
@@ -126,8 +162,12 @@
       "width": 16,
       "height": 16,
       "props": {
-        "a83e2edf-edc1-49f3-99cc-bcf8a85da085": "WASD to move, arrows to shoot"
-      }
+        "a83e2edf-edc1-49f3-99cc-bcf8a85da085": "WASD to move, arrows to shoot",
+        "text": "WASD to move, arrows to shoot"
+      },
+      "type": "Info",
+      "texture": "Info.png",
+      "resize": "Disable"
     }
   ]
 }

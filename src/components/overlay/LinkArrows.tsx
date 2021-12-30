@@ -10,7 +10,7 @@ type ActorShape = Pick<Actor, "id" | "x" | "y" | "width" | "height">
 export const LinkArrows = observer(() => {
   const links: { a: ActorShape, b: ActorShape }[] = []
   for (const actor of Actor.all) {
-    for (const prop of actor.type.props) {
+    for (const prop of actor.getType().props) {
       if (prop.type !== "link") continue
       const a = actor
       const b = Actor.findById(actor.props[prop.id])

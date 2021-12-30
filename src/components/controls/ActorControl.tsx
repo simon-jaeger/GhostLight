@@ -10,7 +10,7 @@ import {App} from "/src/services/App"
 
 export const ActorControl = observer(() => {
   const actor = Selection.all[0]
-  const type = actor.type
+  const type = actor.getType()
 
   return (
     <form className="flex fixed bottom-0 left-0 top-12 flex-col w-64 bg-gray-800">

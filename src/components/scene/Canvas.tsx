@@ -36,26 +36,26 @@ export const Canvas = () => {
     for (let i = 0; i < actorsLength; i++) {
       const actor = actors[i]
       //////////////////////////////////////////////////////////////////////////
-      if (actor.type.texture.startsWith("#")) {
-        ctx.fillStyle = actor.type.texture
+      if (actor.getType().texture.startsWith("#")) {
+        ctx.fillStyle = actor.getType().texture
         ctx.fillRect(actor.x, actor.y, actor.width, actor.height)
       }
       //////////////////////////////////////////////////////////////////////////
-      else if (actor.type.resize === "Repeat") {
-        const texture = AssetsFs.get(actor.type.texture)
+      else if (actor.getType().resize === "Repeat") {
+        const texture = AssetsFs.get(actor.getType().texture)
         ctx.translate(actor.x, actor.y) // set origin to actor origin temporarily. needed for correct pattern tiling.
         ctx.fillStyle = ctx.createPattern(texture, "repeat")!
         ctx.fillRect(0, 0, actor.width, actor.height)
         ctx.translate(-actor.x, -actor.y)
       }
       //////////////////////////////////////////////////////////////////////////
-      else if (actor.type.resize === "Slice") {
-        const texture = AssetsFs.get(actor.type.texture)
+      else if (actor.getType().resize === "Slice") {
+        const texture = AssetsFs.get(actor.getType().texture)
         drawSliced(ctx, texture, actor.x, actor.y, actor.width, actor.height)
       }
       //////////////////////////////////////////////////////////////////////////
       else { // simple image
-        const texture = AssetsFs.get(actor.type.texture)
+        const texture = AssetsFs.get(actor.getType().texture)
         ctx.drawImage(texture, actor.x, actor.y, actor.width, actor.height)
       }
     }

@@ -24,14 +24,7 @@
     "height": 16,
     "texture": "Water.png",
     "resize": "Slice",
-    "props": [
-      {
-        "id": "b43f53f5-e447-417d-93cb-3ca63ba1791e",
-        "name": "collisionType",
-        "type": "string",
-        "default": "PreventCollision"
-      }
-    ]
+    "props": []
   },
   {
     "id": "c510a05a-5b77-4e37-81d1-ff68b6738441",
@@ -58,14 +51,7 @@
     "height": 16,
     "texture": "Crate.png",
     "resize": "Slice",
-    "props": [
-      {
-        "id": "5224d8aa-ad1f-4c95-bc78-92dddf3562b4",
-        "name": "collisionType",
-        "type": "string",
-        "default": "Active"
-      }
-    ]
+    "props": []
   },
   {
     "id": "3ac6726b-bb5c-4c11-b9a9-c682975f6f98",

@@ -7,12 +7,6 @@ import testSceneTypes from "/samples/platformer/.ghostlight/types/types.json?raw
 import {SceneFs} from "/src/services/FileSystem/SceneFs"
 import {TypesFs} from "/src/services/FileSystem/TypesFs"
 
-if (import.meta.hot) {
-  // prevent reload when test scene saved
-  import.meta.hot.accept("/samples/platformer/.ghostlight/scenes/scene.json?raw", (x) => null)
-  import.meta.hot.accept("/samples/platformer/.ghostlight/types/types.json?raw", (x) => null)
-}
-
 export const Debugger = new class {
   active = false
   frames = [performance.now()]
@@ -46,3 +40,12 @@ export const Debugger = new class {
     this.fps = this.frames.length
   }
 }
+
+if (import.meta.hot) {
+  // prevent reload
+  import.meta.hot.accept([
+    "/samples/platformer/.ghostlight/scenes/scene.json?raw",
+    "/samples/platformer/.ghostlight/types/types.json?raw",
+  ], () => null)
+}
+

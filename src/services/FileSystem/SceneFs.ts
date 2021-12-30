@@ -5,7 +5,9 @@ import {Config} from "/src/models/Config"
 import {FileSystem} from "/src/services/FileSystem/FileSystem"
 import {History} from "/src/services/History"
 import {Grid} from "/src/services/Grid"
-import {uDebounce} from "/src/helpers/utils"
+import {uClone, uDebounce} from "/src/helpers/utils"
+import {Type} from "/src/models/Type"
+import {Debugger} from "inspector"
 
 type SceneFile = { config: typeof Config, grid: typeof Grid, actors: Actor[] }
 
@@ -39,7 +41,7 @@ export const SceneFs = new class {
   }
 
   private autoSaveOn() {
-    this.autoSaveDisposer = reaction(() => toJS(this.data), uDebounce(() => {
+    this.autoSaveDisposer = reaction(() => toJS(this.data) && toJS(Type.all), uDebounce(() => {
       this.save()
     }, 1000))
   }
@@ -58,6 +60,7 @@ export const SceneFs = new class {
     const json = await this.fs.read(filename)
     this.load(json)
     History.reset(Actor.all)
+    await this.save()
   }
 
   load(json: string) {
@@ -71,9 +74,9 @@ export const SceneFs = new class {
     this.autoSaveOn()
   }
 
-  // TODO: maybe cleanup orphaned props before save
   private async save() {
-    await this.fs?.write(this.active, JSON.stringify(this.data, null, 2))
+    console.log('save')
+    await this.fs?.write(this.active, this.serialize())
   }
 
   async create(filename: string) {
@@ -102,6 +105,25 @@ export const SceneFs = new class {
     filename = this.ensureUnique(filename)
     await this.fs.copy(this.active, filename)
     return filename
+  }
+
+  private serialize() {
+    const scene = JSON.parse(JSON.stringify(this.data)) // generate data only clone
+    const types = Type.all
+    for (const a of scene.actors) {
+      // denormalize
+      const actor = a as Actor & Type
+      const type = types.find(x => x.id === actor.type_id)
+      if (!type) throw (`ghostlight: type not found for actor with id: ${actor.id}`)
+      // @ts-ignore
+      actor.type = type.name
+      actor.texture = type.texture
+      actor.resize = type.resize
+      type.props.forEach(p => {
+        actor.props[p.name] = actor.props[p.id] ?? p.default
+      })
+    }
+    return JSON.stringify(scene, null, 2)
   }
 
 }

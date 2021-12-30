@@ -10,7 +10,6 @@ import {Welcome} from "/src/components/controls/Welcome"
 import {ContextMenu} from "/src/components/controls/ContextMenu"
 import {TypesControl} from "/src/components/controls/TypesControl"
 
-// TODO: make zoom of controls configurable (and sync with modals portal!)
 export const Controls = observer(() => {
   return (
     <section id="controls" style={{ zoom: 1}}>

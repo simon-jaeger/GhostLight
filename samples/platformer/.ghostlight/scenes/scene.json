@@ -17,7 +17,10 @@
       "y": 48,
       "width": 256,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Metal",
+      "texture": "Metal.png",
+      "resize": "Slice"
     },
     {
       "id": "41990b5b-460f-4950-96a2-9053096cfe05",
@@ -26,7 +29,10 @@
       "y": 160,
       "width": 160,
       "height": 32,
-      "props": {}
+      "props": {},
+      "type": "Ground",
+      "texture": "Ground.png",
+      "resize": "Slice"
     },
     {
       "id": "dd42278a-0999-43a8-b9a6-1848fff2c865",
@@ -35,7 +41,10 @@
       "y": 160,
       "width": 48,
       "height": 32,
-      "props": {}
+      "props": {},
+      "type": "Ground",
+      "texture": "Ground.png",
+      "resize": "Slice"
     },
     {
       "id": "7c25b2d0-cdf3-44ae-a23a-f285d4009e98",
@@ -44,7 +53,10 @@
       "y": 176,
       "width": 48,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Water",
+      "texture": "Water.png",
+      "resize": "Slice"
     },
     {
       "id": "05e25b22-88d9-4ba6-97eb-c86f18b8ea56",
@@ -53,7 +65,10 @@
       "y": 144,
       "width": 16,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Player",
+      "texture": "Player.png",
+      "resize": "Disable"
     },
     {
       "id": "8cf01160-f3fb-4e3c-9050-52c1a95babe8",
@@ -63,8 +78,12 @@
       "width": 16,
       "height": 16,
       "props": {
-        "429914b2-b991-4a9f-97e5-eb19314cd207": "Platformer sample"
-      }
+        "429914b2-b991-4a9f-97e5-eb19314cd207": "Platformer sample",
+        "text": "Platformer sample"
+      },
+      "type": "Sign",
+      "texture": "Sign.png",
+      "resize": "Disable"
     },
     {
       "id": "97468ca0-69f1-4495-8642-9b30905ded5a",
@@ -74,8 +93,12 @@
       "width": 16,
       "height": 16,
       "props": {
-        "ca947042-1953-49d9-bd32-cb1270e8f98b": "746f6620-e6c1-4902-962e-1d396bac5410"
-      }
+        "ca947042-1953-49d9-bd32-cb1270e8f98b": "746f6620-e6c1-4902-962e-1d396bac5410",
+        "item": "746f6620-e6c1-4902-962e-1d396bac5410"
+      },
+      "type": "ItemBox",
+      "texture": "ItemBox.png",
+      "resize": "Disable"
     },
     {
       "id": "746f6620-e6c1-4902-962e-1d396bac5410",
@@ -84,7 +107,10 @@
       "y": 96,
       "width": 16,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Apple",
+      "texture": "Apple.png",
+      "resize": "Disable"
     },
     {
       "id": "b1c8575e-9123-491d-97da-e54fcf43a05c",
@@ -93,7 +119,10 @@
       "y": 112,
       "width": 16,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Coin",
+      "texture": "Coin.png",
+      "resize": "Disable"
     },
     {
       "id": "902de398-1798-4d89-af31-e68aa45360a2",
@@ -102,7 +131,10 @@
       "y": 112,
       "width": 16,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Coin",
+      "texture": "Coin.png",
+      "resize": "Disable"
     },
     {
       "id": "b42644a6-1f48-49e7-8d42-6b1363d3a726",
@@ -111,7 +143,10 @@
       "y": 112,
       "width": 16,
       "height": 16,
-      "props": {}
+      "props": {},
+      "type": "Coin",
+      "texture": "Coin.png",
+      "resize": "Disable"
     },
     {
       "id": "d3e07199-0f13-4546-badc-6b5c08cbf6ec",
@@ -120,7 +155,10 @@
       "y": 48,
       "width": 16,
       "height": 112,
-      "props": {}
+      "props": {},
+      "type": "Ladder",
+      "texture": "Ladder.png",
+      "resize": "Repeat"
     }
   ]
 }

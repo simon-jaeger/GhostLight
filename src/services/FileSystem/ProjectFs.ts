@@ -6,8 +6,6 @@ import {TypesFs} from "/src/services/FileSystem/TypesFs"
 import {App} from "/src/services/App"
 import {FileSystem} from "/src/services/FileSystem/FileSystem"
 
-// TODO: loading indicator when opening/switching project?
-
 export const ProjectFs = new class {
   isOpen = false
   rootDirHandle: FileSystemDirectoryHandle | null = null
@@ -88,8 +86,8 @@ export const ProjectFs = new class {
     const fsAssets = await FileSystem.make(await rootDirHandle.getDirectoryHandle(this.structure.assets, {create: true}))
 
     const sample = samples[key]
-    await fsScenes.write('scene.json', JSON.stringify(await sample.scene))
-    await fsTypes.write('types.json', JSON.stringify((await sample.types).default))
+    await fsScenes.write("scene.json", JSON.stringify(await sample.scene))
+    await fsTypes.write("types.json", JSON.stringify((await sample.types).default))
     for (const module of Object.values(sample.assets) as { default: any }[]) {
       const path = module.default
       const filename = path.split("/").reverse()[0].replace(/\..+\./, ".") // no hash locally
@@ -100,4 +98,16 @@ export const ProjectFs = new class {
     await this.open(projectDirHandle)
   }
 
+}
+
+if (import.meta.hot) {
+  // prevent reload
+  import.meta.hot.accept([
+    "/samples/platformer/.ghostlight/assets/*",
+    "/samples/platformer/.ghostlight/scenes/scene.json",
+    "/samples/platformer/.ghostlight/scenes/types.json",
+    "/samples/shooter/.ghostlight/assets/*",
+    "/samples/shooter/.ghostlight/scenes/scene.json",
+    "/samples/shooter/.ghostlight/scenes/types.json",
+  ], () => null)
 }

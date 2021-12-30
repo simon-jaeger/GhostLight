@@ -2,6 +2,7 @@ import {makeAutoObservable, observable, runInAction} from "mobx"
 import uuid4 from "uuid4"
 import {uCollision, uFindLast, uRemove} from "/src/helpers/utils"
 import {Type} from "/src/models/Type"
+import {del} from "idb-keyval"
 
 export class Actor {
   id = ""
@@ -11,10 +12,6 @@ export class Actor {
   width = 0
   height = 0
   props: Object = {}
-
-  get type() {
-    return Type.all.find((x) => x.id === this.type_id) ?? new Type()
-  }
 
   get shape(): Shape {
     return {
@@ -29,6 +26,10 @@ export class Actor {
   }
   get yh() {
     return this.y + this.height
+  }
+
+  getType() {
+    return Type.all.find((x) => x.id === this.type_id) ?? new Type()
   }
 
 ////////////////////////////////////////////////////////////////////////////////
