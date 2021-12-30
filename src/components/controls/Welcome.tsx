@@ -5,9 +5,11 @@ import {DocumentAddIcon, FolderOpenIcon} from "@heroicons/react/outline"
 import {version} from "/package.json"
 import coverPlatformer from "/samples/platformer/cover.png"
 import coverShooter from "/samples/shooter/cover.png"
+import {NowLoading} from "/src/components/controls/NowLoading"
 
 export const Welcome = observer(() => {
   const [recent, setRecent] = useState([] as FileSystemDirectoryHandle[])
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     ProjectFs.getRecent().then(setRecent)
   }, [ProjectFs.isOpen])
@@ -19,11 +21,12 @@ export const Welcome = observer(() => {
     {name: "Open", icon: FolderOpenIcon, fn: () => ProjectFs.open()},
   ]
   const samples = [
-    {key: 'platformer', cover: coverPlatformer},
-    {key: 'shooter', cover: coverShooter},
+    {key: "platformer", cover: coverPlatformer},
+    {key: "shooter", cover: coverShooter},
   ]
 
-  return (
+  if (loading) return <NowLoading/>
+  else return (
     <div className="flex fixed inset-0 justify-center py-32 bg-gray-900">
       <div className="w-full max-w-2xl">
 
@@ -52,7 +55,10 @@ export const Welcome = observer(() => {
             <button
               key={s.key}
               className="w-32 h-32 bg-gray-800 shadow"
-              onClick={() => ProjectFs.openSample(s.key)}
+              onClick={() => {
+                setLoading(true)
+                ProjectFs.openSample(s.key).finally(() => setLoading(false))
+              }}
             >
               <img
                 src={s.cover}
