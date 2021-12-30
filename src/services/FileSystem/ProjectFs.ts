@@ -24,7 +24,7 @@ export const ProjectFs = new class {
   }
 
   async open(dirHandle?: FileSystemDirectoryHandle | null, create = false) {
-    const projectDirHandle = dirHandle ?? await showDirectoryPicker({id: "gl-beta"})
+    const projectDirHandle = dirHandle ?? await showDirectoryPicker({id: "ghostlight"})
     await projectDirHandle.requestPermission({mode: "readwrite"})
 
     try {
@@ -77,7 +77,7 @@ export const ProjectFs = new class {
       },
     }
 
-    const projectDirHandle = await showDirectoryPicker({id: "gl-beta"})
+    const projectDirHandle = await showDirectoryPicker({id: "ghostlight"})
     await projectDirHandle.requestPermission({mode: "readwrite"})
 
     const rootDirHandle = await projectDirHandle.getDirectoryHandle(this.structure.root, {create: true})
