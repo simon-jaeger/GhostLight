@@ -4,13 +4,16 @@ GhostLight is a web based editor for 2d scenes. To use it,
 visit https://ghostlight.onrender.com with an up to date version of Google
 Chrome.
 
+[![Everything Is AWESOME](https://img.youtube.com/vi/WMHZLPA_Cho/0.jpg)](https://www.youtube.com/watch?v=WMHZLPA_Cho) <br>
+[→ Video tutorial on YouTube](https://www.youtube.com/watch?v=WMHZLPA_Cho)
+
 ## Demo games
 
-Platformer | Shooter
---- | ---
-![platformer](demo-platformer.png)|![shooter](demo-shooter.png)
-[Play](https://ghostlight-excalibur-demo.onrender.com/) | [Play](https://ghostlight-shooter-demo.onrender.com/)
-[Source](https://github.com/simon-jaeger/ghostlight-excalibur-demo) | [Source](https://github.com/simon-jaeger/ghostlight-shooter-demo)
+| Platformer                                                          | Shooter                                                           |
+|---------------------------------------------------------------------|-------------------------------------------------------------------|
+| ![platformer](demo-platformer.png)                                  | ![shooter](demo-shooter.png)                                      |
+| [Play](https://ghostlight-excalibur-demo.onrender.com/)             | [Play](https://ghostlight-shooter-demo.onrender.com/)             |
+| [Source](https://github.com/simon-jaeger/ghostlight-excalibur-demo) | [Source](https://github.com/simon-jaeger/ghostlight-shooter-demo) |
 
 ## Community
 
@@ -19,20 +22,20 @@ to ask questions or show off your work. I'm looking forward to seeing you there!
 
 ## Keyboard controls
 
-Input | Effect
---- | ---
-<kbd>Ctrl</kbd>+<kbd>A</kbd> | Select all
-<kbd>Ctrl</kbd>+<kbd>C</kbd> | Copy
-<kbd>Ctrl</kbd>+<kbd>X</kbd> | Cut
-<kbd>Ctrl</kbd>+<kbd>P</kbd> | Paste
-<kbd>Ctrl</kbd>+<kbd>Z</kbd> | Undo
-<kbd>Ctrl</kbd>+<kbd>Y</kbd> | Redo
-<kbd>Esc</kbd> | Clear selection
-<kbd>Delete</kbd> | Delete selected
-<kbd>Space</kbd> | Pan camera
-<kbd>+</kbd> | Zoom in
-<kbd>-</kbd> | Zoom out
-<kbd>↑</kbd> <kbd>↓</kbd> <kbd>→</kbd> <kbd>←</kbd> | Move selected
+| Input                                               | Effect          |
+|-----------------------------------------------------|-----------------|
+| <kbd>Ctrl</kbd>+<kbd>A</kbd>                        | Select all      |
+| <kbd>Ctrl</kbd>+<kbd>C</kbd>                        | Copy            |
+| <kbd>Ctrl</kbd>+<kbd>X</kbd>                        | Cut             |
+| <kbd>Ctrl</kbd>+<kbd>P</kbd>                        | Paste           |
+| <kbd>Ctrl</kbd>+<kbd>Z</kbd>                        | Undo            |
+| <kbd>Ctrl</kbd>+<kbd>Y</kbd>                        | Redo            |
+| <kbd>Esc</kbd>                                      | Clear selection |
+| <kbd>Delete</kbd>                                   | Delete selected |
+| <kbd>Space</kbd>                                    | Pan camera      |
+| <kbd>+</kbd>                                        | Zoom in         |
+| <kbd>-</kbd>                                        | Zoom out        |
+| <kbd>↑</kbd> <kbd>↓</kbd> <kbd>→</kbd> <kbd>←</kbd> | Move selected   |
 
 ## File structure
 
@@ -53,70 +56,28 @@ your-project
         `-- types.json
 ```
 
-## Type definitions
+## File interface
+
+Each scene file implements the following interface.
 
 ```ts
 interface glScene {
-  config: glConfig
-  actors: glActor[]
-}
-
-interface glConfig {
-  background: string
-  width: number
-  height: number
-}
-
-interface glActor {
-  id: string
-  type_id: string
-  type?: string
-  texture?: string
-  resize?: glResizeOption
-  x: number
-  y: number
-  width: number
-  height: number
-  props: { [key: string]: any }
-}
-
-interface glType {
-  id: string
-  name: string
-  texture: string
-  resize: glResizeOption
-  props: {
-    id: string
-    name: string,
-    default: any,
-  }[]
-}
-
-type glResizeOption = "Disable" | "Scale" | "Repeat" | "Slice"
-```
-
-## Parsing example
-
-```ts
-import sceneJson from "/.ghostlight/scenes/scene.json?raw"
-import typesJson from "/.ghostlight/types/types.json?raw"
-
-parse(sceneJson, typesJson)
-export function parse(sceneJson: string, typesJson: string) {
-  const scene: glScene = JSON.parse(sceneJson)
-  const types: glType[] = JSON.parse(typesJson)
-  for (const actor of scene.actors) {
-    // denormalize
-    const type = types.find(x => x.id === actor.type_id)
-    if (!type) throw (`ghostlight: type not found for actor with id: ${actor.id}`)
-    actor.type = type.name
-    actor.texture = type.texture
-    actor.resize = type.resize
-    type.props.forEach(p => {
-      actor.props[p.name] = actor.props[p.id] ?? p.default
-      delete actor.props[p.id]
-    })
+  config: {
+    background: string
+    width: number
+    height: number
   }
-  return scene
+  actors: {
+    id: string
+    type_id: string
+    type: string
+    texture: string
+    resize: "Disable" | "Scale" | "Repeat" | "Slice"
+    x: number
+    y: number
+    width: number
+    height: number
+    props: { [key: string]: any }
+  }[]
 }
 ```
