@@ -113,8 +113,7 @@ export const SceneFs = new class {
     for (const a of scene.actors) {
       // denormalize
       const actor = a as Actor & Type
-      const type = types.find(x => x.id === actor.type_id)
-      if (!type) throw (`ghostlight: type not found for actor with id: ${actor.id}`)
+      const type = types.find(x => x.id === actor.type_id) ?? Type.notype
       // @ts-ignore
       actor.type = type.name
       actor.texture = type.texture

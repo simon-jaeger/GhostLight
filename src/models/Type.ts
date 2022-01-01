@@ -34,8 +34,8 @@ export class Type {
 ////////////////////////////////////////////////////////////////////////////////
 
   static readonly all: Type[] = observable([])
-
-  static active = observable({value: new Type()})
+  static readonly notype = new Type()
+  static active = observable({value: Type.notype})
 
   static create(partial?: Partial<Type>) {
     const type = makeAutoObservable(new Type())

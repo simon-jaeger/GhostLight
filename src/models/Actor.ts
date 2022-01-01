@@ -29,7 +29,7 @@ export class Actor {
   }
 
   getType() {
-    return Type.all.find((x) => x.id === this.type_id) ?? new Type()
+    return Type.all.find((x) => x.id === this.type_id) ?? Type.notype
   }
 
 ////////////////////////////////////////////////////////////////////////////////
