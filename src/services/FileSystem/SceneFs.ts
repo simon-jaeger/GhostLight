@@ -75,7 +75,6 @@ export const SceneFs = new class {
   }
 
   private async save() {
-    console.log('save')
     await this.fs?.write(this.active, this.serialize())
   }
 

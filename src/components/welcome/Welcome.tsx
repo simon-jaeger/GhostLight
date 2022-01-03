@@ -6,6 +6,7 @@ import {version} from "/package.json"
 import coverPlatformer from "/samples/platformer/cover.png"
 import coverShooter from "/samples/shooter/cover.png"
 import {NowLoading} from "/src/components/controls/NowLoading"
+import {Footer} from "/src/components/welcome/Footer"
 
 export const Welcome = observer(() => {
   const [recent, setRecent] = useState([] as FileSystemDirectoryHandle[])
@@ -83,6 +84,8 @@ export const Welcome = observer(() => {
             ))}
           </div>
         </section>}
+
+        <Footer/>
 
       </div>
     </div>

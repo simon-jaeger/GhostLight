@@ -3,7 +3,27 @@
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>GhostLight</title>
+    <title>GhostLight | Online 2D scene and level editor</title>
+    <meta
+      name="description"
+      content="A level editor for 2D games that runs directly in your browser. Link your local assets and store scenes as easy to use local JSON files."
+    >
+    <link rel="icon" href="/meta/favicon.png" sizes="any">
+    <!-- Matomo -->
+    <script>
+      let _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        let u="//matomo.simonjaeger.ch/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        let d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
   </head>
   <body style="background-color: black">
     <div id="root"></div>

@@ -6,7 +6,7 @@ import {CameraControl} from "/src/components/controls/CameraControl"
 import {FileControl} from "/src/components/controls/FileControl"
 import {Selection} from "/src/services/Selection"
 import {SceneControl} from "/src/components/controls/SceneControl"
-import {Welcome} from "/src/components/controls/Welcome"
+import {Welcome} from "/src/components/welcome/Welcome"
 import {ContextMenu} from "/src/components/controls/ContextMenu"
 import {TypesControl} from "/src/components/controls/TypesControl"
 
