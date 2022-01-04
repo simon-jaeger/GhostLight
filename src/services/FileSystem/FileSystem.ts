@@ -11,6 +11,12 @@ export class FileSystem {
     return fs
   }
 
+  has(filename: string) {
+    return this.dirHandle.getFileHandle(filename)
+      .then(() => true)
+      .catch(() => false)
+  }
+
   async readRaw(filename: string) {
     return await this.dirHandle.getFileHandle(filename).then((x) => x.getFile())
   }

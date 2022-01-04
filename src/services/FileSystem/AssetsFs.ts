@@ -1,5 +1,5 @@
 import {makeAutoObservable} from "mobx"
-import {uImage} from "/src/helpers/utils"
+import {uImage, uSleep} from "/src/helpers/utils"
 import {FileSystem} from "/src/services/FileSystem/FileSystem"
 import {ProjectFs} from "/src/services/FileSystem/ProjectFs"
 
@@ -23,7 +23,7 @@ export const AssetsFs = new class {
     for (const filename of this.fs.filenames) {
       const key = filename
       const file = await this.fs.readRaw(filename)
-      if (file.type.split('/')[0] !== 'image') continue
+      if (file.type.split("/")[0] !== "image") continue
       const url = URL.createObjectURL(file)
       const image = await uImage(url)
       this.map.set(key, image)
@@ -34,7 +34,8 @@ export const AssetsFs = new class {
   }
 
   async import(file: File) {
-    await this.fs.write(file.name, file)
+    if (!await this.fs.has(file.name))
+      await this.fs.write(file.name, file)
     const key = file.name
     const url = URL.createObjectURL(file)
     const image = await uImage(url)

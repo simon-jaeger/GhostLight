@@ -24,6 +24,7 @@ export const ProjectFs = new class {
   }
 
   async open(dirHandle?: FileSystemDirectoryHandle | null, create = false) {
+    if (create && !dirHandle && !confirm("Choose a local directory to store the project files.")) return
     const projectDirHandle = dirHandle ?? await showDirectoryPicker({id: "ghostlight"})
     await projectDirHandle.requestPermission({mode: "readwrite"})
 
@@ -64,6 +65,7 @@ export const ProjectFs = new class {
   }
 
   async openSample(key: string) {
+    if (!confirm("Choose a local directory to clone the sample project into.")) return
     const samples = {
       platformer: {
         assets: import.meta.globEager("/samples/platformer/.ghostlight/assets/*"),

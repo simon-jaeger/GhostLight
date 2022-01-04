@@ -49,7 +49,6 @@ export const Keyboard = new class {
 
     // alias scroll wheel to plus/minus
     sceneView.addEventListener("wheel", uThrottle((e: WheelEvent) => {
-      console.log(e)
       if (e.deltaY > 0) this.onMinus()
       if (e.deltaY < 0) this.onPlus()
     }, 200))

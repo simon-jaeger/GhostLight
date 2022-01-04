@@ -4,7 +4,7 @@ A web based 2d scene editor, currently a work in progress.
 
 [Test the preview version now!](https://ghostlight.onrender.com/)
 
-[![Teaser](https://img.youtube.com/vi/PP4sqLQdeMw/maxresdefault.jpg)](https://www.youtube.com/watch?v=PP4sqLQdeMw)
+![demo](demo.gif)
 
 GhostLight is a level editor for 2D games that runs directly in your browser.
 And that's not all – GhostLight allows you to directly link your local assets and stores levels as local JSON files.

@@ -4,7 +4,7 @@ GhostLight is a web based editor for 2d scenes. To use it,
 visit https://ghostlight.onrender.com with an up to date version of Google
 Chrome.
 
-[![Everything Is AWESOME](https://img.youtube.com/vi/WMHZLPA_Cho/0.jpg)](https://www.youtube.com/watch?v=WMHZLPA_Cho) <br>
+[![Tutorial video](https://img.youtube.com/vi/WMHZLPA_Cho/0.jpg)](https://www.youtube.com/watch?v=WMHZLPA_Cho) <br>
 [→ Video tutorial on YouTube](https://www.youtube.com/watch?v=WMHZLPA_Cho)
 
 ## Demo games
