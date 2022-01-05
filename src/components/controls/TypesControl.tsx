@@ -18,11 +18,21 @@ export const TypesControl = observer(() => {
       {Type.all.map(type => (
         <button
           key={type.name}
+          draggable={true}
           style={{paddingBottom: "100%"}}
           className={`relative ${Type.active.value === type ? "bg-gray-700" : "hover:bg-gray-700"}`}
-          onClick={() => {
+          onMouseDown={() => {
             Type.active.value = type
             App.setMode("create")
+          }}
+          onDragStart={(e) => {
+            e.dataTransfer.setData("id", type.id)
+          }}
+          onDrop={(e) => {
+            const id = e.dataTransfer.getData("id")
+            const typeToMove = Type.findById(id)
+            if (!typeToMove) return
+            Type.reorder(typeToMove, type)
           }}
         >
           <div
@@ -44,7 +54,7 @@ export const TypesControl = observer(() => {
     </div>
 
   return (
-    <div className="overflow-y-scroll fixed right-0 top-12 bottom-0 pl-2 w-52 bg-gray-800">
+    <div className="overflow-y-scroll fixed right-0 bottom-0 top-12 pl-2 w-52 bg-gray-800">
       <header className="grid sticky top-0 z-10 grid-cols-2 gap-4 px-2 py-4 bg-gray-800">
         <Button
           onClick={() => {
@@ -63,7 +73,7 @@ export const TypesControl = observer(() => {
 
       {Type.all.length ? typeList : emptyState}
 
-      {showDetails  && <TypesControlDetails/>}
+      {showDetails && <TypesControlDetails/>}
       {/*{true && <TypesControlDetails/>}*/}
     </div>
   )

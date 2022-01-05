@@ -60,4 +60,15 @@ export class Type {
     uRemove(this.all, ...types)
   }
 
+  static findById(id: string) {
+    return this.all.find((x) => x.id === id)
+  }
+
+  static reorder(toMove: Type, target: Type) {
+    const indexTarget = this.all.indexOf(target)
+    const indexToMove = this.all.indexOf(toMove)
+    this.destroy(toMove)
+    this.all.splice(indexTarget + (indexToMove < indexTarget ? 0 : 0), 0, toMove)
+  }
+
 }
