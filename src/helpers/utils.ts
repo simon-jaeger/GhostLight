@@ -80,6 +80,14 @@ export function uColorToUrl(color: string) {
   return canvas.toDataURL()
 }
 
+// download a file
+export function uDownload(url: string, filename = "download") {
+  const anchor = document.createElement("a")
+  anchor.href = url
+  anchor.download = filename
+  anchor.click()
+}
+
 // random integer, max exclusive
 export function uRand(min, max) {
   return Math.floor(Math.random() * (max - min) + min)

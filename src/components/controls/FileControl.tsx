@@ -6,6 +6,7 @@ import {History} from "/src/services/History"
 import {Menu} from "/src/components/generic/Menu"
 import {useClickOutside} from "/src/hooks/useClickOutside"
 import {ghostlight} from "/package.json"
+import {saveAsImage} from "/src/helpers/saveAsImage"
 
 export const FileControl = observer(() => {
   const [showMenu, setShowMenu] = useState(false)
@@ -34,6 +35,7 @@ export const FileControl = observer(() => {
         actions={[
           {name: "New project", fn: () => ProjectFs.open(null, true)},
           {name: "Open project", fn: () => ProjectFs.open()},
+          {name: "Save as image", fn: saveAsImage},
           {name: "Help", fn: () => window.open(ghostlight.help, "_blank")},
           {name: "Exit", fn: () => ProjectFs.close()},
         ]}

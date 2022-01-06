@@ -5,6 +5,7 @@ import {Selection} from "/src/services/Selection"
 import {Actor} from "/src/models/Actor"
 import {Clipboard} from "/src/services/Clipboard"
 import {ghostlight} from "/package.json"
+import {saveAsImage} from "/src/helpers/saveAsImage"
 
 type action = { name: string, fn: () => void }
 
@@ -44,6 +45,7 @@ export const ContextMenu = observer(() => {
     ]
     else return [
       {name: "Paste", fn: onPaste},
+      {name: "Save as image", fn: saveAsImage},
       {name: "Help", fn: () => window.open(ghostlight.help, "_blank")},
     ]
   }

@@ -11,7 +11,7 @@ interface Props {
 export const Menu = (p: Props) => {
   return (
     <div
-      className="absolute z-10 py-1 w-28 bg-gray-900 rounded border border-gray-600 shadow"
+      className="absolute z-10 py-1 w-32 bg-gray-900 rounded border border-gray-600 shadow"
       style={p.style}
     >
       {p.actions.map(a => (
