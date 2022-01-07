@@ -1,0 +1,159 @@
+[
+  {
+    "id": "a79322f3-7412-43ca-b3c1-6453c8eb1305",
+    "name": "Wall",
+    "width": 16,
+    "height": 16,
+    "texture": "Wall.png",
+    "resize": "Repeat",
+    "props": []
+  },
+  {
+    "id": "b5fc08ea-343c-401e-bfc9-b7d1692fd6f1",
+    "name": "Player",
+    "width": 16,
+    "height": 16,
+    "texture": "Player.png",
+    "resize": "Disable",
+    "props": []
+  },
+  {
+    "id": "9862f7a4-5e93-49c6-b066-49471798c8dd",
+    "name": "Skeleton",
+    "width": 16,
+    "height": 16,
+    "texture": "Skeleton.png",
+    "resize": "Disable",
+    "props": [
+      {
+        "id": "93e15693-ba09-475d-bc34-6d9ad0865d0f",
+        "name": "path",
+        "type": "link",
+        "default": null
+      }
+    ]
+  },
+  {
+    "id": "83cfe3d5-d0ee-4624-913b-d2c7da2cb97f",
+    "name": "Key",
+    "width": 16,
+    "height": 16,
+    "texture": "Key.png",
+    "resize": "Disable",
+    "props": []
+  },
+  {
+    "id": "d2670b33-5564-4189-9a03-743a32667dc8",
+    "name": "Lock",
+    "width": 16,
+    "height": 16,
+    "texture": "Lock.png",
+    "resize": "Disable",
+    "props": []
+  },
+  {
+    "id": "bd66d31e-d03d-4f2a-b7fe-d2eb5f1fd91d",
+    "name": "Chest",
+    "width": 16,
+    "height": 16,
+    "texture": "Chest.png",
+    "resize": "Disable",
+    "props": [
+      {
+        "id": "536b0974-a7f5-44d2-b6b6-5e3ba6484cb5",
+        "name": "item",
+        "type": "link",
+        "default": null
+      }
+    ]
+  },
+  {
+    "id": "b221a587-5b79-4e41-9079-90abed9da079",
+    "name": "Sign",
+    "width": 16,
+    "height": 16,
+    "texture": "Sign.png",
+    "resize": "Disable",
+    "props": [
+      {
+        "id": "42ad5567-70b8-4d5c-a02c-d655715d205a",
+        "name": "text",
+        "type": "string",
+        "default": null
+      }
+    ]
+  },
+  {
+    "id": "86ea5f95-ea51-4738-a6f8-df74abaf4bcf",
+    "name": "Stairs",
+    "width": 16,
+    "height": 16,
+    "texture": "Stairs.png",
+    "resize": "Disable",
+    "props": [
+      {
+        "id": "9549d83b-fd6c-4f3a-b566-aadb2075539b",
+        "name": "to",
+        "type": "link",
+        "default": null
+      }
+    ]
+  },
+  {
+    "id": "ebd311a5-2b75-4047-95eb-8eb15a85ce87",
+    "name": "StairsUp",
+    "width": 16,
+    "height": 16,
+    "texture": "StairsUp.png",
+    "resize": "Disable",
+    "props": [
+      {
+        "id": "574b2533-65fc-4096-a1b8-a3c0e3c56f99",
+        "name": "to",
+        "type": "link",
+        "default": null
+      }
+    ]
+  },
+  {
+    "id": "e1dd18c3-2971-42c3-9de8-699f38dbdd76",
+    "name": "Potion",
+    "width": 16,
+    "height": 16,
+    "texture": "Potion.png",
+    "resize": "Disable",
+    "props": []
+  },
+  {
+    "id": "bf0d1b4d-934c-4f7a-9749-d382f154bace",
+    "name": "Block",
+    "width": 16,
+    "height": 16,
+    "texture": "Block.png",
+    "resize": "Disable",
+    "props": [
+      {
+        "id": "b39c8fd9-4867-4259-a869-b33a3a2aee6a",
+        "name": "pushable",
+        "type": "boolean",
+        "default": null
+      }
+    ]
+  },
+  {
+    "id": "7052ed41-4ab0-4a7f-8c47-e3c4875ec4e1",
+    "name": "Node",
+    "width": 0,
+    "height": 0,
+    "texture": "#941ea480",
+    "resize": "Disable",
+    "props": [
+      {
+        "id": "be9c3710-73aa-4311-a433-7a50833a8c4c",
+        "name": "next",
+        "type": "link",
+        "default": null
+      }
+    ]
+  }
+]

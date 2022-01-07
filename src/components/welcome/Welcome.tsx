@@ -5,6 +5,7 @@ import {DocumentAddIcon, FolderOpenIcon} from "@heroicons/react/outline"
 import {version} from "/package.json"
 import coverPlatformer from "/samples/platformer/cover.png"
 import coverShooter from "/samples/shooter/cover.png"
+import coverDungeon from "/samples/dungeon/cover.png"
 import {NowLoading} from "/src/components/controls/NowLoading"
 import {Footer} from "/src/components/welcome/Footer"
 
@@ -24,12 +25,13 @@ export const Welcome = observer(() => {
   const samples = [
     {key: "platformer", cover: coverPlatformer},
     {key: "shooter", cover: coverShooter},
+    {key: "dungeon", cover: coverDungeon},
   ]
 
   if (loading) return <NowLoading/>
   else return (
     <div className="flex fixed inset-0 justify-center py-32 bg-gray-900">
-      <div className="w-full max-w-2xl">
+      <div className="w-full max-w-4xl px-4">
 
         <h1 className="mb-2 text-lg font-semibold tracking-wide uppercase">
           GhostLight <span className="text-gray-400">({version})</span>
@@ -64,7 +66,7 @@ export const Welcome = observer(() => {
               <img
                 src={s.cover}
                 alt={s.key}
-                className="grayscale hover:grayscale-0"
+                className="grayscale hover:grayscale-0 object-cover w-full"
               />
             </button>
           ))}

@@ -1,0 +1,326 @@
+{
+  "config": {
+    "background": "#000000",
+    "width": 336,
+    "height": 144
+  },
+  "grid": {
+    "show": true,
+    "sizeX": 16,
+    "sizeY": 16
+  },
+  "actors": [
+    {
+      "id": "5f79ff15-0731-4c24-8820-5bf3f97c193c",
+      "type_id": "a79322f3-7412-43ca-b3c1-6453c8eb1305",
+      "x": 0,
+      "y": 0,
+      "width": 16,
+      "height": 144,
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Repeat"
+    },
+    {
+      "id": "c51faa41-151d-4807-af46-8705b82cb403",
+      "type_id": "a79322f3-7412-43ca-b3c1-6453c8eb1305",
+      "x": 192,
+      "y": 0,
+      "width": 16,
+      "height": 144,
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Repeat"
+    },
+    {
+      "id": "0fce8102-101c-4eeb-a671-8d0f97a02b0d",
+      "type_id": "a79322f3-7412-43ca-b3c1-6453c8eb1305",
+      "x": 16,
+      "y": 0,
+      "width": 176,
+      "height": 16,
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Repeat"
+    },
+    {
+      "id": "cb29138e-803b-4cb5-a54d-ce0e7002bec9",
+      "type_id": "a79322f3-7412-43ca-b3c1-6453c8eb1305",
+      "x": 16,
+      "y": 128,
+      "width": 176,
+      "height": 16,
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Repeat"
+    },
+    {
+      "id": "df880eea-95d3-42b8-9def-c0e8f523b3d0",
+      "type_id": "a79322f3-7412-43ca-b3c1-6453c8eb1305",
+      "x": 144,
+      "y": 64,
+      "width": 16,
+      "height": 16,
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Repeat"
+    },
+    {
+      "id": "df00d22d-3401-4646-8f32-5e2939c40195",
+      "type_id": "d2670b33-5564-4189-9a03-743a32667dc8",
+      "x": 160,
+      "y": 64,
+      "width": 16,
+      "height": 16,
+      "props": {},
+      "type": "Lock",
+      "texture": "Lock.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "bc44fa3a-854d-4029-8771-928eae3061ef",
+      "type_id": "83cfe3d5-d0ee-4624-913b-d2c7da2cb97f",
+      "x": 160,
+      "y": 32,
+      "width": 16,
+      "height": 16,
+      "props": {},
+      "type": "Key",
+      "texture": "Key.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "8306e4f5-9901-4ecd-af06-19ae3db0e385",
+      "type_id": "a79322f3-7412-43ca-b3c1-6453c8eb1305",
+      "x": 128,
+      "y": 64,
+      "width": 16,
+      "height": 64,
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Repeat"
+    },
+    {
+      "id": "977a9ddf-77e0-4eae-b595-e0be3098abae",
+      "type_id": "86ea5f95-ea51-4738-a6f8-df74abaf4bcf",
+      "x": 160,
+      "y": 96,
+      "width": 16,
+      "height": 16,
+      "props": {
+        "9549d83b-fd6c-4f3a-b566-aadb2075539b": "33b08fb3-3e8e-4151-8c01-a869434758a9",
+        "to": "33b08fb3-3e8e-4151-8c01-a869434758a9"
+      },
+      "type": "Stairs",
+      "texture": "Stairs.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "d51b089d-9511-44a0-a0d6-e335230fbead",
+      "type_id": "a79322f3-7412-43ca-b3c1-6453c8eb1305",
+      "x": 176,
+      "y": 64,
+      "width": 16,
+      "height": 16,
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Repeat"
+    },
+    {
+      "id": "1e11e753-ccd5-4fa7-9d89-2de645829bab",
+      "type_id": "a79322f3-7412-43ca-b3c1-6453c8eb1305",
+      "x": 96,
+      "y": 16,
+      "width": 16,
+      "height": 96,
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Repeat"
+    },
+    {
+      "id": "a357c679-e7fe-4034-8894-2140209220d6",
+      "type_id": "9862f7a4-5e93-49c6-b066-49471798c8dd",
+      "x": 32,
+      "y": 96,
+      "width": 16,
+      "height": 16,
+      "props": {
+        "93e15693-ba09-475d-bc34-6d9ad0865d0f": "2b31e939-1718-4da5-842f-aeafef556911",
+        "path": "2b31e939-1718-4da5-842f-aeafef556911"
+      },
+      "type": "Skeleton",
+      "texture": "Skeleton.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "9e9f726d-753c-4a28-83c8-bf0e0e41dae2",
+      "type_id": "b221a587-5b79-4e41-9079-90abed9da079",
+      "x": 128,
+      "y": 32,
+      "width": 16,
+      "height": 16,
+      "props": {
+        "42ad5567-70b8-4d5c-a02c-d655715d205a": "Use the key to open the door",
+        "text": "Use the key to open the door"
+      },
+      "type": "Sign",
+      "texture": "Sign.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "a6331c59-1b61-49c4-9528-4847b72da9b0",
+      "type_id": "a79322f3-7412-43ca-b3c1-6453c8eb1305",
+      "x": 224,
+      "y": 0,
+      "width": 16,
+      "height": 144,
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Repeat"
+    },
+    {
+      "id": "24713922-e4db-41cb-ae3c-c43945d873ce",
+      "type_id": "a79322f3-7412-43ca-b3c1-6453c8eb1305",
+      "x": 240,
+      "y": 128,
+      "width": 80,
+      "height": 16,
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Repeat"
+    },
+    {
+      "id": "010f46d6-10af-46fb-acbf-d0312411facd",
+      "type_id": "a79322f3-7412-43ca-b3c1-6453c8eb1305",
+      "x": 320,
+      "y": 0,
+      "width": 16,
+      "height": 144,
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Repeat"
+    },
+    {
+      "id": "fc2138d0-dfd9-4d74-85db-9bdd18cc49ec",
+      "type_id": "a79322f3-7412-43ca-b3c1-6453c8eb1305",
+      "x": 240,
+      "y": 0,
+      "width": 80,
+      "height": 16,
+      "props": {},
+      "type": "Wall",
+      "texture": "Wall.png",
+      "resize": "Repeat"
+    },
+    {
+      "id": "33b08fb3-3e8e-4151-8c01-a869434758a9",
+      "type_id": "ebd311a5-2b75-4047-95eb-8eb15a85ce87",
+      "x": 256,
+      "y": 96,
+      "width": 16,
+      "height": 16,
+      "props": {
+        "574b2533-65fc-4096-a1b8-a3c0e3c56f99": "977a9ddf-77e0-4eae-b595-e0be3098abae",
+        "to": "977a9ddf-77e0-4eae-b595-e0be3098abae"
+      },
+      "type": "StairsUp",
+      "texture": "StairsUp.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "2b31e939-1718-4da5-842f-aeafef556911",
+      "type_id": "7052ed41-4ab0-4a7f-8c47-e3c4875ec4e1",
+      "x": 64,
+      "y": 96,
+      "width": 16,
+      "height": 16,
+      "props": {
+        "be9c3710-73aa-4311-a433-7a50833a8c4c": "0537cf8e-5b70-4e31-992d-e44df87ffb12",
+        "next": "0537cf8e-5b70-4e31-992d-e44df87ffb12"
+      },
+      "type": "Node",
+      "texture": "#941ea480",
+      "resize": "Disable"
+    },
+    {
+      "id": "0537cf8e-5b70-4e31-992d-e44df87ffb12",
+      "type_id": "7052ed41-4ab0-4a7f-8c47-e3c4875ec4e1",
+      "x": 64,
+      "y": 64,
+      "width": 16,
+      "height": 16,
+      "props": {
+        "be9c3710-73aa-4311-a433-7a50833a8c4c": "2adfc862-1746-49e0-9c3d-d67214c78231",
+        "next": "2adfc862-1746-49e0-9c3d-d67214c78231"
+      },
+      "type": "Node",
+      "texture": "#941ea480",
+      "resize": "Disable"
+    },
+    {
+      "id": "2adfc862-1746-49e0-9c3d-d67214c78231",
+      "type_id": "7052ed41-4ab0-4a7f-8c47-e3c4875ec4e1",
+      "x": 32,
+      "y": 64,
+      "width": 16,
+      "height": 16,
+      "props": {
+        "be9c3710-73aa-4311-a433-7a50833a8c4c": "a357c679-e7fe-4034-8894-2140209220d6",
+        "next": "a357c679-e7fe-4034-8894-2140209220d6"
+      },
+      "type": "Node",
+      "texture": "#941ea480",
+      "resize": "Disable"
+    },
+    {
+      "id": "6e9f422e-c987-4999-b633-b98b5d023e19",
+      "type_id": "bd66d31e-d03d-4f2a-b7fe-d2eb5f1fd91d",
+      "x": 272,
+      "y": 48,
+      "width": 16,
+      "height": 16,
+      "props": {
+        "536b0974-a7f5-44d2-b6b6-5e3ba6484cb5": "fc6fa820-6b6a-4683-b312-a69b1f3c8db6",
+        "item": "fc6fa820-6b6a-4683-b312-a69b1f3c8db6"
+      },
+      "type": "Chest",
+      "texture": "Chest.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "fc6fa820-6b6a-4683-b312-a69b1f3c8db6",
+      "type_id": "e1dd18c3-2971-42c3-9de8-699f38dbdd76",
+      "x": 272,
+      "y": 32,
+      "width": 16,
+      "height": 16,
+      "props": {},
+      "type": "Potion",
+      "texture": "Potion.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "6a3c1271-31e4-47b6-81d9-15b7301e5cb6",
+      "type_id": "b5fc08ea-343c-401e-bfc9-b7d1692fd6f1",
+      "x": 32,
+      "y": 32,
+      "width": 16,
+      "height": 16,
+      "props": {},
+      "type": "Player",
+      "texture": "Player.png",
+      "resize": "Disable"
+    }
+  ]
+}

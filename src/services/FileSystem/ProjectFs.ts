@@ -77,6 +77,11 @@ export const ProjectFs = new class {
         scene: import("/samples/shooter/.ghostlight/scenes/scene.json"),
         types: import("/samples/shooter/.ghostlight/types/types.json"),
       },
+      dungeon: {
+        assets: import.meta.globEager("/samples/dungeon/.ghostlight/assets/*"),
+        scene: import("/samples/dungeon/.ghostlight/scenes/scene.json"),
+        types: import("/samples/dungeon/.ghostlight/types/types.json"),
+      },
     }
 
     const projectDirHandle = await showDirectoryPicker({id: "ghostlight"})
@@ -90,12 +95,16 @@ export const ProjectFs = new class {
     const sample = samples[key]
     await fsScenes.write("scene.json", JSON.stringify(await sample.scene))
     await fsTypes.write("types.json", JSON.stringify((await sample.types).default))
+
+    const assetPromises: Promise<void>[] = []
     for (const module of Object.values(sample.assets) as { default: any }[]) {
       const path = module.default
       const filename = path.split("/").reverse()[0].replace(/\..+\./, ".") // no hash locally
-      const data = await (fetch(path).then((x) => x.blob()))
-      await fsAssets.write(filename, data)
+      assetPromises.push(
+        fetch(path).then((x) => x.blob()).then((data) => fsAssets.write(filename, data)),
+      )
     }
+    await Promise.all(assetPromises)
 
     await this.open(projectDirHandle)
   }
@@ -111,5 +120,8 @@ if (import.meta.hot) {
     "/samples/shooter/.ghostlight/assets/*",
     "/samples/shooter/.ghostlight/scenes/scene.json",
     "/samples/shooter/.ghostlight/scenes/types.json",
+    "/samples/dungeon/.ghostlight/assets/*",
+    "/samples/dungeon/.ghostlight/scenes/scene.json",
+    "/samples/dungeon/.ghostlight/scenes/types.json",
   ], () => null)
 }
