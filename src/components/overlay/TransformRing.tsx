@@ -31,10 +31,12 @@ export const TransformRing = observer(() => {
     >{anchors.map((x, i) => (
       <div
         key={i}
-        className="absolute w-2 h-2 bg-white rounded-full ring-1 ring-green-300 -translate-x-1/2 -translate-y-1/2 t-1"
+        className="absolute bg-white rounded-full ring-1 ring-green-300 -translate-x-1/2 -translate-y-1/2 t-1"
         style={{
           top: x.top,
           left: x.left,
+          width: devicePixelRatio >= 2 ? 10 : 8,
+          height: devicePixelRatio >= 2 ? 10 : 8,
           cursor: x.position + "-resize",
           pointerEvents: Cursor.down ? "none" : "auto",
         }}

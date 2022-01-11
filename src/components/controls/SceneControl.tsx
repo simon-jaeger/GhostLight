@@ -46,6 +46,7 @@ export const SceneControl = observer(() => {
             style={{flex: 1}}
           />
           <button
+            title="Scene menu"
             type="button"
             className="flex justify-center items-center -mr-2 w-8 h-8 text-gray-400 hover:text-gray-200 focus:text-gray-200"
             onClick={() => setShowMenu(!showMenu)}
@@ -82,7 +83,7 @@ export const SceneControl = observer(() => {
               value={Config.background}
               onChange={(v) => Config.background = v}
             />
-            <Button>
+            <Button title="Pick color">
               <ColorSwatchIcon/>
               <input
                 className="absolute inset-0 mt-1 w-full h-full opacity-0 cursor-pointer"
@@ -126,7 +127,7 @@ export const SceneControl = observer(() => {
               type="number"
               min={1}
             />
-            <Button onClick={() => Grid.show = !Grid.show}>
+            <Button title="Toggle grid" onClick={() => Grid.show = !Grid.show}>
               {Grid.show ? <EyeIcon/> : <EyeOffIcon/>}
             </Button>
           </div>

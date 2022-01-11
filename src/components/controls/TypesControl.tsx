@@ -18,6 +18,7 @@ export const TypesControl = observer(() => {
       {Type.all.map(type => (
         <button
           key={type.name}
+          title={type.name}
           draggable={true}
           style={{paddingBottom: "100%"}}
           className={`relative ${Type.active.value === type ? "bg-gray-700" : "hover:bg-gray-700"}`}

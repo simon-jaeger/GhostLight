@@ -94,6 +94,7 @@ export const ActorControl = observer(() => {
             <div key={p.id}>
               <label className="mb-2">{p.name}</label>
               <Button
+                title="Toggle"
                 onClick={() => actor.props[p.id] = !actor.props[p.id]}
                 style={{width: "100%"}}
               >{actor.props[p.id] ? "TRUE" : "FALSE"}</Button>
@@ -110,8 +111,9 @@ export const ActorControl = observer(() => {
                 nullable
                 placeholder="Select actor..."
               />
-              <Button onClick={() => actor.props[p.id] = null}><XIcon/></Button>
+              <Button title="Reset" onClick={() => actor.props[p.id] = null}><XIcon/></Button>
               <Button
+                title="Choose target"
                 onClick={() => {
                   actor.props[p.id] = null
                   App.setMode("link", {from: actor, prop: p.id})

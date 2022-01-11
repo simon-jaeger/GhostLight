@@ -2,12 +2,13 @@ import React, {useEffect, useState} from "react"
 import {observer} from "mobx-react-lite"
 import {ProjectFs} from "/src/services/FileSystem/ProjectFs"
 import {DocumentAddIcon, FolderOpenIcon} from "@heroicons/react/outline"
-import {version} from "/package.json"
+import {ghostlight, version} from "/package.json"
 import coverPlatformer from "/samples/platformer/cover.png"
 import coverShooter from "/samples/shooter/cover.png"
 import coverDungeon from "/samples/dungeon/cover.png"
 import {NowLoading} from "/src/components/controls/NowLoading"
 import {Footer} from "/src/components/welcome/Footer"
+import {QuestionMarkCircleIcon} from "@heroicons/react/solid"
 
 export const Welcome = observer(() => {
   const [recent, setRecent] = useState([] as FileSystemDirectoryHandle[])
@@ -21,24 +22,29 @@ export const Welcome = observer(() => {
   const actions = [
     {name: "New", icon: DocumentAddIcon, fn: () => ProjectFs.open(null, true)},
     {name: "Open", icon: FolderOpenIcon, fn: () => ProjectFs.open()},
+    {
+      name: "Help",
+      icon: QuestionMarkCircleIcon,
+      fn: () => window.open(ghostlight.help, "_blank"),
+    },
   ]
   const samples = [
-    {key: "platformer", cover: coverPlatformer},
-    {key: "shooter", cover: coverShooter},
-    {key: "dungeon", cover: coverDungeon},
+    {key: "platformer", title: "Platformer", cover: coverPlatformer},
+    {key: "shooter", title: "Shooter", cover: coverShooter},
+    {key: "dungeon", title: "Dungeon crawler", cover: coverDungeon},
   ]
 
   if (loading) return <NowLoading/>
   else return (
-    <div className="flex fixed inset-0 justify-center py-32 bg-gray-900">
-      <div className="w-full max-w-4xl px-4">
+    <div className="flex fixed inset-0 justify-center py-24 bg-gray-900">
+      <div className="relative w-full max-w-3xl">
 
         <h1 className="mb-2 text-lg font-semibold tracking-wide uppercase">
           GhostLight <span className="text-gray-400">({version})</span>
         </h1>
         <hr className="mb-8 h-1 bg-blue-500 bg-opacity-50"></hr>
 
-        <div className="flex gap-4 items-center mb-16">
+        <section className="flex gap-4 mb-16">
           {actions.map(a => (
             <button
               key={a.name}
@@ -49,30 +55,9 @@ export const Welcome = observer(() => {
               <span className="bottom-0 p-2 w-full text-center border-t border-gray-600">{a.name}</span>
             </button>
           ))}
+        </section>
 
-          <div className="flex justify-center items-center mr-4 ml-auto text-gray-500 -rotate-90">
-            <div className="bg-gray-600 h-[1px] absolute w-32"></div>
-            <div className="absolute px-2 mb-1 bg-gray-900">Samples</div>
-          </div>
-          {samples.map(s => (
-            <button
-              key={s.key}
-              className="w-32 h-32 bg-gray-800 shadow"
-              onClick={() => {
-                setLoading(true)
-                ProjectFs.openSample(s.key).finally(() => setLoading(false))
-              }}
-            >
-              <img
-                src={s.cover}
-                alt={s.key}
-                className="grayscale hover:grayscale-0 object-cover w-full"
-              />
-            </button>
-          ))}
-        </div>
-
-        {!!recent.length && <section>
+        {!!recent.length && <section className="">
           <h2 className="py-2 pl-3 border-l-4 border-blue-500 border-opacity-50">
             Recent projects
           </h2>
@@ -86,6 +71,36 @@ export const Welcome = observer(() => {
             ))}
           </div>
         </section>}
+
+        <section className="absolute right-0 top-16 mt-2">
+          <h2
+            className="flex leading-none absolute gap-2 items-center h-32 rotate-180 -translate-x-12"
+            style={{writingMode: "vertical-lr"}}
+          >
+            <div className="bg-gray-600 w-px grow"></div>
+            <div className="px-2 text-gray-400">Samples</div>
+            <div className="bg-gray-600 w-px grow"></div>
+          </h2>
+          {samples.map(s => (
+            <button
+              key={s.key}
+              title={s.title}
+              className="mb-4 w-32 h-32 bg-gray-800 shadow"
+              onClick={() => {
+                setLoading(true)
+                ProjectFs.openSample(s.key).finally(() => setLoading(false))
+              }}
+            >
+              <img
+                src={s.cover}
+                alt={s.key}
+                width={128}
+                height={128}
+                className="object-cover w-full grayscale hover:grayscale-0"
+              />
+            </button>
+          ))}
+        </section>
 
         <Footer/>
 

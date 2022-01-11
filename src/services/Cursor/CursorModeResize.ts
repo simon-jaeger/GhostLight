@@ -7,9 +7,6 @@ import {uClone} from "/src/helpers/utils"
 import {Grid} from "/src/services/Grid"
 import {when} from "mobx"
 
-// TODO: refactor an cleanup (also, actors larger than grid on initial resize to nw "jumps")
-// TODO: maybe side anchors too?
-
 export class CursorModeResize implements CursorMode {
   target!: Actor
   initial!: Actor

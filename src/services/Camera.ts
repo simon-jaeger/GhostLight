@@ -1,5 +1,6 @@
-import {makeAutoObservable} from "mobx"
+import {autorun, makeAutoObservable} from "mobx"
 import {uClone, uFindLast, uLast} from "/src/helpers/utils"
+import {ProjectFs} from "/src/services/FileSystem/ProjectFs"
 
 export const Camera = new class {
   x = (256 + 32) * devicePixelRatio
@@ -10,6 +11,9 @@ export const Camera = new class {
 
   constructor() {
     makeAutoObservable(this)
+    setTimeout(() => autorun(() => {
+      if (!ProjectFs.isOpen) this.reset()
+    }))
   }
 
   reset() {

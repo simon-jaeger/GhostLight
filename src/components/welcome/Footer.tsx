@@ -18,14 +18,17 @@ export const Footer = observer(() => {
       <a
         href="https://github.com/simon-jaeger/GhostLight"
         target="_blank"
+        rel="noopener"
         className="flex gap-1 items-center hover:text-gray-400"
       >
         {githubSVG} Repository
       </a>
-      <details className="overflow-y-auto max-h-96 cursor-pointer">
+      <details className="overflow-y-auto max-h-96">
         <summary>Privacy policy</summary>
-        <p>Simon Jäger<br/>Kirchweg 15<br/>8247
-          Flurlingen<br/>Switzerland<br/><strong>Email</strong>:
+        <p className="max-w-lg"><br/>
+          <strong>Publisher</strong><br/>
+          Simon Jäger<br/>Kirchweg 15<br/>8247
+          Flurlingen<br/>Switzerland<br/>
           simon.pascal.jaeger+ghostlight@gmail.com<br/><br/><strong>General</strong><br/>Based
           on Article 13 of the Swiss Federal Constitution and the data
           protection provisions of the Swiss Confederation (Data Protection Act,
@@ -84,6 +87,7 @@ export const Footer = observer(() => {
           publication. <strong>Source</strong>: <a
             href="https://brainbox.swiss/"
             target="_blank"
+            rel="noopener"
           >BrainBox Solutions</a><br/><br/>
           <strong>Matomo usage data</strong><br/> When you visit our site, we
           will store the following anonymized data: the website from which you
@@ -103,20 +107,24 @@ export const Footer = observer(() => {
         <a
           href="https://rottingpixels.itch.io/"
           target="_blank"
+          rel="noopener"
         >Rottingpixels</a><br/>
         <a
           href="https://pixelfrog-assets.itch.io/"
           target="_blank"
+          rel="noopener"
         >Pixelfrog</a><br/>
-        <a href="https://grafxkid.itch.io/" target="_blank">Grafxkid</a><br/>
+        <a href="https://grafxkid.itch.io/" target="_blank" rel="noopener">Grafxkid</a><br/>
         <a
           href="https://blackdragon1727.itch.io/"
           target="_blank"
+          rel="noopener"
         >Blackdragon1272</a><br/>
         <a href="https://kenney.nl" target="_blank">Kenney.nl</a><br/>
         <a
           href="https://mattwalkden.itch.io/"
           target="_blank"
+          rel="noopener"
         >MattWalkden</a><br/>
       </details>
     </div>

@@ -10,8 +10,9 @@ import {DropHandler} from "/src/services/DropHandler"
 import {Cursor} from "/src/services/Cursor/Cursor"
 import {History} from "/src/services/History"
 
-mobx.configure({enforceActions: "never"})
 // Debugger.run()
+
+mobx.configure({enforceActions: "never"})
 
 ReactDOM.render(
   <React.StrictMode><Root/></React.StrictMode>,

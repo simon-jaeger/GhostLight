@@ -51,7 +51,7 @@ export const Keyboard = new class {
     sceneView.addEventListener("wheel", uThrottle((e: WheelEvent) => {
       if (e.deltaY > 0) this.onMinus()
       if (e.deltaY < 0) this.onPlus()
-    }, 200))
+    }, 200), {passive: true})
   }
 
   onCtrlC() {

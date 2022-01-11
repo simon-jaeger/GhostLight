@@ -2,6 +2,7 @@ import React from "react"
 import {observer} from "mobx-react-lite"
 import {CursorClickIcon, HandIcon, PlusCircleIcon} from "@heroicons/react/solid"
 import {App, AppMode} from "/src/services/App"
+import {uCapitalize} from "/src/helpers/utils"
 
 export const ModeControl = observer(() => {
   const modes: { mode: AppMode, highlight: AppMode[], icon: JSX.Element }[] = [
@@ -19,6 +20,7 @@ export const ModeControl = observer(() => {
       {modes.map((m) => (
         <button
           key={m.mode}
+          title={uCapitalize(m.mode)}
           onClick={() => App.setMode(m.mode)}
           className={`relative w-12 h-12 flex items-center justify-center ${m.highlight.includes(App.mode) ? "bg-gray-700" : "hover:bg-gray-700"}`}
         >{m.icon}</button>

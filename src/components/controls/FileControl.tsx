@@ -17,15 +17,18 @@ export const FileControl = observer(() => {
     <div className="flex fixed top-0 left-0 items-center h-12 bg-gray-800">
       <button
         ref={refMenuTrigger}
+        title="Menu"
         onClick={() => setShowMenu(!showMenu)}
         className="flex justify-center items-center w-12 h-12 hover:bg-gray-700"
       >{showMenu ? <XIcon/> : <MenuIcon/>}</button>
       <button
+        title="Undo"
         disabled={History.undoStack.length <= 1}
         onClick={() => History.undo()}
         className="flex justify-center items-center w-12 h-12 disabled:opacity-50 hover:bg-gray-700"
       ><ArrowCircleLeftIcon/></button>
       <button
+        title="Redo"
         disabled={History.redoStack.length <= 0}
         onClick={() => History.redo()}
         className="flex justify-center items-center w-12 h-12 disabled:opacity-50 hover:bg-gray-700"

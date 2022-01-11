@@ -78,10 +78,10 @@ export const TypesControlDetails = observer(() => {
               value={type.texture}
               onChange={(v) => type.texture = v}
             />
-            <Button onClick={onPickImage}>
+            <Button title="Pick image" onClick={onPickImage}>
               <PhotographIcon/>
             </Button>
-            <Button>
+            <Button title="Pick color">
               <ColorSwatchIcon/>
               <input
                 className="absolute inset-0 mt-1 w-full h-full opacity-0 cursor-pointer"
@@ -129,6 +129,7 @@ export const TypesControlDetails = observer(() => {
                 />
                 <button
                   type="button"
+                  title="Remove"
                   className="flex justify-center items-center -mr-1 w-8 h-8 text-gray-400 hover:text-gray-200 focus:text-gray-200"
                   onClick={() => uRemove(type.props, p)}
                 >
