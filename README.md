@@ -1,8 +1,7 @@
 # GhostLight
 
-A web based 2d scene editor, currently a work in progress.
-
-[Test the preview version now!](https://ghostlight.onrender.com/)
+A web based 2d scene editor. <br/>
+https://ghostlight.onrender.com
 
 ![demo](demo.gif)
 
