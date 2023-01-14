@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  @apply bg-gray-900 text-gray-200
+}
+
+:focus {
+  outline: 0 !important;
+}
+::selection {
+}
+::placeholder {
+}
+::-webkit-scrollbar {
+}
+::-webkit-scrollbar-track {
+}
+::-webkit-scrollbar-thumb {
+}
+
+label,
+small,
+input,
+textarea,
+select,
+button {
+  display: block;
+}
+
+button {
+  text-align: left;
+}
+
+input, textarea {
+  background: transparent;
+}

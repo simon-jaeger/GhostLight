@@ -1,0 +1,20 @@
+[
+  {
+    "id": "c40a3740-e8fc-492a-9369-41a3377cdf52",
+    "name": "Player",
+    "width": 0,
+    "height": 0,
+    "texture": "#d0a225",
+    "resize": "Disable",
+    "props": []
+  },
+  {
+    "id": "a4e99c91-5a1e-4ba1-ae26-d3a92213691a",
+    "name": "Floor",
+    "width": 0,
+    "height": 0,
+    "texture": "#475569",
+    "resize": "Scale",
+    "props": []
+  }
+]

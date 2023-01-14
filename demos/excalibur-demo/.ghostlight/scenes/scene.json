@@ -1,0 +1,192 @@
+{
+  "config": {
+    "background": "#394778",
+    "width": 256,
+    "height": 192
+  },
+  "grid": {
+    "show": true,
+    "sizeX": 16,
+    "sizeY": 16
+  },
+  "actors": [
+    {
+      "id": "edcb40ed-99f2-4c6f-90fb-326c4c29bdf7",
+      "type_id": "7e70bd9d-1e28-474b-82be-cf75b3091b14",
+      "x": 0,
+      "y": 160,
+      "width": 144,
+      "height": 32,
+      "props": {},
+      "type": "Ground",
+      "texture": "Ground.png",
+      "resize": "Slice"
+    },
+    {
+      "id": "3387b6d7-162d-451b-92b3-d6958f405e50",
+      "type_id": "7e70bd9d-1e28-474b-82be-cf75b3091b14",
+      "x": 192,
+      "y": 160,
+      "width": 64,
+      "height": 32,
+      "props": {},
+      "type": "Ground",
+      "texture": "Ground.png",
+      "resize": "Slice"
+    },
+    {
+      "id": "a3be480a-9cd2-4d5c-979c-ed34dc254e66",
+      "type_id": "cc3ce0bb-8831-42d6-9694-3efb3ff95365",
+      "x": 144,
+      "y": 112,
+      "width": 16,
+      "height": 16,
+      "props": {},
+      "type": "Coin",
+      "texture": "Coin.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "303696b3-eba6-4e07-adfb-94b32209d6c3",
+      "type_id": "cc3ce0bb-8831-42d6-9694-3efb3ff95365",
+      "x": 160,
+      "y": 112,
+      "width": 16,
+      "height": 16,
+      "props": {},
+      "type": "Coin",
+      "texture": "Coin.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "e1cd99f6-89b6-493f-b126-a3f1bd042ceb",
+      "type_id": "cc3ce0bb-8831-42d6-9694-3efb3ff95365",
+      "x": 176,
+      "y": 112,
+      "width": 16,
+      "height": 16,
+      "props": {},
+      "type": "Coin",
+      "texture": "Coin.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "bc9d3620-6e31-4012-b33d-2af5ce35d21a",
+      "type_id": "d962b7be-bc3c-4640-a912-853ce71ae1e5",
+      "x": 0,
+      "y": 144,
+      "width": 16,
+      "height": 16,
+      "props": {
+        "429914b2-b991-4a9f-97e5-eb19314cd207": "Demo",
+        "text": "Demo"
+      },
+      "type": "Sign",
+      "texture": "Sign.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "52eb1ff7-b1d9-4db0-ae8b-0c7428a40220",
+      "type_id": "d5607bac-15eb-4dc5-9740-05b1b50c7e7a",
+      "x": 64,
+      "y": 112,
+      "width": 16,
+      "height": 16,
+      "props": {
+        "ca947042-1953-49d9-bd32-cb1270e8f98b": "c1923bc8-d6ac-48d4-ade4-74021af20277",
+        "item": "c1923bc8-d6ac-48d4-ade4-74021af20277"
+      },
+      "type": "ItemBox",
+      "texture": "ItemBox.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "c1923bc8-d6ac-48d4-ade4-74021af20277",
+      "type_id": "670b461a-5790-405b-a2c7-bc266bed2985",
+      "x": 64,
+      "y": 96,
+      "width": 16,
+      "height": 16,
+      "props": {},
+      "type": "Apple",
+      "texture": "Apple.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "eb888d2f-2d53-4342-b660-9367f34c05eb",
+      "type_id": "2156362f-1e89-4a59-ab95-4642a370ad62",
+      "x": 64,
+      "y": 64,
+      "width": 192,
+      "height": 16,
+      "props": {},
+      "type": "Metal",
+      "texture": "Metal.png",
+      "resize": "Slice"
+    },
+    {
+      "id": "c97ff789-38c0-4a80-a648-505c16c555b0",
+      "type_id": "82220fe4-acd3-4be9-ab13-c419813bbd47",
+      "x": 224,
+      "y": 64,
+      "width": 16,
+      "height": 96,
+      "props": {},
+      "type": "Ladder",
+      "texture": "Ladder.png",
+      "resize": "Repeat"
+    },
+    {
+      "id": "7b5d1197-b21f-4c81-9ed4-32f8ee52d6e8",
+      "type_id": "c510a05a-5b77-4e37-81d1-ff68b6738441",
+      "x": 32,
+      "y": 144,
+      "width": 16,
+      "height": 16,
+      "props": {},
+      "type": "Player",
+      "texture": "Player.png",
+      "resize": "Disable"
+    },
+    {
+      "id": "926dad92-2171-4f6d-a0e2-ec30a8fdbe76",
+      "type_id": "933274d9-ec81-4caf-9aef-b207341cf63c",
+      "x": 112,
+      "y": 32,
+      "width": 32,
+      "height": 32,
+      "props": {
+        "collisionType": "Active"
+      },
+      "type": "Crate",
+      "texture": "Crate.png",
+      "resize": "Slice"
+    },
+    {
+      "id": "71bc5acb-a48d-4e10-b41c-62e277a5f9d5",
+      "type_id": "2156362f-1e89-4a59-ab95-4642a370ad62",
+      "x": 64,
+      "y": 48,
+      "width": 16,
+      "height": 16,
+      "props": {},
+      "type": "Metal",
+      "texture": "Metal.png",
+      "resize": "Slice"
+    },
+    {
+      "id": "1fdfb4b8-1c1a-4db3-b8ef-1346a4dfd88c",
+      "type_id": "76e4d938-26b4-4009-8696-68c0e8dc863f",
+      "x": 144,
+      "y": 176,
+      "width": 48,
+      "height": 16,
+      "props": {
+        "collisionType": "PreventCollision"
+      },
+      "type": "Water",
+      "texture": "Water.png",
+      "resize": "Slice"
+    }
+  ]
+}

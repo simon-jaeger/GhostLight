@@ -1,0 +1,129 @@
+[
+  {
+    "id": "7e70bd9d-1e28-474b-82be-cf75b3091b14",
+    "name": "Ground",
+    "width": 16,
+    "height": 16,
+    "texture": "Ground.png",
+    "resize": "Slice",
+    "props": []
+  },
+  {
+    "id": "2156362f-1e89-4a59-ab95-4642a370ad62",
+    "name": "Metal",
+    "width": 16,
+    "height": 16,
+    "texture": "Metal.png",
+    "resize": "Slice",
+    "props": []
+  },
+  {
+    "id": "76e4d938-26b4-4009-8696-68c0e8dc863f",
+    "name": "Water",
+    "width": 16,
+    "height": 16,
+    "texture": "Water.png",
+    "resize": "Slice",
+    "props": [
+      {
+        "id": "b43f53f5-e447-417d-93cb-3ca63ba1791e",
+        "name": "collisionType",
+        "type": "string",
+        "default": "PreventCollision"
+      }
+    ]
+  },
+  {
+    "id": "c510a05a-5b77-4e37-81d1-ff68b6738441",
+    "name": "Player",
+    "width": 16,
+    "height": 16,
+    "texture": "Player.png",
+    "resize": "Disable",
+    "props": []
+  },
+  {
+    "id": "cc3ce0bb-8831-42d6-9694-3efb3ff95365",
+    "name": "Coin",
+    "width": 16,
+    "height": 16,
+    "texture": "Coin.png",
+    "resize": "Disable",
+    "props": []
+  },
+  {
+    "id": "933274d9-ec81-4caf-9aef-b207341cf63c",
+    "name": "Crate",
+    "width": 16,
+    "height": 16,
+    "texture": "Crate.png",
+    "resize": "Slice",
+    "props": [
+      {
+        "id": "5224d8aa-ad1f-4c95-bc78-92dddf3562b4",
+        "name": "collisionType",
+        "type": "string",
+        "default": "Active"
+      }
+    ]
+  },
+  {
+    "id": "3ac6726b-bb5c-4c11-b9a9-c682975f6f98",
+    "name": "Spike",
+    "width": 16,
+    "height": 16,
+    "texture": "Spike.png",
+    "resize": "Repeat",
+    "props": []
+  },
+  {
+    "id": "d962b7be-bc3c-4640-a912-853ce71ae1e5",
+    "name": "Sign",
+    "width": 16,
+    "height": 16,
+    "texture": "Sign.png",
+    "resize": "Disable",
+    "props": [
+      {
+        "id": "429914b2-b991-4a9f-97e5-eb19314cd207",
+        "name": "text",
+        "type": "string",
+        "default": null
+      }
+    ]
+  },
+  {
+    "id": "d5607bac-15eb-4dc5-9740-05b1b50c7e7a",
+    "name": "ItemBox",
+    "width": 16,
+    "height": 16,
+    "texture": "ItemBox.png",
+    "resize": "Disable",
+    "props": [
+      {
+        "id": "ca947042-1953-49d9-bd32-cb1270e8f98b",
+        "name": "item",
+        "type": "link",
+        "default": null
+      }
+    ]
+  },
+  {
+    "id": "670b461a-5790-405b-a2c7-bc266bed2985",
+    "name": "Apple",
+    "width": 16,
+    "height": 16,
+    "texture": "Apple.png",
+    "resize": "Disable",
+    "props": []
+  },
+  {
+    "id": "82220fe4-acd3-4be9-ab13-c419813bbd47",
+    "name": "Ladder",
+    "width": 16,
+    "height": 16,
+    "texture": "Ladder.png",
+    "resize": "Repeat",
+    "props": []
+  }
+]

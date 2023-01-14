@@ -10,4 +10,4 @@ And that's not all – GhostLight allows you to directly link your local assets 
 
 Check out a demo game: <br>
 [Play it online](https://ghostlight-excalibur-demo.onrender.com/) <br>
-[Get the source code](https://github.com/simon-jaeger/ghostlight-excalibur-demo)
+[Get the source code](https://github.com/simon-jaeger/ghostlight/tree/main/demos/excalibur-demo)

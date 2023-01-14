@@ -1,0 +1,62 @@
+{
+  "config": {
+    "background": "#000000",
+    "width": 130,
+    "height": 130
+  },
+  "grid": {
+    "show": true,
+    "sizeX": 10,
+    "sizeY": 10
+  },
+  "actors": [
+    {
+      "id": "38c13f34-002c-4c45-9424-f7792d0e1484",
+      "type_id": "a4e99c91-5a1e-4ba1-ae26-d3a92213691a",
+      "x": 0,
+      "y": 120,
+      "width": 130,
+      "height": 10,
+      "props": {},
+      "type": "Floor",
+      "texture": "#475569",
+      "resize": "Scale"
+    },
+    {
+      "id": "d037b714-17b5-454f-b3a1-5d11c28f9821",
+      "type_id": "c40a3740-e8fc-492a-9369-41a3377cdf52",
+      "x": 60,
+      "y": 110,
+      "width": 10,
+      "height": 10,
+      "props": {},
+      "type": "Player",
+      "texture": "#d0a225",
+      "resize": "Disable"
+    },
+    {
+      "id": "b941eaa4-a9fb-467a-b9dd-c572dfc0f17f",
+      "type_id": "a4e99c91-5a1e-4ba1-ae26-d3a92213691a",
+      "x": 100,
+      "y": 90,
+      "width": 30,
+      "height": 10,
+      "props": {},
+      "type": "Floor",
+      "texture": "#475569",
+      "resize": "Scale"
+    },
+    {
+      "id": "69733aac-8ee3-4936-9712-3c866f47d975",
+      "type_id": "a4e99c91-5a1e-4ba1-ae26-d3a92213691a",
+      "x": 0,
+      "y": 70,
+      "width": 70,
+      "height": 10,
+      "props": {},
+      "type": "Floor",
+      "texture": "#475569",
+      "resize": "Scale"
+    }
+  ]
+}

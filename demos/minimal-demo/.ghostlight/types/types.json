@@ -1,0 +1,20 @@
+[
+  {
+    "id": "e986383e-7ede-4435-882d-c232abc9c650",
+    "name": "Player",
+    "width": 16,
+    "height": 16,
+    "texture": "Player.png",
+    "resize": "Disable",
+    "props": []
+  },
+  {
+    "id": "ac88ffb3-d162-4ce9-9478-efb58b39924e",
+    "name": "Wall",
+    "width": 16,
+    "height": 16,
+    "texture": "Wall.png",
+    "resize": "Repeat",
+    "props": []
+  }
+]
