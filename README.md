@@ -1,7 +1,7 @@
 # GhostLight
 
 A web based 2d scene editor. <br/>
-https://ghostlight.onrender.com
+https://ghostlight.simonjaeger.ch
 
 ![demo](demo.gif)
 
