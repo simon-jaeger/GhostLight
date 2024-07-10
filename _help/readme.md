@@ -12,8 +12,7 @@ Chrome.
 | Platformer                                                          | Shooter                                                           |
 |---------------------------------------------------------------------|-------------------------------------------------------------------|
 | ![platformer](demo-platformer.png)                                  | ![shooter](demo-shooter.png)                                      |
-| [Play](https://ghostlight-excalibur-demo.onrender.com/)             | [Play](https://ghostlight-shooter-demo.onrender.com/)             |
-| [Source](https://github.com/simon-jaeger/ghostlight-excalibur-demo) | [Source](https://github.com/simon-jaeger/ghostlight-shooter-demo) |
+| [Source](https://github.com/simon-jaeger/GhostLight/tree/main/_demos/excalibur-demo) | [Source](https://github.com/simon-jaeger/GhostLight/tree/main/_demos/shooter-demo) |
 
 ## Community
 

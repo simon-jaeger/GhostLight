@@ -7,8 +7,6 @@ in combination with the game dev framework [Excalibur](https://excaliburjs.com/)
 **Controls** <br>
 WASD keys to move, arrow keys to shoot.
 
-[Play it now!](https://ghostlight-shooter-demo.onrender.com/)
-
 ![demo](readme.png)
 
 ---

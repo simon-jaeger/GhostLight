@@ -7,8 +7,6 @@ in combination with the game dev framework [Excalibur](https://excaliburjs.com/)
 **Controls** <br>
 Arrow keys to move, spacebar to jump.
 
-[Play it now!](https://ghostlight-excalibur-demo.onrender.com/)
-
 ![demo](readme.png)
 
 ---
